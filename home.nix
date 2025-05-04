@@ -62,9 +62,82 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
+  # Add nixvim configuration
+  programs.nixvim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    
+    # Basic editor options
+    opts = {
+      number = true;
+      relativenumber = true;
+      shiftwidth = 2;
+      tabstop = 2;
+      expandtab = true;
+      ignorecase = true;
+      smartcase = true;
+      clipboard = "unnamedplus";
+      termguicolors = true;
+    };
+    
+    # Add some plugins
+    plugins = {
+      lsp = {
+        enable = true;
+        servers = {
+          pyright.enable = true;
+          nixd.enable = true;
+          lua_ls.enable = true;
+        };
+      };
+      
+      treesitter.enable = true;
+      
+      # Explicitly enable web-devicons
+      web-devicons.enable = true;
+      
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<leader>ff" = "find_files";
+          "<leader>fg" = "live_grep";
+          "<leader>fb" = "buffers";
+          "<leader>fh" = "help_tags";
+        };
+      };
+      
+      which-key.enable = true;
+    };
+    
+    # Key mappings
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>w";
+        action = ":w<CR>";
+        options.desc = "Save file";
+      }
+      {
+        mode = "n";
+        key = "<leader>q";
+        action = ":q<CR>";
+        options.desc = "Quit";
+      }
+    ];
+    
+    # Extra Lua configuration if needed
+    extraConfigLua = ''
+      -- Add any custom Lua configuration here
+      vim.opt.scrolloff = 8
+      vim.opt.sidescrolloff = 8
+    '';
+  };
 } 

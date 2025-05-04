@@ -6,9 +6,13 @@
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-cosmic, home-manager, ...} @ inputs: {
+  outputs = { self, nixpkgs, nixos-cosmic, home-manager, nixvim, ...} @ inputs: {
     nixosConfigurations.T16 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       system = "x86_64-linux";
@@ -25,14 +29,16 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.unalome = import ./home.nix;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.unalome = { config, pkgs, ... }: {
+            imports = [
+              ./home.nix
+              ./nix-neovim.nix
+              nixvim.homeManagerModules.nixvim
+            ];
+          };
         }
       ];
     };
   };
 }
-
-
-# flake             -> configuration.nix, home-manager.nix
-# configuration.nix -> hardware-configuration.nix, cosmic.nix  (configuration.nix contains all packages installed)
-# home-manager.nix  -> all dot files 
