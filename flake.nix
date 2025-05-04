@@ -33,7 +33,6 @@
           home-manager.users.unalome = { config, pkgs, ... }: {
             imports = [
               ./home.nix
-              ./nix-neovim.nix
               nixvim.homeManagerModules.nixvim
             ];
           };
