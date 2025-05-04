@@ -10,7 +10,6 @@
 
   environment.systemPackages = with pkgs; [
     cosmic-applets
-    cosmic-edit
     cosmic-ext-calculator
     cosmic-ext-forecast    
     cosmic-ext-tasks
