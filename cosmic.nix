@@ -17,6 +17,8 @@
     cosmic-reader
     cosmic-screenshot
     quick-webapps
+    cosmic-ext-applet-caffeine
+    cosmic-ext-applet-clipboard-manager
   ];
 
 }

@@ -98,8 +98,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     neovim
      brave
-     alacritty
+     ghostty
      tmux
      fish
      wget
@@ -114,6 +115,8 @@
      python314
      code-cursor
      nix-index
+     lazygit
+     tinyxxd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
