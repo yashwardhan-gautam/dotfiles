@@ -1,0 +1,246 @@
+import = ["/home/unalome/.config/alacritty/themes/gruvbox_material.toml"]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 11.5
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Medium"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002%"
+key = "E"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002\""
+key = "E"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002[/"
+key = "F"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[A"
+key = "J"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[B"
+key = "K"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[C"
+key = "L"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[D"
+key = "H"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002g"
+key = "G"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002T"
+key = "J"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002s"
+key = "K"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002L"
+key = "L"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002u"
+key = "O"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[C"
+key = "Right"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[A"
+key = "Up"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[B"
+key = "Down"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002\u001B[D"
+key = "Left"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = """
+:q
+"""
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = """
+\u001B:w
+"""
+key = "S"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002x"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002z"
+key = "Z"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002n"
+key = "Tab"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0002,"
+key = "Comma"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u000F"
+key = "LBracket"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002p"
+key = "LBracket"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\t"
+key = "RBracket"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0002n"
+key = "RBracket"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0002:"
+key = "Semicolon"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00021"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00022"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00023"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00024"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00025"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00026"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00027"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00028"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00029"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "ddkP"
+key = "J"
+mods = "Command|Control"
+
+[[keyboard.bindings]]
+chars = "ddp"
+key = "K"
+mods = "Command|Control"
+
+[window]
+decorations = "None"
+dynamic_padding = true
+opacity=0.75
+startup_mode="Maximized"
+
+[window.dimensions]
+columns = 133
+lines = 40
+
+[cursor]
+style = {shape = "Block", blinking = "Always"}
+blink_timeout = 10
+
+[window.padding]
+x = 1
+y = 3
