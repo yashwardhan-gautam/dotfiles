@@ -1,41 +1,25 @@
 {
-  description = "Freds minimal Nixos configuration flake.";
+  description = "NixOS configuration";
+
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-    nixpkgs.follows = "nixos-cosmic/nixpkgs";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-cosmic, home-manager, nixvim, ...} @ inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations.T16 = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
       system = "x86_64-linux";
       modules = [
-        (import ./configuration.nix)
-        {
-          nix.settings = {
-            substituters = [ "https://cosmic.cachix.org/" ];
-            trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-          };
-        }
-        nixos-cosmic.nixosModules.default
+        ./system/configuration.nix
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.unalome = { config, pkgs, ... }: {
-            imports = [
-              ./home.nix
-              ./nix-neovim.nix
-              nixvim.homeManagerModules.nixvim
-            ];
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.unalome = import ./home.nix;
           };
         }
       ];
