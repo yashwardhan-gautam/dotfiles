@@ -4,8 +4,8 @@
   imports =
     [
       ./core-system.nix
-      ./gnome.nix
+      # ./gnome.nix
       ./user-environment.nix
-      # ./hyprland.nix
+      ./hyprland.nix
     ];
 }

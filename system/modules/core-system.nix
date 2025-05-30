@@ -33,7 +33,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    #jack.enable = true; # If you want to use JACK applications
+    jack.enable = true; # If you want to use JACK applications
     #media-session.enable = true; # Usually enabled by default
   };
 
