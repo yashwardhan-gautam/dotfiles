@@ -99,7 +99,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      neovim
-     brave
+     lazygit
+     curl
+     fzf
+     ripgrep
+     fd
+     firefox
      ghostty
      tmux
      fish
@@ -109,11 +114,16 @@
      btop
      htop
      zoxide
-     gcc14
+     gcc15
      obsidian
      lua
      python314
      code-cursor
+     discord
+     docker_28
+     postgresql_16
+     redis
+     conda
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
