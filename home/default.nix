@@ -25,11 +25,4 @@
     # nerd-fonts.symbols
   ];
 
-  # Neovim configuration
-  home.file = {
-    ".config/nvim" = {
-      source = ./config/nvim;
-      recursive = true;
-    };
-  };
 }

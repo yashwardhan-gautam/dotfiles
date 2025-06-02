@@ -1,2 +1,2 @@
-require("unalome.core")
-require("unalome.lazy")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
