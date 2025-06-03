@@ -1,13 +1,32 @@
-{ config, pkgs, pkgs-unstable, lib, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
-    ./user
+    inputs.nvf.homeManagerModules.default
+    ./config/nvim.nix
   ];
-
-  # home.backupFileExtension = "backup";
+  
   home.username = "unalome";
   home.homeDirectory = "/home/unalome";
-  home.stateVersion = "23.11";
-}
+  home.stateVersion = "24.11";
 
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  # Font configuration
+  fonts.fontconfig.enable = true;
+  
+  home.packages = with pkgs; [
+    # Individual Nerd Font packages
+    (nerdfonts.override { fonts = [
+      "JetBrainsMono"
+      "FiraCode"
+      "Hack"
+      "DroidSansMono"
+      "Iosevka"
+    ]; })
+  ];
+
+  # Configure nvf
+  programs.neovim.enable = true;
+}
