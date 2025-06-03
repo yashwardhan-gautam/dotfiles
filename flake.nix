@@ -10,13 +10,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, nixos-cosmic, home-manager, nvf, ...} @ inputs: {
+  outputs = { self, nixpkgs, nixos-cosmic, home-manager, ...} @ inputs: {
     nixosConfigurations.T16 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       system = "x86_64-linux";
@@ -33,12 +29,8 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.unalome = { ... }: {
-            imports = [ 
-              ./home
-              { _module.args = { inherit inputs; }; }
-            ];
-          };
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.unalome = import ./home;
         }
       ];
     };

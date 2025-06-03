@@ -2,8 +2,6 @@
 
 {
   imports = [
-    inputs.nvf.homeManagerModules.default
-    ./config/nvim.nix
   ];
   
   home.username = "unalome";
@@ -18,15 +16,12 @@
   
   home.packages = with pkgs; [
     # Individual Nerd Font packages
-    (nerdfonts.override { fonts = [
-      "JetBrainsMono"
-      "FiraCode"
-      "Hack"
-      "DroidSansMono"
-      "Iosevka"
-    ]; })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    nerd-fonts.hack
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.iosevka
   ];
 
-  # Configure nvf
   programs.neovim.enable = true;
 }
