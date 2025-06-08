@@ -12,9 +12,7 @@
     cosmic-applets
     cosmic-edit
     cosmic-ext-calculator
-    #cosmic-ext-tasks
     cosmic-ext-tweaks
-    #cosmic-reader
     cosmic-screenshot
     quick-webapps
   ];
