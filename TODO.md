@@ -1,3 +1,0 @@
-- change keymaps in keymaps.lua
-- add fish and alacritty config
-- checkout hyprland

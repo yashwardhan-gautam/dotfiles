@@ -1,0 +1,570 @@
+I'll rewrite the instructions to remove the T16-specific structure from home/unalome and add a macNix host for ARM-based Mac systems, incorporating the insights from the Tweag blog post about running NixOS VMs on macOS.
+
+## **📋 Updated Restructuring Guide**
+
+### **Step 1: Create the New Directory Structure**
+
+```bash
+# Create the new directory structure
+mkdir -p hosts/{T16,macNix}
+mkdir -p home/unalome/{programs,utilities,themes,scripts}
+mkdir -p home/unalome/programs/{alacritty,neovim,firefox,git,zsh}
+mkdir -p home/unalome/utilities/{xdg,waybar,rofi}
+mkdir -p home/unalome/themes/{catppuccin,gruvbox}
+mkdir -p home/unalome/scripts/{maintenance,development}
+```
+
+### **Step 2: Update flake.nix**
+
+```nix:flake.nix
+{
+  description = "Freds minimal Nixos configuration flake.";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+  };
+
+  outputs = { self, nixpkgs, home-manager, ...} @ inputs: {
+    # T16 NixOS Configuration
+    nixosConfigurations.T16 = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      system = "x86_64-linux";
+      modules = [
+        (import ./hosts/T16/default.nix)
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.unalome = import ./home/unalome/default.nix;
+        }
+      ];
+    };
+
+    # macNix Configuration for ARM-based Mac
+    nixosConfigurations.macNix = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      system = "aarch64-linux";
+      modules = [
+        (import ./hosts/macNix/default.nix)
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.unalome = import ./home/unalome/default.nix;
+        }
+      ];
+    };
+
+    # Standalone home-manager configuration for macOS
+    # Allows: home-manager switch --flake .#unalome@macOS
+    homeConfigurations."unalome@macOS" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      extraSpecialArgs = { inherit inputs; };
+      modules = [
+        ./home/unalome/default.nix
+      ];
+    };
+
+    # VM packages for testing configurations
+    packages.x86_64-linux.T16-vm = self.nixosConfigurations.T16.config.system.build.vm;
+    packages.aarch64-darwin.macNix-vm = self.nixosConfigurations.macNix.config.system.build.vm;
+  };
+}
+```
+
+### **Step 3: Create Host-Specific Configurations**
+
+**T16 Host Configuration:**
+```nix:hosts/T16/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  # Basic system configuration
+  system.stateVersion = "25.05";
+  
+  # Boot configuration
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  
+  # Networking
+  networking.networkmanager.enable = true;
+  networking.hostName = "T16";
+  
+  # Users
+  users.users.unalome = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" ];
+    shell = pkgs.zsh;
+  };
+  
+  # Passwordless sudo
+  security.sudo.wheelNeedsPassword = false;
+  
+  # System packages
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    curl
+    htop
+  ];
+  
+  # Enable zsh system-wide
+  programs.zsh.enable = true;
+}
+```
+
+**macNix Host Configuration (with VM support):**
+```nix:hosts/macNix/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  # Basic system configuration
+  system.stateVersion = "25.05";
+  
+  # Boot configuration for VM
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  
+  # Networking
+  networking.useDHCP = false;
+  networking.interfaces.eth0.useDHCP = true;
+  networking.hostName = "macNix";
+  
+  # Users
+  users.users.unalome = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" ];
+    shell = pkgs.zsh;
+  };
+  
+  # Passwordless sudo
+  security.sudo.wheelNeedsPassword = false;
+  
+  # System packages
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    curl
+    htop
+  ];
+  
+  # Enable zsh system-wide
+  programs.zsh.enable = true;
+  
+  # VM-specific configuration for macOS compatibility
+  # Based on https://www.tweag.io/blog/2023-02-09-nixos-vm-on-macos/
+  virtualisation.vmVariant = {
+    # Make VM output to terminal instead of separate window
+    virtualisation.graphics = false;
+    
+    # Use macOS-compatible host packages
+    virtualisation.host.pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+    
+    # Enable hardware acceleration for Apple Silicon
+    virtualisation.qemu.options = [
+      "-cpu" "host"
+      "-machine" "virt,accel=hvf"
+    ];
+  };
+}
+```
+
+### **Step 4: Create Unified Home Manager Configuration**
+
+```nix:home/unalome/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./programs/default.nix
+    ./utilities/default.nix
+    ./themes/default.nix
+    ./scripts/default.nix
+  ];
+
+  # Home Manager basic settings
+  home.username = "unalome";
+  home.homeDirectory = "/home/unalome";
+  home.stateVersion = "25.05";
+
+  # Basic packages
+  home.packages = with pkgs; [
+    # Development tools
+    nodejs
+    python3
+    rustc
+    cargo
+    
+    # System utilities
+    tree
+    eza
+    bat
+    fd
+    ripgrep
+    fzf
+    
+    # Media
+    mpv
+    ffmpeg
+    
+    # Other
+    qalculate-gtk
+    gimp
+  ];
+
+  programs.home-manager.enable = true;
+}
+```
+
+### **Step 5: Create Modular Program Configurations**
+
+```nix:home/unalome/programs/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./alacritty.nix
+    ./neovim.nix
+    ./firefox.nix
+    ./git.nix
+    ./zsh.nix
+  ];
+}
+```
+
+```nix:home/unalome/programs/alacritty.nix
+{ config, lib, pkgs, ... }:
+
+{
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window = {
+        opacity = 0.9;
+        decorations = "buttonless";
+      };
+      font = {
+        size = 12;
+        family = "JetBrains Mono";
+      };
+      colors = {
+        primary = {
+          background = "#1e1e2e";
+          foreground = "#cdd6f4";
+        };
+      };
+    };
+  };
+}
+```
+
+```nix:home/unalome/programs/neovim.nix
+{ config, lib, pkgs, ... }:
+
+{
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    
+    extraPackages = with pkgs; [
+      tree-sitter
+      ripgrep
+      fd
+    ];
+  };
+}
+```
+
+```nix:home/unalome/programs/firefox.nix
+{ config, lib, pkgs, ... }:
+
+{
+  programs.firefox = {
+    enable = true;
+    
+    profiles.default = {
+      id = 0;
+      name = "Default";
+      
+      settings = {
+        "browser.startup.homepage" = "https://duckduckgo.com";
+        "browser.search.defaultEngine" = "DuckDuckGo";
+        "privacy.trackingprotection.enabled" = true;
+        "browser.ctrlTab.recentlyUsedOrder" = false;
+      };
+      
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        darkreader
+        privacy-badger
+      ];
+    };
+  };
+}
+```
+
+```nix:home/unalome/programs/git.nix
+{ config, lib, pkgs, ... }:
+
+{
+  programs.git = {
+    enable = true;
+    userName = "Fred";
+    userEmail = "fred@example.com";
+    
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+    };
+  };
+}
+```
+
+```nix:home/unalome/programs/zsh.nix
+{ config, lib, pkgs, ... }:
+
+{
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    
+    shellAliases = {
+      ll = "ls -la";
+      la = "ls -A";
+      l = "ls -CF";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+    };
+    
+    initExtra = ''
+      # Custom zsh configuration
+      export EDITOR="nvim"
+      export VISUAL="nvim"
+    '';
+  };
+}
+```
+
+### **Step 6: Create Utilities Configuration**
+
+```nix:home/unalome/utilities/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./xdg.nix
+    ./waybar.nix
+    ./rofi.nix
+  ];
+}
+```
+
+```nix:home/unalome/utilities/xdg.nix
+{ config, lib, pkgs, ... }:
+
+{
+  xdg = {
+    enable = true;
+    
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = "$HOME/Desktop";
+      documents = "$HOME/Documents";
+      download = "$HOME/Downloads";
+      music = "$HOME/Music";
+      pictures = "$HOME/Pictures";
+      videos = "$HOME/Videos";
+    };
+  };
+}
+```
+
+### **Step 7: Create Themes Configuration**
+
+```nix:home/unalome/themes/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./catppuccin.nix
+  ];
+}
+```
+
+```nix:home/unalome/themes/catppuccin.nix
+{ config, lib, pkgs, ... }:
+
+{
+  # Catppuccin theme configuration
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Mocha-Compact-Blue-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        size = "compact";
+        variant = "mocha";
+      };
+    };
+  };
+}
+```
+
+### **Step 8: Create Scripts Configuration**
+
+```nix:home/unalome/scripts/default.nix
+{ config, lib, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./maintenance.nix
+    ./development.nix
+  ];
+}
+```
+
+```nix:home/unalome/scripts/maintenance.nix
+{ config, lib, pkgs, ... }:
+
+{
+  home.file.".local/bin/cleanup" = {
+    source = ./cleanup.sh;
+    executable = true;
+  };
+  
+  home.file.".local/bin/update-system" = {
+    source = ./update-system.sh;
+    executable = true;
+  };
+}
+```
+
+### **Step 9: Migration Commands**
+
+```bash
+# 1. Create new structure
+mkdir -p hosts/{T16,macNix}
+mkdir -p home/unalome/{programs,utilities,themes,scripts}
+mkdir -p home/unalome/programs/{alacritty,neovim,firefox,git,zsh}
+mkdir -p home/unalome/utilities/{xdg,waybar,rofi}
+mkdir -p home/unalome/themes/{catppuccin,gruvbox}
+mkdir -p home/unalome/scripts/{maintenance,development}
+
+# 2. Move existing files
+mv hardware-configuration.nix hosts/T16/
+mv configuration.nix hosts/T16/default.nix
+
+# 3. Create all the new configuration files (as shown above)
+
+# 4. Test configurations
+nixos-rebuild dry-activate --flake .#T16
+nixos-rebuild dry-activate --flake .#macNix
+
+# 5. Build VM for testing
+nix build .#T16-vm
+nix build .#macNix-vm
+
+# 6. Run VM for testing (on macOS for macNix)
+nix run .#macNix-vm
+
+# 7. Apply configuration
+sudo nixos-rebuild switch --flake .#T16
+```
+
+### **Step 10: Usage Examples**
+
+**For T16 (Linux):**
+```bash
+# Build and switch
+sudo nixos-rebuild switch --flake .#T16
+
+# Build VM for testing
+nix build .#T16-vm
+./result/bin/run-nixos-vm
+```
+
+**For macNix (ARM Mac VM):**
+```bash
+# Build and run VM
+nix run .#macNix-vm
+
+# Or build separately
+nix build .#macNix-vm
+./result/bin/run-nixos-vm
+```
+
+**For macOS home-manager:**
+```bash
+# Apply home-manager configuration on macOS
+home-manager switch --flake .#unalome@macOS
+```
+
+## **📋 Final Directory Structure**
+
+```
+dotfiles/
+├── flake.nix
+├── hosts/
+│   ├── T16/
+│   │   ├── default.nix
+│   │   └── hardware-configuration.nix
+│   └── macNix/
+│       └── default.nix
+├── home/
+│   └── unalome/
+│       ├── default.nix
+│       ├── programs/
+│       │   ├── default.nix
+│       │   ├── alacritty.nix
+│       │   ├── neovim.nix
+│       │   ├── firefox.nix
+│       │   ├── git.nix
+│       │   └── zsh.nix
+│       ├── utilities/
+│       │   ├── default.nix
+│       │   ├── xdg.nix
+│       │   ├── waybar.nix
+│       │   └── rofi.nix
+│       ├── themes/
+│       │   ├── default.nix
+│       │   └── catppuccin.nix
+│       └── scripts/
+│           ├── default.nix
+│           ├── maintenance.nix
+│           └── development.nix
+└── flake.lock
+```
+
+## **�� Key Features**
+
+1. **Unified Home Manager**: Single configuration for all systems
+2. **Host-Specific System Configs**: Separate system configurations for T16 and macNix
+3. **macOS VM Support**: Based on the [Tweag blog post](https://www.tweag.io/blog/2023-02-09-nixos-vm-on-macos/), macNix includes proper VM configuration for ARM-based Macs
+4. **Modular Structure**: Easy to add new programs, utilities, and themes
+5. **Cross-Platform**: Works on Linux (T16), macOS VM (macNix), and native macOS
+
+The macNix configuration specifically incorporates the insights from the Tweag blog post, including:
+- Hardware acceleration for Apple Silicon (`accel=hvf`)
+- Terminal-based VM output instead of graphical windows
+- Proper host package specification for macOS compatibility
+- ARM64 architecture targeting
+
+This structure provides maximum flexibility while maintaining a clean separation between system and user configurations.
