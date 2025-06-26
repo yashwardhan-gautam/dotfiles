@@ -3,7 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     
@@ -15,7 +15,7 @@
       "..." = "cd ../..";
     };
     
-    initExtra = ''
+    initContent = ''
       # Custom zsh configuration
       export EDITOR="nvim"
       export VISUAL="nvim"
