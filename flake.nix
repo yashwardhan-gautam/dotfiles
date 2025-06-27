@@ -9,9 +9,9 @@
     };
     
     # Comprehensive NixOS framework - provides pre-configured modules for system components
-    # hydenix = {
-    #   url = "github:richen604/hydenix";
-    # };
+    hydenix = {
+      url = "github:richen604/hydenix";
+    };
     
     # Firefox browser extensions packaged for Nix - enables declarative Firefox addon management
     rycee-nurpkgs = {
@@ -36,8 +36,7 @@
   };
 
 
-  # outputs = { self, nixpkgs, home-manager, hydenix, rycee-nurpkgs, nix-index-database, ...} @ inputs: {
-  outputs = { self, nixpkgs, home-manager, rycee-nurpkgs, nix-index-database, ...} @ inputs: {
+  outputs = { self, nixpkgs, home-manager, hydenix, rycee-nurpkgs, nix-index-database, ...} @ inputs: {
     # T16 NixOS Configuration
     nixosConfigurations.T16 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
