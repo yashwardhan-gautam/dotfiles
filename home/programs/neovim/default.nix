@@ -19,28 +19,35 @@
     withRuby = true;
 
     extraPackages = with pkgs; [
-      alejandra
-      black
-      golangci-lint
-      gopls
-      gotools
-      hadolint
-      isort
-      lua-language-server
-      markdownlint-cli
-      nixd
-      nodePackages.bash-language-server
-      nodePackages.prettier
-      pyright
-      ruff
-      shellcheck
-      shfmt
-      stylua
-      terraform-ls
-      tflint
-      vscode-langservers-extracted
-      yaml-language-server
-      nerd-fonts.jetbrains-mono
+      # Formatters
+      alejandra # Nix code formatter
+      black # Python code formatter
+      isort # Python import sorter
+      nodePackages.prettier # Formatter for web languages
+      shfmt # Shell script formatter
+      stylua # Lua code formatter
+
+      # Linters
+      golangci-lint # Go linter
+      hadolint # Dockerfile linter
+      markdownlint-cli # Markdown linter
+      ruff # Fast Python linter
+      shellcheck # Shell script linter
+      tflint # Terraform linter
+
+      # Language Servers
+      gopls # Go language server
+      lua-language-server # Lua language server
+      nixd # Nix language server
+      nodePackages.bash-language-server # Bash language server
+      pyright # Python language server and type checker
+      terraform-ls # Terraform language server
+      vscode-langservers-extracted # Language servers for JSON, CSS, HTML, etc.
+      yaml-language-server # YAML language server
+
+      # Other
+      gotools # Go tools
+      nerd-fonts.jetbrains-mono # Font with icons for symbols
     ];
   };
 
