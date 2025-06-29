@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -40,6 +35,6 @@
   };
 
   home.packages = with pkgs; [
-    pkgs.nerd-fonts.jetbrains-mono
+    nerd-fonts.jetbrains-mono
   ];
 }

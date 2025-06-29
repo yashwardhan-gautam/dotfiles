@@ -32,8 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # UEFI Secure Boot implementation for NixOS - currently commented out
-    # Uncomment when you want to enable secure boot functionality
+    # UEFI Secure Boot implementation for NixOS
     # lanzaboote = {
     #   url = "github:nix-community/lanzaboote/v0.4.2";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -65,6 +64,13 @@
           home-manager.users.unalome = import ./home/default.nix;
         }
       ];
+    };
+
+    # Standalone home-manager configuration
+    homeConfigurations.T16 = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = {inherit inputs;};
+      modules = [./home/default.nix];
     };
   };
 }

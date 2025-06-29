@@ -1,13 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Catppuccin theme configuration
   gtk = {
     enable = true;
     theme = {
       name = "Catppuccin-Mocha-Compact-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "blue" ];
+        accents = ["blue"];
         size = "compact";
         variant = "mocha";
       };

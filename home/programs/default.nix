@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: {
+{...}: {
   imports = [
     ./alacritty.nix
     ./starship.nix

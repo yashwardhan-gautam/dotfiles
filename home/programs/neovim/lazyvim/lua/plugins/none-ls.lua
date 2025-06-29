@@ -3,7 +3,12 @@ return {
   opts = function()
     local nls = require("null-ls")
     return {
-      root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
+      root_dir = require("null-ls.utils").root_pattern(
+        ".null-ls-root",
+        ".neoconf.json",
+        "Makefile",
+        ".git"
+      ),
       sources = {
         -- code actions
         -- formatters
@@ -31,7 +36,7 @@ return {
         nls.builtins.diagnostics.hadolint,
         nls.builtins.diagnostics.markdownlint.with({ extra_args = { "--disable", "MD013" } }),
       },
-      on_attach = function(client, bufnr)
+      on_attach = function(_, bufnr)
         -- Disable diagnostics for non-file buffers (like terminals)
         if vim.bo[bufnr].buftype ~= "" then
           vim.diagnostic.enable(false, bufnr)

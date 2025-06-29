@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -17,6 +12,8 @@
       ndg3 = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3";
       gs = "git status";
       gd = "git diff";
+      lg = "lazygit";
+      hms = "home-manager switch --flake .#T16";
     };
     interactiveShellInit = ''
       set -U fish_greeting
