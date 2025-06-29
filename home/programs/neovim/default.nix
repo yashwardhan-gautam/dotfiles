@@ -43,8 +43,14 @@
       terraform-ls # Terraform language server
       vscode-langservers-extracted # Language servers for JSON, CSS, HTML, etc.
       yaml-language-server # YAML language server
+      cmake-language-server # CMake language server
+      clang-tools # C/C++ language server and tools
+
+      # Debuggers
+      vscode-extensions.vadimcn.vscode-lldb # C/C++ debugger
 
       # Other
+      cmake # build tools
       gotools # Go tools
       nerd-fonts.jetbrains-mono # Font with icons for symbols
     ];

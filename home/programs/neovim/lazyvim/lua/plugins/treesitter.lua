@@ -15,8 +15,11 @@ return {
     ensure_installed = {
       "bash",
       "c",
+      "cpp",
       "dockerfile",
       "go",
+      "gomod",
+      "gosum",
       "hcl",
       "helm",
       "json",
