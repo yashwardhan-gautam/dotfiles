@@ -1,11 +1,14 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.git = {
     enable = true;
-    userName = "Fred";
-    userEmail = "fred@example.com";
-    
+    userName = "yashwardhna-gautam";
+    userEmail = "gautamyashwardhan@gmail.com";
+
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;

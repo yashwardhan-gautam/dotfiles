@@ -1,11 +1,15 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./alacritty.nix
-    ./neovim.nix
-    #./firefox.nix
+    ./starship.nix
+    ./neovim
     ./git.nix
-    ./zsh.nix
+    ./fish.nix
   ];
 }

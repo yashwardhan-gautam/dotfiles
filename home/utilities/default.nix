@@ -1,6 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./xdg.nix
     ./waybar.nix

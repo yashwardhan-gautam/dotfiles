@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -13,34 +16,34 @@
         margin-bottom = 0;
         margin-left = 0;
         margin-right = 0;
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
-        modules-right = [ "pulseaudio" "network" "cpu" "memory" "clock" "tray" ];
-        
+        modules-left = ["hyprland/workspaces"];
+        modules-center = ["hyprland/window"];
+        modules-right = ["pulseaudio" "network" "cpu" "memory" "clock" "tray"];
+
         "hyprland/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
           format = "{name}";
         };
-        
+
         "hyprland/window" = {
           max-length = 50;
         };
-        
+
         "clock" = {
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = "{:%Y-%m-%d}";
         };
-        
+
         "cpu" = {
           format = "{usage}% ";
           tooltip = false;
         };
-        
+
         "memory" = {
           format = "{}% ";
         };
-        
+
         "network" = {
           format-wifi = "{essid} ({signalStrength}%) ";
           format-ethernet = "{ipaddr}/{cidr} ";
@@ -49,7 +52,7 @@
           format-disconnected = "Disconnected ⚠";
           format-alt = "{ifname}: {ipaddr}/{cidr}";
         };
-        
+
         "pulseaudio" = {
           format = "{volume}% {icon}";
           format-bluetooth = "{volume}% {icon}";
@@ -62,18 +65,18 @@
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = ["" "" ""];
           };
           on-click = "pavucontrol";
         };
-        
+
         "tray" = {
           icon-size = 21;
           spacing = 10;
         };
       };
     };
-    
+
     style = ''
       * {
         border: none;

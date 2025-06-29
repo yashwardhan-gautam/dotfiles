@@ -1,16 +1,34 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.alacritty = {
     enable = true;
     settings = {
       window = {
         opacity = 0.9;
-        decorations = "buttonless";
+        decorations = "none";
       };
       font = {
-        size = 12;
-        family = "JetBrains Mono";
+        size = 14;
+        normal = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Regular";
+        };
+        bold = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Bold";
+        };
+        italic = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Italic";
+        };
+        bold_italic = {
+          family = "JetBrainsMono Nerd Font";
+          style = "Bold Italic";
+        };
       };
       colors = {
         primary = {
@@ -20,4 +38,8 @@
       };
     };
   };
+
+  home.packages = with pkgs; [
+    pkgs.nerd-fonts.jetbrains-mono
+  ];
 }
