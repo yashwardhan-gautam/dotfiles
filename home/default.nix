@@ -2,7 +2,6 @@
   imports = [
     ./programs/default.nix
     ./utilities/default.nix
-    ./themes/default.nix
   ];
 
   # Home Manager basic settings

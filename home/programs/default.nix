@@ -5,5 +5,6 @@
     ./neovim
     ./git.nix
     ./fish.nix
+    ./ghostty.nix
   ];
 }

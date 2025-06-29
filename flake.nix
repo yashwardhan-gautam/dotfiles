@@ -1,5 +1,5 @@
 {
-  description = "Freds minimal Nixos configuration flake.";
+  description = "unalome nixOS";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
@@ -7,12 +7,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # UEFI Secure Boot implementation for NixOS
-    # lanzaboote = {
-    #   url = "github:nix-community/lanzaboote/v0.4.2";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = {
