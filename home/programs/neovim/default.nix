@@ -16,7 +16,6 @@
     defaultEditor = false;
     withNodeJs = true;
     withPython3 = true;
-    withRuby = true;
 
     extraPackages = with pkgs; [
       # Formatters
