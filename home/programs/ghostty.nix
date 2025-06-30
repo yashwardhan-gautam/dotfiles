@@ -1,13 +1,12 @@
-{inputs, ...}: {
+{...}: {
   programs.ghostty = {
     enable = true;
     package = null; # ghostty is not in nixpkgs yet
     clearDefaultKeybinds = true;
     settings = {
-      font-family = "JetBrainsMono Nerd Font";
       font-size = 14;
       window-decoration = "none";
-      theme = "catppuccin-mocha";
+      theme = "gruvbox-light";
       maximize = true;
       keybind = [
         # Application/Window Management
@@ -49,10 +48,10 @@
         "alt+e=new_split:down"
         "alt+v=new_split:right"
         "alt+w=close_surface"
-        "alt+up=goto_split:up"
-        "alt+down=goto_split:down"
-        "alt+left=goto_split:left"
-        "alt+right=goto_split:right"
+        "alt+k=goto_split:up"
+        "alt+j=goto_split:down"
+        "alt+h=goto_split:left"
+        "alt+l=goto_split:right"
         "ctrl+shift+up=resize_split:up,10"
         "ctrl+shift+down=resize_split:down,10"
         "ctrl+shift+left=resize_split:left,10"
@@ -88,6 +87,56 @@
       ];
     };
     themes = {
+      "gruvbox-dark" = {
+        background = "282828";
+        cursor-color = "ebdbb2";
+        foreground = "ebdbb2";
+        palette = [
+          "0=#282828"
+          "1=#cc241d"
+          "2=#98971a"
+          "3=#d79921"
+          "4=#458588"
+          "5=#b16286"
+          "6=#689d6a"
+          "7=#a89984"
+          "8=#928374"
+          "9=#fb4934"
+          "10=#b8bb26"
+          "11=#fabd2f"
+          "12=#83a598"
+          "13=#d3869b"
+          "14=#8ec07c"
+          "15=#ebdbb2"
+        ];
+        selection-background = "504945";
+        selection-foreground = "ebdbb2";
+      };
+      "gruvbox-light" = {
+        background = "fbf1c7";
+        cursor-color = "d65d0e";
+        foreground = "3c3836";
+        palette = [
+          "0=#fbf1c7"
+          "1=#cc241d"
+          "2=#98971a"
+          "3=#d79921"
+          "4=#458588"
+          "5=#b16286"
+          "6=#689d6a"
+          "7=#3c3836"
+          "8=#7c6f64"
+          "9=#9d0006"
+          "10=#79740e"
+          "11=#b57614"
+          "12=#076678"
+          "13=#8f3f71"
+          "14=#427b58"
+          "15=#3c3836"
+        ];
+        selection-background = "7c6f64";
+        selection-foreground = "fbf1c7";
+      };
       catppuccin-mocha = {
         background = "1e1e2e";
         cursor-color = "f5e0dc";

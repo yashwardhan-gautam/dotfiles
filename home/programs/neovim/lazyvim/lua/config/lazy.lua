@@ -27,7 +27,7 @@ require("lazy").setup({
     lazy = false,
     version = false, -- always use the latest git commit
   },
-  install = { colorscheme = { "tokyonight" } },
+  install = { colorscheme = { "gruvbox-light" } },
   checker = {
     enabled = false,
     notify = false,
