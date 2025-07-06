@@ -115,6 +115,10 @@
     conda
     tree-sitter
     telegram-desktop
+    # Development libraries for flox project
+    gtest
+    gbenchmark
+    pkg-config
   ];
 
   virtualisation.vmware.guest.enable = true;
