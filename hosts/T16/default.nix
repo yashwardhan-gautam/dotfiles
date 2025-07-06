@@ -108,7 +108,6 @@
     codespell
     cppcheck
     doxygen
-    gtest
     code-cursor
     docker_28
     postgresql_16

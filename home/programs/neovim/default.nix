@@ -50,7 +50,8 @@
       vscode-extensions.vadimcn.vscode-lldb # C/C++ debugger
       gdb # GNU debugger
 
-      # google-benchmark # Google Benchmark library -> don't have a direct nixos package, need to install
+      gtest
+      gbenchmark
 
       # Other
       cmake # build tools
