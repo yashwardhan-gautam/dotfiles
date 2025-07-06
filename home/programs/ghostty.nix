@@ -6,7 +6,7 @@
     settings = {
       font-size = 14;
       window-decoration = "none";
-      theme = "gruvbox-light";
+      theme = "kanagawa";
       maximize = true;
       keybind = [
         # Application/Window Management
@@ -136,6 +136,31 @@
         ];
         selection-background = "7c6f64";
         selection-foreground = "fbf1c7";
+      };
+      kanagawa = {
+        background = "1f1f28";
+        cursor-color = "ff9e3b";
+        foreground = "dcd7ba";
+        palette = [
+          "0=#16161d"
+          "1=#e82424"
+          "2=#76946a"
+          "3=#ff9e3b"
+          "4=#7e9cd8"
+          "5=#957fb8"
+          "6=#6a9589"
+          "7=#dcd7ba"
+          "8=#727169"
+          "9=#ff5d62"
+          "10=#98bb6c"
+          "11=#e6c384"
+          "12=#7fb4ca"
+          "13=#d27e99"
+          "14=#7aa89f"
+          "15=#c8c093"
+        ];
+        selection-background = "223249";
+        selection-foreground = "dcd7ba";
       };
       catppuccin-mocha = {
         background = "1e1e2e";

@@ -27,7 +27,7 @@ require("lazy").setup({
     lazy = false,
     version = false, -- always use the latest git commit
   },
-  install = { colorscheme = { "gruvbox-light" } },
+  install = { colorscheme = { "catppuccin-mocha" } },
   checker = {
     enabled = false,
     notify = false,
