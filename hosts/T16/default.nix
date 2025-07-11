@@ -115,6 +115,7 @@
     conda
     tree-sitter
     telegram-desktop
+    gemini-cli
     # Development libraries for flox project
     gtest
     gbenchmark
