@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./programs/default.nix
-    ./utilities/default.nix
   ];
 
   # Home Manager basic settings
@@ -13,19 +12,13 @@
   home.packages = with pkgs; [
     # Development tools
     nodejs
-    python3
     rustc
-    cargo
 
     # C++ Development tools (for flox project)
     cmake
     ninja
     gcc
     pkg-config
-    gtest
-    gbenchmark
-    doxygen
-    clang-tools
 
     # System utilities
     tree

@@ -5,5 +5,6 @@
     ./git.nix
     ./fish.nix
     ./ghostty.nix
+    ./hyprland
   ];
 }

@@ -2,7 +2,7 @@
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     comment = "Edit text files";
-    exec = "alacritty -e nvim %F";
+    exec = "ghostty -e nvim %F";
     icon = "nvim";
     terminal = false;
     categories = ["Utility" "TextEditor"];
@@ -44,7 +44,6 @@
       vscode-langservers-extracted # Language servers for JSON, CSS, HTML, etc.
       yaml-language-server # YAML language server
       cmake-language-server # CMake language server
-      clang-tools # C/C++ language server and tools
 
       # Debuggers
       vscode-extensions.vadimcn.vscode-lldb # C/C++ debugger

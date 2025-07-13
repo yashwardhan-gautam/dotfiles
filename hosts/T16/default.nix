@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -13,7 +13,6 @@
   boot.loader.systemd-boot.configurationLimit = 5;
 
   networking.hostName = "T16"; # Define your hostname.
-
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -34,12 +33,21 @@
     LC_TIME = "en_IN";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Enable Hyprland
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    xwayland.enable = true;
+  };
 
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # Display Manager - using SDDM for Hyprland
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  # Enable X11 for XWayland support
+  services.xserver.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -50,6 +58,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Audio setup
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -60,12 +69,29 @@
     jack.enable = true;
   };
 
+  # XDG Portal configuration 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
+
+  # Security services
+  security.polkit.enable = true;
+  security.pam.services.swaylock = {};
+
+  # Enable fish shell
   programs.fish.enable = true;
+
+  # Enable dconf for GTK applications
+  programs.dconf.enable = true;
 
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "video" "audio"];
     shell = pkgs.fish;
   };
 
@@ -86,7 +112,6 @@
     starship
     git
     btop
-    htop
     zoxide
     gcc15
     gnumake
@@ -109,18 +134,61 @@
     cppcheck
     doxygen
     code-cursor
+    tree-sitter
+    telegram-desktop
+    gemini-cli
+
+    # Development libraries for flox project
+    gtest
+    gbenchmark
+
+    # System services and daemons
     docker_28
     postgresql_16
     redis
     conda
-    tree-sitter
-    telegram-desktop
-    gemini-cli
-    # Development libraries for flox project
-    gtest
-    gbenchmark
-    pkg-config
+
+    # Essential system utilities
+    xclip # Needed for X11 clipboard in XWayland
   ];
+
+  # System services
+  services.dbus.enable = true;
+  services.gvfs.enable = true; # For nautilus
+  services.tumbler.enable = true; # Thumbnails
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  # Fonts (system-wide)
+  fonts.packages = with pkgs; [
+    jetbrains-mono
+    noto-fonts
+    noto-fonts-emoji
+    font-awesome
+    nerd-fonts.jetbrains-mono
+  ];
+
+  # Environment variables
+  environment.sessionVariables = {
+    # Wayland
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+
+    # Qt
+    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+
+    # GTK
+    GDK_BACKEND = "wayland,x11";
+
+    # Firefox
+    MOZ_ENABLE_WAYLAND = "1";
+
+    # Electron
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+  };
 
   virtualisation.vmware.guest.enable = true;
   services.openssh.enable = true;

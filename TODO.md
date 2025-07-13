@@ -8,3 +8,5 @@
 [ ] zoxide, fzf
 
 ### Hyprland
+[ ] check the configurationm keyboard shortcuts and scripts from omaarcchy
+[x] get rid of utilities, all the things needed for hyprland will be inside @hyprland directory
