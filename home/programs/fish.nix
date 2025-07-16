@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -13,6 +13,7 @@
       lg = "lazygit";
       ".." = "cd ..";
       "..." = "cd ../..";
+      "vim" = "nvim";
     };
     interactiveShellInit = ''
       set -U fish_greeting

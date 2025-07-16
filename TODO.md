@@ -8,6 +8,7 @@
 [ ] zoxide, fzf
 
 ### Hyprland
+
 [ ] check the configuration keyboard shortcuts and scripts from omaarcchy
 [ ] add macos like touchpad configuration
 [x] get rid of utilities, all the things needed for hyprland will be inside @hyprland directory
