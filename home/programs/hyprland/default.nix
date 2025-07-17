@@ -30,6 +30,9 @@
     pamixer
     playerctl
     pavucontrol
+    
+    # Cursor themes
+    adwaita-icon-theme
 
     # Launchers and menus
     rofi-wayland
