@@ -34,7 +34,6 @@
     adwaita-icon-theme
 
     # Launchers and menus
-    rofi-wayland
     wofi
 
     # Wallpaper and theming
