@@ -16,7 +16,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Kolkata";
+  time.timeZone = "Etc/UTC";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
@@ -112,6 +112,7 @@
     starship
     git
     btop
+    brave
     zoxide
     gcc15
     gnumake

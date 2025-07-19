@@ -6,14 +6,14 @@
     settings = {
       font-size = 14;
       window-decoration = "none";
-      theme = "kanagawa";
+      theme = "gruvbox-dark";
       maximize = true;
       keybind = [
         # Application/Window Management
         "ctrl+shift+q=quit"
         "alt+f4=close_window"
         "ctrl+shift+n=new_window"
-        "ctrl+enter=toggle_fullscreen"
+        "ctrl+shift+enter=toggle_fullscreen"
 
         # Config
         "ctrl+comma=open_config"
@@ -88,11 +88,11 @@
     };
     themes = {
       "gruvbox-dark" = {
-        background = "282828";
+        background = "1d2021";
         cursor-color = "ebdbb2";
         foreground = "ebdbb2";
         palette = [
-          "0=#282828"
+          "0=#1d2021"
           "1=#cc241d"
           "2=#98971a"
           "3=#d79921"
@@ -102,7 +102,7 @@
           "7=#a89984"
           "8=#928374"
           "9=#fb4934"
-          "10=#b8bb26"
+          "10=#98971a"
           "11=#fabd2f"
           "12=#83a598"
           "13=#d3869b"
@@ -186,6 +186,56 @@
         ];
         selection-background = "353749";
         selection-foreground = "cdd6f4";
+      };
+      catppuccin-latte = {
+        background = "eff1f5";
+        cursor-color = "dc8a78";
+        foreground = "4c4f69";
+        palette = [
+          "0=#5c5f77"
+          "1=#d20f39"
+          "2=#40a02b"
+          "3=#df8e1d"
+          "4=#1e66f5"
+          "5=#ea76cb"
+          "6=#179299"
+          "7=#bcc0cc"
+          "8=#6c6f85"
+          "9=#d20f39"
+          "10=#40a02b"
+          "11=#df8e1d"
+          "12=#1e66f5"
+          "13=#ea76cb"
+          "14=#179299"
+          "15=#acb0be"
+        ];
+        selection-background = "acb0be";
+        selection-foreground = "4c4f69";
+      };
+      tokyonight-moon = {
+        background = "222436";
+        cursor-color = "7fd9ea";
+        foreground = "c8d3f5";
+        palette = [
+          "0=#444b6a"
+          "1=#ff7a93"
+          "2=#b9f27c"
+          "3=#ffda7b"
+          "4=#7fd9ea"
+          "5=#ea9a97"
+          "6=#7fd9ea"
+          "7=#c8d3f5"
+          "8=#545c7e"
+          "9=#ff7a93"
+          "10=#b9f27c"
+          "11=#ffda7b"
+          "12=#7fd9ea"
+          "13=#ea9a97"
+          "14=#7fd9ea"
+          "15=#c8d3f5"
+        ];
+        selection-background = "3b4261";
+        selection-foreground = "c8d3f5";
       };
     };
   };

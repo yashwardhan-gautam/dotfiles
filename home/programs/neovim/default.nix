@@ -38,7 +38,7 @@
       gopls # Go language server
       lua-language-server # Lua language server
       nixd # Nix language server
-      nodePackages.bash-language-server # Bash language server
+      # nodePackages.bash-language-server # Bash language server
       pyright # Python language server and type checker
       terraform-ls # Terraform language server
       vscode-langservers-extracted # Language servers for JSON, CSS, HTML, etc.

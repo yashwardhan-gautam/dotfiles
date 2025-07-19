@@ -39,7 +39,7 @@
     wofi
 
     # Wallpaper and theming
-    swww
+    hyprpaper
     qt5.qtwayland
     qt6.qtwayland
 
@@ -106,6 +106,7 @@
     ".config/hypr/animations.conf".source = ./animations.conf;
     ".config/hypr/windowrules.conf".source = ./windowrules.conf;
     ".config/hypr/hyprlock.conf".source = ./hyprlock.conf;
+    ".config/hypr/hyprpaper.conf".source = ./hyprpaper.conf;
 
     # Scripts directory
     ".config/hypr/scripts" = {

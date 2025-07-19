@@ -23,7 +23,7 @@ This document lists all configured keyboard shortcuts for Hyprland.
 | `Super + V` | Toggle Floating | Toggles window between tiled and floating |
 | `Super + P` | Pseudo Tile | Dwindle layout pseudo-tiling |
 | `Super + J` | Toggle Split | Toggles split direction in dwindle layout |
-| `Super + F` | Toggle Fullscreen | Makes window fullscreen |
+| `Super + Shift + Enter` | Toggle Fullscreen | Makes window fullscreen |
 
 ## 🧭 Focus Navigation
 
@@ -127,7 +127,7 @@ To modify these shortcuts, edit the `keybindings.conf` file in your Hyprland con
 - `$terminal = ghostty`
 - `$fileManager = nautilus`
 - `$menu = rofi -show drun`
-- `$browser = firefox`
+- `$browser = brave`
 - `$editor = nvim`
 
 ## 📚 Resources
