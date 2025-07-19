@@ -73,15 +73,6 @@
     jack.enable = true;
   };
 
-  # XDG Portal configuration
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
   # Security services
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
@@ -123,7 +114,6 @@
     cmake
     ninja
     pkg-config
-    obsidian
     lua5_1
     luajitPackages.luarocks
     lua-language-server
@@ -155,6 +145,7 @@
 
     # Essential system utilities
     xclip # Needed for X11 clipboard in XWayland
+    loupe
   ];
 
   # System services

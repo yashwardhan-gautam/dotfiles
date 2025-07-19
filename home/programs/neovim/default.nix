@@ -40,14 +40,10 @@
       # nodePackages.bash-language-server # Bash language server
       pyright # Python language server and type checker
       terraform-ls # Terraform language server
-      vscode-langservers-extracted # Language servers for JSON, CSS, HTML, etc.
       yaml-language-server # YAML language server
       cmake-language-server # CMake language server
 
-      # Debuggers
-      vscode-extensions.vadimcn.vscode-lldb # C/C++ debugger
-      gdb # GNU debugger
-
+      gdb
       gtest
       gbenchmark
 
@@ -64,5 +60,12 @@
       source = ./lazyvim;
       recursive = true;
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk # GTK portal
+    ];
   };
 }

@@ -38,7 +38,7 @@
     };
 
     # Standalone home-manager configuration
-    homeConfigurations.T16 = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.unalome = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       extraSpecialArgs = {inherit inputs;};
       modules = [./home/default.nix];

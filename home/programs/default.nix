@@ -6,5 +6,6 @@
     ./fish.nix
     ./ghostty.nix
     ./hyprland
+    ./obsidian.nix
   ];
 }
