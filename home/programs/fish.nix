@@ -14,6 +14,7 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       "vim" = "nvim";
+      "v" = "nvim";
     };
     interactiveShellInit = ''
       set -U fish_greeting

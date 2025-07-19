@@ -7,6 +7,8 @@ return {
         hide_dotfiles = false,
         hide_gitignored = true,
       },
+      -- Always open at git root instead of current directory
+      root = "git",
     },
   },
 }

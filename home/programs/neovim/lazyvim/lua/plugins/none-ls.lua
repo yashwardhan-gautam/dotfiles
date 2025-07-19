@@ -19,7 +19,6 @@ return {
         nls.builtins.formatting.prettier.with({
           filetypes = {
             "css",
-            "markdown",
             "yaml.docker-compose",
             "yaml.kubernetes",
             "yaml",
@@ -27,14 +26,12 @@ return {
         }),
         nls.builtins.formatting.goimports,
         nls.builtins.formatting.isort,
-        nls.builtins.formatting.markdownlint,
         nls.builtins.formatting.shfmt,
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.terraform_fmt,
         -- linters
         nls.builtins.diagnostics.golangci_lint,
         nls.builtins.diagnostics.hadolint,
-        nls.builtins.diagnostics.markdownlint.with({ extra_args = { "--disable", "MD013" } }),
       },
       on_attach = function(_, bufnr)
         -- Disable diagnostics for non-file buffers (like terminals)

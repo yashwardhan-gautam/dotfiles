@@ -29,7 +29,6 @@
       # Linters
       golangci-lint # Go linter
       hadolint # Dockerfile linter
-      markdownlint-cli # Markdown linter
       ruff # Fast Python linter
       shellcheck # Shell script linter
       tflint # Terraform linter

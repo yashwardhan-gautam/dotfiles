@@ -28,8 +28,6 @@ return {
       "luadoc",
       "luap",
       "make",
-      "markdown",
-      "markdown_inline",
       "nix",
       "python",
       "regex",

@@ -13,7 +13,6 @@ return {
         "isort",
         "json-lsp",
         "lua-language-server",
-        "markdownlint",
         "prettier",
         "pyright",
         "shfmt",

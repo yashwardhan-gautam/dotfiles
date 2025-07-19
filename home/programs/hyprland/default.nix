@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  lib,
   ...
 }: {
   # Import Hyprland home-manager module
@@ -30,7 +29,7 @@
     pamixer
     playerctl
     pavucontrol
-    
+
     # Cursor themes
     adwaita-icon-theme
 
@@ -72,7 +71,6 @@
 
     # Applications
     firefox
-    obsidian
     code-cursor
     telegram-desktop
     gemini-cli
@@ -86,17 +84,16 @@
     # Waybar and dependencies
     waybar
     gobject-introspection
-    (python3.withPackages (ps: with ps; [ pygobject3 ]))
+    (python3.withPackages (ps: with ps; [pygobject3]))
     lm_sensors
   ];
 
   # Configure Hyprland
   wayland.windowManager.hyprland = {
     enable = true;
+
     extraConfig = builtins.readFile ./hyprland.conf;
   };
-
-
 
   # Copy configuration files
   home.file = {

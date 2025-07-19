@@ -11,6 +11,6 @@
 
 [ ] make waybar more useful, alt tab, trackpad gestures
 [ ] check the configuration keyboard shortcuts and scripts from omaarcchy
-[ ] add macos like touchpad configuration
+[X] add macos like touchpad configuration => three finger gestures works by default
 [ ] add startup applications - terminal, browser with last thing, mail (thunderbird?)
 [x] get rid of utilities, all the things needed for hyprland will be inside @hyprland directory
