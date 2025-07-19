@@ -13,7 +13,6 @@
         "ctrl+shift+q=quit"
         "alt+f4=close_window"
         "ctrl+shift+n=new_window"
-        "ctrl+shift+enter=toggle_fullscreen"
 
         # Config
         "ctrl+comma=open_config"
@@ -57,7 +56,6 @@
         "ctrl+shift+left=resize_split:left,10"
         "ctrl+shift+right=resize_split:right,10"
         "ctrl+shift+plus=equalize_splits"
-        "ctrl+shift+enter=toggle_split_zoom"
 
         # Font Size
         "ctrl+equal=increase_font_size:1"
@@ -239,4 +237,4 @@
       };
     };
   };
-} 
+}
