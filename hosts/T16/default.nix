@@ -101,15 +101,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Fonts (system-wide)
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    noto-fonts
-    noto-fonts-emoji
-    font-awesome
-    nerd-fonts.jetbrains-mono
-  ];
-
   virtualisation.vmware.guest.enable = true;
   services.openssh.enable = true;
   system.stateVersion = "25.11";

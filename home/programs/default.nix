@@ -7,5 +7,6 @@
     ./ghostty.nix
     ./obsidian.nix
     ./zoxide.nix
+    ./fonts.nix
   ];
 }
