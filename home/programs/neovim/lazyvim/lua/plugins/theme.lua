@@ -55,6 +55,6 @@ return {
     vim.cmd.colorscheme("gruvbox")
 
     -- Set background for proper contrast
-    vim.opt.background = "light"
+    vim.opt.background = "dark"
   end,
 }
