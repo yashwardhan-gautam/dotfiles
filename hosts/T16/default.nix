@@ -91,9 +91,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    # xclip # Needed for X11 clipboard in XWayland
-  ];
 
   # System services
   services.dbus.enable = true;
@@ -113,27 +110,7 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # Environment variables
-  environment.sessionVariables = {
-    # Wayland
-    NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS = "1";
-
-    # Qt
-    QT_QPA_PLATFORM = "wayland";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-
-    # GTK
-    GDK_BACKEND = "wayland,x11";
-
-    # Firefox
-    MOZ_ENABLE_WAYLAND = "1";
-
-    # Electron
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-  };
-
   virtualisation.vmware.guest.enable = true;
   services.openssh.enable = true;
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "25.11";
 }

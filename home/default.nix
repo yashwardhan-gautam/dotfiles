@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./programs/default.nix
+    ./env.nix
   ];
 
   # Home Manager basic settings
@@ -92,12 +93,6 @@
     nerd-fonts.jetbrains-mono
     xdg-desktop-portal-gtk
   ];
-
-  # Environment variables
-  home.sessionVariables = {
-    PKG_CONFIG_PATH = "${pkgs.gtest}/lib/pkgconfig:${pkgs.gbenchmark}/lib/pkgconfig:$PKG_CONFIG_PATH";
-    CMAKE_PREFIX_PATH = "${pkgs.gtest}:${pkgs.gbenchmark}:$CMAKE_PREFIX_PATH";
-  };
 
   programs.home-manager.enable = true;
 }
