@@ -1,6 +1,4 @@
-{ pkgs, lib, ... }:
-
-{
+{pkgs, ...}: {
   # Enable XDG base directories
   xdg.enable = true;
 
@@ -11,7 +9,7 @@
       xdg-desktop-portal-hyprland # Wayland portal
       xdg-desktop-portal-gtk # GTK portal
     ];
-    
+
     config.common = {
       default = ["hyprland" "gtk"];
     };

@@ -12,46 +12,14 @@
   # Neovim text editor configuration
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped.override {python3 = pkgs.python312;};
     defaultEditor = false;
     withNodeJs = true;
     withPython3 = true;
 
-    extraPackages = with pkgs; [
-      # Formatters
-      alejandra # Nix code formatter
-      black # Python code formatter
-      isort # Python import sorter
-      nodePackages.prettier # Formatter for web languages
-      shfmt # Shell script formatter
-      stylua # Lua code formatter
-
-      # Linters
-      golangci-lint # Go linter
-      hadolint # Dockerfile linter
-      ruff # Fast Python linter
-      shellcheck # Shell script linter
-      tflint # Terraform linter
-
-      # Language Servers
-      gopls # Go language server
-      lua-language-server # Lua language server
-      nixd # Nix language server
-      # nodePackages.bash-language-server # Bash language server
-      pyright # Python language server and type checker
-      terraform-ls # Terraform language server
-      yaml-language-server # YAML language server
-      cmake-language-server # CMake language server
-
-      gdb
-      gtest
-      gbenchmark
-
-      # Other
-      cmake # build tools
-      gotools # Go tools
-      nerd-fonts.jetbrains-mono # Font with icons for symbols
-    ];
+    # add extra packages if required, but make sure they don't conflict with any other declaration
+    # extraPackages = with pkgs; [
+    # ];
   };
 
   # lua config

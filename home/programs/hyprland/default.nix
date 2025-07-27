@@ -83,7 +83,6 @@
     # Waybar and dependencies
     waybar
     gobject-introspection
-    (python3.withPackages (ps: with ps; [pygobject3]))
     lm_sensors
   ];
 

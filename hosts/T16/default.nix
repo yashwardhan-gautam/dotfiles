@@ -92,60 +92,7 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    alacritty
-    lazygit
-    curl
-    fzf
-    ripgrep
-    fd
-    firefox
-    ghostty
-    tmux
-    xclip
-    fish
-    wget
-    starship
-    git
-    btop
-    brave
-    zoxide
-    gcc15
-    gnumake
-    cmake
-    ninja
-    pkg-config
-    lua5_1
-    luajitPackages.luarocks
-    lua-language-server
-    stylua
-    python312
-    python312Packages.pip
-    go
-    cargo
-    xclip
-    clang
-    clang-tools
-    codespell
-    cppcheck
-    doxygen
-    code-cursor
-    tree-sitter
-    telegram-desktop
-    gemini-cli
-
-    # Development libraries for flox project
-    gtest
-    gbenchmark
-
-    # System services and daemons
-    docker_28
-    postgresql_16
-    redis
-    conda
-
-    # Essential system utilities
-    xclip # Needed for X11 clipboard in XWayland
-    loupe
+    # xclip # Needed for X11 clipboard in XWayland
   ];
 
   # System services

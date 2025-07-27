@@ -14,11 +14,13 @@
     nodejs
     rustc
 
-    # C++ Development tools (for flox project)
+    # C++ Development tools
     cmake
     ninja
-    gcc
+    gcc15
     pkg-config
+    gtest
+    gbenchmark
 
     # System utilities
     tree
@@ -35,6 +37,60 @@
     # Other
     qalculate-gtk
     gimp
+    lazygit
+    tree-sitter
+    curl
+    firefox
+    ghostty
+    tmux
+    xclip
+    fish
+    wget
+    starship
+    git
+    btop
+    brave
+    zoxide
+    gnumake
+    lua5_1
+    luajitPackages.luarocks
+    lua-language-server
+    stylua
+    (python312.withPackages (ps: with ps; [pip black isort ruff pygobject3]))
+    go
+    cargo
+    clang-tools
+    codespell
+    cppcheck
+    doxygen
+    code-cursor
+    telegram-desktop
+    gemini-cli
+
+    # System services and daemons
+    redis
+
+    # Essential system utilities
+    loupe
+
+    # Packages from neovim
+    alejandra
+    nodePackages.prettier
+    shfmt
+    golangci-lint
+    hadolint
+    shellcheck
+    tflint
+    gopls
+    nixd
+    pyright
+    terraform-ls
+    yaml-language-server
+    cmake-language-server
+    gdb
+    gotools
+    nerd-fonts.jetbrains-mono
+    xdg-desktop-portal-gtk
   ];
 
   # Environment variables

@@ -50,11 +50,11 @@ return {
         faded_orange = "#af3a03", -- Faded orange
       },
     })
-    
+
     -- Apply the colorscheme
     vim.cmd.colorscheme("gruvbox")
-    
+
     -- Set background for proper contrast
-    vim.opt.background = "dark"
+    vim.opt.background = "light"
   end,
 }
