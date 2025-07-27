@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./programs/default.nix
-    ./env.nix
+    ./hyprland/env.nix
+    ./hyprland
   ];
 
   # Home Manager basic settings
