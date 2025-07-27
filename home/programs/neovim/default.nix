@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     comment = "Edit text files";
@@ -12,7 +12,6 @@
   # Neovim text editor configuration
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped.override {python3 = pkgs.python312;};
     defaultEditor = false;
     withNodeJs = true;
     withPython3 = true;
@@ -28,12 +27,5 @@
       source = ./lazyvim;
       recursive = true;
     };
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk # GTK portal
-    ];
   };
 }
