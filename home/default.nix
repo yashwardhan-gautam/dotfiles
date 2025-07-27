@@ -87,7 +87,6 @@
 
     # --- Shells & Terminal Utilities ---
     ghostty # A GPU-accelerated terminal emulator (related to home/programs/ghostty.nix)
-    tmux # Terminal multiplexer
     fish # User-friendly command line shell (related to home/programs/fish.nix)
     starship # The minimal, blazing-fast, and infinitely customizable prompt for any shell (related to home/programs/starship.nix)
 

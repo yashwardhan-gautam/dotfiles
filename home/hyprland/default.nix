@@ -55,31 +55,6 @@
     # Authentication
     polkit_gnome
 
-    # Clipboard tools
-    cliphist
-
-    # Development tools (user-specific)
-    lazygit
-    fzf
-    ripgrep
-    fd
-    btop
-    htop
-    zoxide
-    tree-sitter
-
-    # Applications
-    firefox
-    code-cursor
-    telegram-desktop
-    gemini-cli
-
-    # Terminal utilities
-    ghostty
-    tmux
-    fish
-    starship
-
     # Waybar and dependencies
     waybar
     gobject-introspection
