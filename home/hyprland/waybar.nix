@@ -166,8 +166,9 @@
           };
         };
         clock = {
+          format = "{:%I:%M %p}";
           format-alt = "{:%Y-%m-%d}";
-          tooltip-format = "{:%Y-%m-%d | %H:%M}";
+          tooltip-format = "{:%Y-%m-%d | %I:%M %p}";
         };
         network = {
           interval = 1;

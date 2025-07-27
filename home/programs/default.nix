@@ -5,7 +5,7 @@
     ./git.nix
     ./fish.nix
     ./ghostty.nix
-    
     ./obsidian.nix
+    ./zoxide.nix
   ];
 }
