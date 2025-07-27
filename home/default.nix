@@ -11,87 +11,109 @@
 
   # Basic packages
   home.packages = with pkgs; [
-    # Development tools
-    nodejs
-    rustc
+    # --- Programming Languages & Runtimes ---
+    nodejs # JavaScript runtime
+    rustc # Rust compiler
+    go # Go programming language
+    lua5_1 # Lua programming language
 
-    # C++ Development tools
-    cmake
-    ninja
-    gcc15
-    pkg-config
-    gtest
-    gbenchmark
+    # --- Package Managers & Build Tools ---
+    cargo # Rust package manager
+    luajitPackages.luarocks # LuaRocks package manager for LuaJIT
+    gnumake # GNU Make utility
 
-    # System utilities
-    tree
-    eza
-    bat
-    fd
-    ripgrep
-    fzf
+    # --- C/C++ Development Tools ---
+    cmake # Cross-platform build system
+    ninja # Small build system
+    gcc15 # GNU C/C++ compiler
+    # clang # C/C++/Objective-C compiler
+    clang-tools # Clang development tools (e.g., clang-format, clang-tidy)
+    pkg-config # Helper for compiling against installed libraries
+    gtest # Google Test framework for C++
+    gbenchmark # Google Benchmark library for C++
+    codespell # Check for common misspellings in code
+    cppcheck # Static analysis tool for C/C++ code
+    doxygen # Documentation system for C++, C, Java, Objective-C, Python, IDL, Fortran, VHDL, PHP, C#, and D
+    gdb # GNU Debugger for C/C++
+    gotools # Go tools (e.g., gofmt, govet)
 
-    # Media
-    mpv
-    ffmpeg
+    # --- Python Development Tools ---
+    (python312.withPackages (ps:
+      with ps; [
+        pip # Python package installer
+        black # Python code formatter
+        isort # Python import sorter
+        ruff # An extremely fast Python linter and formatter
+        pygobject3 # Python bindings for GObject
+      ]))
 
-    # Other
-    qalculate-gtk
-    gimp
-    lazygit
-    tree-sitter
-    curl
-    firefox
-    ghostty
-    tmux
-    xclip
-    fish
-    wget
-    starship
-    git
-    btop
-    brave
-    zoxide
-    gnumake
-    lua5_1
-    luajitPackages.luarocks
-    lua-language-server
-    stylua
-    (python312.withPackages (ps: with ps; [pip black isort ruff pygobject3]))
-    go
-    cargo
-    clang-tools
-    codespell
-    cppcheck
-    doxygen
-    code-cursor
-    telegram-desktop
-    gemini-cli
+    # --- Lua Specific Tools ---
+    lua-language-server # Language server for Lua (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+    stylua # Lua code formatter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
 
-    # System services and daemons
-    redis
+    # --- System Utilities & CLI Tools ---
+    tree # List contents of directories in a tree-like format
+    eza # Modern replacement for `ls`
+    bat # `cat` clone with syntax highlighting and Git integration
+    fd # A simple, fast and user-friendly alternative to 'find'
+    ripgrep # A line-oriented search tool that recursively searches the current directory for a regex pattern
+    fzf # A command-line fuzzy finder
+    xclip # Command line interface to X selections (clipboard)
+    wget # Non-interactive network downloader
+    curl # Tool for transferring data with URL syntax
+    btop # A modern command line resource monitor
+    zoxide # A smarter cd command
+    loupe # A modern, fast, and user-friendly file manager (GUI)
 
-    # Essential system utilities
-    loupe
+    # --- Version Control ---
+    git # Distributed version control system
+    lazygit # A simple terminal UI for git commands
 
-    # Packages from neovim
-    alejandra
-    nodePackages.prettier
-    shfmt
-    golangci-lint
-    hadolint
-    shellcheck
-    tflint
-    gopls
-    nixd
-    pyright
-    terraform-ls
-    yaml-language-server
-    cmake-language-server
-    gdb
-    gotools
-    nerd-fonts.jetbrains-mono
-    xdg-desktop-portal-gtk
+    # --- Browsers ---
+    firefox # Web browser
+    brave # Web browser
+
+    # --- Media Tools ---
+    mpv # Free, open source, and cross-platform media player
+    ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
+
+    # --- Other Applications ---
+    qalculate-gtk # Powerful and versatile desktop calculator
+    gimp # GNU Image Manipulation Program
+    code-cursor # (Assuming this is a specific application, if not, it might need clarification)
+    telegram-desktop # Official Telegram Desktop client
+    gemini-cli # (Assuming this is a specific CLI tool)
+
+    # --- Shells & Terminal Utilities ---
+    ghostty # A GPU-accelerated terminal emulator (related to home/programs/ghostty.nix)
+    tmux # Terminal multiplexer
+    fish # User-friendly command line shell (related to home/programs/fish.nix)
+    starship # The minimal, blazing-fast, and infinitely customizable prompt for any shell (related to home/programs/starship.nix)
+
+    # --- Language Servers & Linters (General/Misc) ---
+    tree-sitter # Parser generator tool and an incremental parsing library (related to home/programs/neovim/lazyvim/lua/plugins/treesitter.lua)
+    alejandra # Nix code formatter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    nodePackages.prettier # Opinionated code formatter for various languages (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    shfmt # Shell script formatter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    golangci-lint # Fast Go linters runner (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    hadolint # Dockerfile linter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    shellcheck # Shell script static analysis tool
+    tflint # Terraform linter (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua, home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    gopls # Go language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+    nixd # Nix language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+    pyright # Pyright language server for Python (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+    terraform-ls # Terraform language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua, home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    yaml-language-server # YAML language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+    cmake-language-server # CMake language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+
+    # --- System Services/Daemons ---
+    redis # In-memory data structure store
+
+    # --- Fonts ---
+    nerd-fonts.jetbrains-mono # JetBrains Mono Nerd Font
+
+    # --- Desktop Integration ---
+    xdg-desktop-portal-gtk # GTK portal for XDG desktop (related to home/programs/neovim/default.nix, home/programs/xdg.nix)
   ];
 
   programs.home-manager.enable = true;
