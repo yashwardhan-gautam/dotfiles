@@ -73,9 +73,12 @@
     # --- Browsers ---
     firefox # Web browser
     brave # Web browser
+    qbittorrent
+    discord
 
     # --- Media Tools ---
     mpv # Free, open source, and cross-platform media player
+    vlc
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
 
     # --- Other Applications ---
