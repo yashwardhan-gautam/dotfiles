@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./btop.nix
     ./starship.nix
     ./neovim
     ./git.nix

@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./programs/default.nix
-    ./hyprland/env.nix
     ./hyprland
   ];
 
@@ -62,7 +61,7 @@
     xclip # Command line interface to X selections (clipboard)
     wget # Non-interactive network downloader
     curl # Tool for transferring data with URL syntax
-    btop # A modern command line resource monitor
+    # btop is now configured via programs.btop in programs/btop.nix
     zoxide # A smarter cd command
     loupe # A modern, fast, and user-friendly file manager (GUI)
 
@@ -71,13 +70,15 @@
     lazygit # A simple terminal UI for git commands
 
     # --- Browsers ---
-    firefox # Web browser
-    brave # Web browser
+    brave # Default web browser
+    chromium # Alternative browser for web apps
+    
+    # --- Bluetooth Management (alternatives) ---
+    blueberry # Alternative Bluetooth configuration tool
     qbittorrent
     discord
 
     # --- Media Tools ---
-    mpv # Free, open source, and cross-platform media player
     vlc
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
 

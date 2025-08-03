@@ -1,0 +1,122 @@
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  # Import Hyprland home-manager module
+  imports = [
+    inputs.hyprland.homeManagerModules.default
+    ./waybar.nix
+  ];
+
+  # Install user-specific packages
+  home.packages = with pkgs; [
+    # Core Hyprland ecosystem
+    hypridle
+    hyprlock
+    hyprpicker
+
+    # Wayland utilities
+    wl-clipboard
+    wf-recorder
+    slurp
+    grim
+    swappy
+    wlr-randr
+
+    # System utilities
+    brightnessctl
+    pamixer
+    playerctl
+    pavucontrol
+
+    # Cursor themes
+    adwaita-icon-theme
+
+    # Launchers and menus
+    wofi
+
+    # Wallpaper and theming
+    hyprpaper
+    qt5.qtwayland
+    qt6.qtwayland
+
+    # Notifications
+    dunst
+    libnotify
+
+    # File manager
+    nautilus
+
+    # Network and system tray
+    networkmanagerapplet
+    blueman
+
+    # Authentication
+    polkit_gnome
+
+    # Waybar and dependencies
+    waybar
+    gobject-introspection
+    lm_sensors
+  ];
+
+  # Configure Hyprland
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    extraConfig = builtins.readFile ./hyprland.conf;
+  };
+
+  # Copy configuration files
+  home.file = {
+    ".config/hypr/keybindings.conf".source = ./keybindings.conf;
+    ".config/hypr/monitors.conf".source = ./monitors.conf;
+    ".config/hypr/userprefs.conf".source = ./userprefs.conf;
+    ".config/hypr/animations.conf".source = ./animations.conf;
+    ".config/hypr/windowrules.conf".source = ./windowrules.conf;
+    ".config/hypr/hyprlock.conf".source = ./hyprlock.conf;
+    ".config/hypr/hyprpaper.conf".source = ./hyprpaper.conf;
+
+    # Scripts directory
+    ".config/hypr/scripts" = {
+      source = ./scripts;
+      recursive = true;
+      executable = true;
+    };
+
+    # Wallpapers
+    ".config/hypr/wallpapers" = {
+      source = ./wallpapers;
+      recursive = true;
+    };
+  };
+
+  # Services
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
+      listener = [
+        {
+          timeout = 150;
+          on-timeout = "brightnessctl -s set 10";
+          on-resume = "brightnessctl -r";
+        }
+        {
+          timeout = 300;
+          on-timeout = "loginctl lock-session";
+        }
+        {
+          timeout = 380;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
+}

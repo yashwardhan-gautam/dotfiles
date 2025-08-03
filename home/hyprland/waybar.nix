@@ -1,202 +1,176 @@
-{...}: {
-  # Configure Waybar (adapted from georgewhewell/nixos-host + omakub styling)
+{
+  config,
+  pkgs,
+  ...
+}: let
+  # Default colors (Tokyo Night theme)
+  backgroundRgb = "rgb(26, 27, 38)";
+  foregroundRgb = "rgb(192, 202, 245)";
+in {
+  home.file = {
+    ".config/waybar/style.css" = {
+      source = ./waybar/style.css;
+    };
+    ".config/waybar/theme.css" = {
+      text = ''
+        @define-color background ${backgroundRgb};
+        * {
+          color: ${foregroundRgb}; 
+        }
+
+        window#waybar {
+          background-color: ${backgroundRgb};
+        }
+      '';
+    };
+  };
+
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
-    style = ''
-      * {
-        border: none;
-        border-radius: 0;
-        min-height: 0;
-        font-family: "JetBrainsMono Nerd Font Propo", "Noto Sans", monospace;
-        font-size: 12px;
-        font-weight: 500;
-      }
-
-      box {
-        padding: 0;
-        margin: 0;
-      }
-
-      window#waybar {
-        background-color: #1e1e2e;
-        color: #cdd6f4;
-      }
-
-      .modules-left {
-        margin-left: 12px;
-      }
-
-      .modules-center {
-        margin: 0;
-      }
-
-      .modules-right {
-        margin-right: 12px;
-      }
-
-      #workspaces {
-        background-color: #313244;
-        border-radius: 5px;
-        padding: 0 4px;
-        margin: 0 6px;
-      }
-
-      #workspaces button {
-        all: initial;
-        padding: 4px 8px;
-        margin: 2px 1px;
-        background: transparent;
-        color: #cdd6f4;
-        border-radius: 3px;
-        min-width: 20px;
-      }
-
-      #workspaces button.active {
-        background-color: #89b4fa;
-        color: #1e1e2e;
-      }
-
-      #workspaces button.urgent {
-        background-color: #f38ba8;
-        color: #1e1e2e;
-      }
-
-      #workspaces button:hover {
-        background-color: #45475a;
-      }
-
-      #tray,
-      #battery,
-      #network,
-      #bluetooth,
-      #pulseaudio,
-      #clock,
-      #window {
-        min-width: 20px;
-        margin: 0 6px;
-        padding: 4px 8px;
-        background-color: #313244;
-        border-radius: 5px;
-      }
-
-      #window {
-        margin: 0 12px;
-        padding: 4px 12px;
-      }
-
-      #battery {
-        color: #89b4fa;
-      }
-
-      #battery.critical {
-        color: #f38ba8;
-      }
-
-      #battery.warning {
-        color: #f9e2af;
-      }
-
-      #network {
-        color: #89dceb;
-      }
-
-      #pulseaudio {
-        color: #cba6f7;
-      }
-
-      #clock {
-        color: #fab387;
-        font-weight: bold;
-      }
-
-      tooltip {
-        padding: 6px;
-        background-color: #1e1e2e;
-        border: 1px solid #89b4fa;
-        border-radius: 5px;
-        color: #cdd6f4;
-      }
-
-      #tray {
-        padding: 2px 6px;
-      }
-    '';
     settings = [
       {
-        height = 32;
         layer = "top";
         position = "top";
-        spacing = 6;
-        tray = {
-          spacing = 8;
-          icon-size = 16;
-        };
-        modules-center = ["hyprland/window"];
-        modules-left = ["hyprland/workspaces"];
-        modules-right = [
-          "pulseaudio"
-          "network"
-          "battery"
+        spacing = 0;
+        height = 26;
+        modules-left = [
+          "hyprland/workspaces"
+        ];
+        modules-center = [
           "clock"
+        ];
+        modules-right = [
           "tray"
+          "bluetooth"
+          "network"
+          "wireplumber"
+          "backlight"
+          "cpu"
+          "power-profiles-daemon"
+          "battery"
         ];
         "hyprland/workspaces" = {
-          disable-scroll = true;
-          all-outputs = true;
-          format = "{name}";
-          format-icons = {
-            urgent = "";
-            active = "";
-            default = "";
-          };
           on-click = "activate";
-          sort-by-number = true;
-          show-special = false;
-        };
-        battery = {
-          format = "{capacity}% {icon}";
-          format-alt = "{time} {icon}";
-          format-charging = "{capacity}% ";
-          format-icons = ["" "" "" "" ""];
-          format-plugged = "{capacity}% ";
-          states = {
-            critical = 15;
-            warning = 30;
+          format = "{icon}";
+          format-icons = {
+            default = "";
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            active = "󱓻";
           };
+          persistent-workspaces = {
+            "1" = [];
+            "2" = [];
+            "3" = [];
+            "4" = [];
+            "5" = [];
+          };
+        };
+        cpu = {
+          interval = 5;
+          format = "󰍛";
+          on-click = "ghostty -e btop";
         };
         clock = {
-          format = "{:%I:%M %p}";
-          format-alt = "{:%Y-%m-%d}";
-          tooltip-format = "{:%Y-%m-%d | %I:%M %p}";
+          format = "{:%d-%B, %I:%M %p}";
+          format-alt = "{:%A}";
+          tooltip = false;
         };
         network = {
-          interval = 1;
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
-          format-disconnected = "Disconnected ⚠";
-          format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
-          format-linked = "{ifname} (No IP) ";
-          format-wifi = "{essid} ({signalStrength}%) ";
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format = "{icon}";
+          format-wifi = "{icon}";
+          format-ethernet = "󰀂";
+          format-disconnected = "󰖪";
+          tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-disconnected = "Disconnected";
+          interval = 3;
+          nospacing = 1;
+          on-click = "nm-applet";
         };
-        pulseaudio = {
-          format = "{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
+        battery = {
+          interval = 5;
+          format = "{capacity}% {icon}";
+          format-discharging = "{capacity}% {icon}";
+          format-charging = "{capacity}% {icon}";
+          format-plugged = "{capacity}% ";
           format-icons = {
-            car = "";
-            default = ["" "" ""];
-            handsfree = "";
-            headphones = "";
-            headset = "";
-            phone = "";
-            portable = "";
+            charging = [
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
+            default = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
           };
-          format-muted = " {format_source}";
-          format-source = "{volume}% ";
-          format-source-muted = "";
+          format-full = "Charged 󰂅";
+          tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
+          tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+        };
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "";
+          tooltip-format = "Devices connected: {num_connections}";
+          on-click = "blueberry";
+        };
+        wireplumber = {
+          format = "󰕾 {volume}%";
+          format-muted = "󰝟 {volume}%";
+          scroll-step = 5;
           on-click = "pavucontrol";
+          tooltip-format = "Playing at {volume}%";
+          on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          max-volume = 150;
+        };
+        backlight = {
+          format = "{icon} {percent}%";
+          format-icons = ["󰃞" "󰃟" "󰃠"];
+          on-scroll-up = "brightnessctl set 5%+";
+          on-scroll-down = "brightnessctl set 5%-";
+          tooltip-format = "Brightness: {percent}%";
+        };
+        tray = {spacing = 13;};
+        power-profiles-daemon = {
+          format = "{icon}";
+          tooltip-format = "Power profile: {profile}";
+          tooltip = true;
+          format-icons = {
+            power-saver = "󰡳";
+            balanced = "󰊚";
+            performance = "󰡴";
+          };
         };
       }
     ];
   };
-}
+} 
