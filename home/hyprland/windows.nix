@@ -13,15 +13,8 @@
       # Fullscreen RetroArch
       "fullscreen, class:^(com.libretro.RetroArch)$"
 
-      # Just dash of transparency
-      "opacity 0.97 0.9, class:.*"
-      # Normal chrome Youtube tabs
-      "opacity 1 1, class:^(chromium|google-chrome|google-chrome-unstable)$, title:.*Youtube.*"
-      "opacity 1 0.97, class:^(chromium|google-chrome|google-chrome-unstable)$"
-      "opacity 0.97 0.9, initialClass:^(chrome-.*-Default)$ # web apps"
-      "opacity 1 1, initialClass:^(chrome-youtube.*-Default)$ # Youtube"
-      "opacity 1 1, class:^(vlc|org.kde.kdenlive|com.obsproject.Studio)$"
-      "opacity 1 1, class:^(com.libretro.RetroArch)$"
+      # All windows fully opaque (no transparency)
+      "opacity 1 1, class:.*"
 
       # Fix some dragging issues with XWayland
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"

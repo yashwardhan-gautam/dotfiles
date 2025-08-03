@@ -37,11 +37,11 @@ in {
         ];
         modules-right = [
           "tray"
+          "cpu"
           "bluetooth"
           "network"
           "wireplumber"
           "backlight"
-          "cpu"
           "power-profiles-daemon"
           "battery"
         ];
@@ -70,7 +70,7 @@ in {
           };
         };
         cpu = {
-          interval = 5;
+          interval = 10;
           format = "󰍛";
           on-click = "ghostty -e btop";
         };
