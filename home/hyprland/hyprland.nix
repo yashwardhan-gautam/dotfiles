@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   pkgs,
   ...
 }: {
@@ -10,4 +9,4 @@
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
   services.hyprpolkitagent.enable = true;
-} 
+}

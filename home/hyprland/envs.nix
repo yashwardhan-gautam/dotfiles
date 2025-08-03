@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  osConfig ? {},
-  ...
-}: {
+{...}: {
   wayland.windowManager.hyprland.settings = {
     # Environment variables
     env = [
@@ -34,14 +28,14 @@
       # Use XCompose file
       "XCOMPOSEFILE,~/.XCompose"
       "EDITOR,nvim"
-      
+
       # GTK theme - default to dark
       "GTK_THEME,Adwaita:dark"
 
       # Default apps
       "TERMINAL,ghostty"
       "BROWSER,brave"
-      
+
       # Locale settings to fix UTF-8 issues for all applications including btop
       "LC_ALL,en_US.UTF-8"
       "LANG,en_US.UTF-8"
@@ -57,4 +51,4 @@
       no_update_news = true;
     };
   };
-} 
+}

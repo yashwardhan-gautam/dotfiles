@@ -1,13 +1,7 @@
-{
-  inputs,
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hypridle.nix
-    ./hyprland.nix  
+    ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
     ./mako.nix
@@ -23,7 +17,7 @@
     hyprpicker
     hyprshot
 
-    # Wayland utilities  
+    # Wayland utilities
     wl-clipboard
     wf-recorder
     slurp
@@ -68,4 +62,4 @@
     hyprsunset
     wireplumber
   ];
-} 
+}

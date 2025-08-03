@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   wayland.windowManager.hyprland.settings = {
     bind = [
       # Application launcher
@@ -42,7 +38,7 @@
       "SUPER, 8, workspace, 8"
       "SUPER, 9, workspace, 9"
       "SUPER, 0, workspace, 10"
-      
+
       "SUPER, comma, workspace, -1"
       "SUPER, period, workspace, +1"
 
@@ -92,10 +88,10 @@
       # Terminal
       "SUPER, Return, exec, $terminal"
       "SUPER, T, exec, $terminal"
-      
+
       # File manager
       "SUPER, E, exec, $fileManager"
-      
+
       # Browser
       "SUPER, B, exec, $browser"
     ];
@@ -124,4 +120,4 @@
       ", XF86AudioPrev, exec, playerctl previous"
     ];
   };
-} 
+}

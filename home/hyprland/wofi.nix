@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   home.file = {
     ".config/wofi/style.css" = {
       text = ''
@@ -99,4 +95,4 @@
       gtk_dark = true;
     };
   };
-} 
+}

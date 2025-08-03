@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   services.mako = {
     enable = true;
 
@@ -36,4 +32,4 @@
       markup = true;
     };
   };
-} 
+}

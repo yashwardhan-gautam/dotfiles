@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{...}: let
   # Default colors (Tokyo Night theme)
   backgroundRgb = "rgb(26, 27, 38)";
   foregroundRgb = "rgb(192, 202, 245)";
@@ -15,7 +11,7 @@ in {
       text = ''
         @define-color background ${backgroundRgb};
         * {
-          color: ${foregroundRgb}; 
+          color: ${foregroundRgb};
         }
 
         window#waybar {
@@ -173,4 +169,4 @@ in {
       }
     ];
   };
-} 
+}

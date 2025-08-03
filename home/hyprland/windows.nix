@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
@@ -14,7 +10,7 @@
       # Settings management
       "float, class:^(org.pulseaudio.pavucontrol|blueberry.py)$"
 
-      # Fullscreen RetroArch  
+      # Fullscreen RetroArch
       "fullscreen, class:^(com.libretro.RetroArch)$"
 
       # Just dash of transparency
@@ -42,4 +38,4 @@
       "blur,waybar"
     ];
   };
-} 
+}

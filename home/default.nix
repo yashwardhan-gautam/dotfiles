@@ -72,7 +72,7 @@
     # --- Browsers ---
     brave # Default web browser
     chromium # Alternative browser for web apps
-    
+
     # --- Bluetooth Management (alternatives) ---
     blueberry # Alternative Bluetooth configuration tool
     qbittorrent

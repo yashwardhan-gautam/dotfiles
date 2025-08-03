@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{...}: let
   # Default Tokyo Night colors
   inactiveBorder = "rgba(414868b3)"; # 0.7 alpha = b3 in hex
   activeBorder = "rgba(7aa2f7b3)"; # 0.7 alpha = b3 in hex
@@ -88,4 +84,4 @@ in {
       disable_splash_rendering = true;
     };
   };
-} 
+}

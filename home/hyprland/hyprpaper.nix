@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{...}: let
   # Default to tokyo-night wallpaper
   selected_wallpaper_path = "~/.config/hypr/wallpapers/tokyo-night.jpg";
 in {
@@ -13,7 +9,7 @@ in {
       recursive = true;
     };
   };
-  
+
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -25,4 +21,4 @@ in {
       ];
     };
   };
-} 
+}

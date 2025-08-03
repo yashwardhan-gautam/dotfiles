@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./autostart.nix
     ./bindings.nix
@@ -27,4 +22,4 @@
       ",preferred,auto,1.0"
     ];
   };
-} 
+}

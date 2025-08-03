@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
       # Core services
@@ -27,4 +23,4 @@
       "pkill -SIGUSR2 waybar || waybar"
     ];
   };
-} 
+}

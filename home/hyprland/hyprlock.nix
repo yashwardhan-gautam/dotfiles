@@ -1,15 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{...}: let
   # Default to tokyo-night wallpaper if no wallpaper selector is available
   selected_wallpaper_path = "~/.config/hypr/wallpapers/tokyo-night.jpg";
-  
+
   # Default color scheme (can be overridden by colorScheme if available)
-  backgroundRgb = "rgba(26, 27, 38, 0.8)";
-  surfaceRgb = "rgb(40, 42, 54)";  
+  # backgroundRgb = "rgba(26, 27, 38, 0.8)";
+  surfaceRgb = "rgb(40, 42, 54)";
   foregroundRgb = "rgb(248, 248, 242)";
   foregroundMutedRgb = "rgb(98, 114, 164)";
 in {
@@ -68,4 +63,4 @@ in {
       };
     };
   };
-} 
+}

@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   wayland.windowManager.hyprland.settings = {
     # Input configuration
     input = lib.mkDefault {
@@ -25,4 +20,4 @@
       workspace_swipe_fingers = 3;
     };
   };
-} 
+}
