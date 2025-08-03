@@ -65,7 +65,7 @@ home-manager switch --flake .#unalome
 #### Basic Window Control
 | Shortcut | Action |
 |----------|---------|
-| `Super + W` | Close active window |
+| `Super + Q` | Close active window |
 | `Super + Backspace` | Close active window (alternative) |
 | `Super + V` | Toggle floating mode |
 | `Super + J` | Toggle split direction |
