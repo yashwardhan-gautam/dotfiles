@@ -5,17 +5,54 @@
 in {
   home.file = {
     ".config/waybar/style.css" = {
-      source = ./waybar/style.css;
-    };
-    ".config/waybar/theme.css" = {
       text = ''
         @define-color background ${backgroundRgb};
+        @define-color foreground ${foregroundRgb};
+
         * {
+          border: none;
+          border-radius: 0;
+          min-height: 0;
+          font-family: CaskaydiaMono Nerd Font;
+          font-size: 15px;
           color: ${foregroundRgb};
         }
 
         window#waybar {
           background-color: ${backgroundRgb};
+        }
+
+        #workspaces {
+          margin-left: 7px;
+        }
+
+        #workspaces button {
+          all: initial;
+          padding: 2px 6px;
+          margin-right: 3px;
+        }
+
+        #custom-dropbox,
+        #cpu,
+        #power-profiles-daemon,
+        #battery,
+        #network,
+        #bluetooth,
+        #wireplumber,
+        #backlight,
+        #tray,
+        #clock {
+          background-color: transparent;
+          min-width: 12px;
+          margin-right: 13px;
+        }
+
+        tooltip {
+          padding: 2px;
+        }
+
+        tooltip label {
+          padding: 2px;
         }
       '';
     };

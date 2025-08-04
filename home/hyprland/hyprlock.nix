@@ -1,5 +1,5 @@
 {...}: let
-  # Default to tokyo-night wallpaper if no wallpaper selector is available
+  # Use the same wallpaper as hyprpaper for consistency
   selected_wallpaper_path = "~/.config/hypr/wallpapers/tokyo-night.jpg";
 
   # Default color scheme (can be overridden by colorScheme if available)
@@ -16,7 +16,7 @@ in {
         no_fade_in = false;
       };
       auth = {
-        fingerprint.enabled = true;
+        fingerprint.enabled = false;
       };
       background = {
         monitor = "";
@@ -52,7 +52,7 @@ in {
 
       label = {
         monitor = "";
-        text = "\$FPRINTPROMPT";
+        text = "";
         text_align = "center";
         color = "rgb(211, 198, 170)";
         font_size = 24;

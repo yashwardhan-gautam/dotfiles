@@ -1,27 +1,28 @@
-# 🏠 unalome's NixOS Dotfiles
+# unalome's NixOS Dotfiles
 
 A modern, opinionated NixOS configuration featuring Hyprland window manager with a complete desktop environment setup.
 
-## 📋 Table of Contents
+## Table of Contents
 - [Overview](#overview)
 - [Quick Start](#quick-start)
 - [Applications](#applications)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Configuration Structure](#configuration-structure)
 - [Customization](#customization)
+- [Resources](#resources)
 
-## 🎯 Overview
+## Overview
 
 This dotfiles repository provides a complete NixOS desktop environment featuring:
-- **🪟 Hyprland** - Modern tiling Wayland compositor
-- **🎨 Tokyo Night** theme with custom colors
-- **📊 Waybar** - Customizable status bar
-- **🖥️ Ghostty** - GPU-accelerated terminal emulator
-- **📝 Neovim** - Configured with LazyVim
-- **🎵 Audio/Video** - PipeWire with multimedia controls
-- **🔒 Security** - Hyprlock screen locker with idle management
+- **Hyprland** - Modern tiling Wayland compositor
+- **Tokyo Night** theme with custom colors
+- **Waybar** - Customizable status bar
+- **Ghostty** - GPU-accelerated terminal emulator
+- **Neovim** - Configured with LazyVim
+- **Audio/Video** - PipeWire with multimedia controls
+- **Security** - Hyprlock screen locker with idle management
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - NixOS installed
@@ -40,7 +41,7 @@ sudo nixos-rebuild switch --flake .#T16
 home-manager switch --flake .#unalome
 ```
 
-## 📱 Applications
+## Applications
 
 ### Core Applications
 - **Terminal**: Ghostty (GPU-accelerated)
@@ -58,9 +59,9 @@ home-manager switch --flake .#unalome
 - **btop** - Modern system resource monitor
 - **LazyGit** - Terminal UI for Git operations
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
-### 🪟 Hyprland Window Management
+### Hyprland Window Management
 
 #### Basic Window Control
 | Shortcut | Action |
@@ -97,7 +98,7 @@ home-manager switch --flake .#unalome
 | `Super + Right Click + Drag` | Resize window |
 | `Super + Scroll` | Switch workspaces |
 
-### 🚀 Application Shortcuts
+### Application Shortcuts
 | Shortcut | Application |
 |----------|-------------|
 | `Super + Space` | Application launcher (Wofi) |
@@ -106,7 +107,7 @@ home-manager switch --flake .#unalome
 | `Super + B` | Browser (Brave) |
 | `Super + E` | File manager (Nautilus) |
 
-### 🔒 Session Management
+### Session Management
 | Shortcut | Action |
 |----------|---------|
 | `Super + Escape` | Lock screen |
@@ -114,7 +115,7 @@ home-manager switch --flake .#unalome
 | `Super + Ctrl + Escape` | Reboot system |
 | `Super + Shift + Ctrl + Escape` | Power off system |
 
-### 📸 Screenshots & Tools
+### Screenshots & Tools
 | Shortcut | Action |
 |----------|---------|
 | `Print Screen` | Screenshot region |
@@ -123,7 +124,7 @@ home-manager switch --flake .#unalome
 | `Super + Print Screen` | Color picker |
 | `Ctrl + Super + V` | Clipboard manager |
 
-### 🎵 Media Controls
+### Media Controls
 | Shortcut | Action |
 |----------|---------|
 | `Volume Up/Down` | Adjust system volume |
@@ -133,7 +134,7 @@ home-manager switch --flake .#unalome
 | `Media Play/Pause` | Control media playback |
 | `Media Next/Prev` | Skip tracks |
 
-### 🖥️ Ghostty Terminal Shortcuts
+### Ghostty Terminal Shortcuts
 
 #### Window Management
 | Shortcut | Action |
@@ -170,7 +171,7 @@ home-manager switch --flake .#unalome
 | `Ctrl + +/-` | Increase/decrease font size |
 | `Ctrl + 0` | Reset font size |
 
-## 📁 Configuration Structure
+## Configuration Structure
 
 ```
 dotfiles/
@@ -194,76 +195,18 @@ dotfiles/
         ├── autostart.nix   # Startup applications
         └── ...
 ```
+## Resources
 
-## 🎨 Waybar Modules
+This configuration draws inspiration from several excellent NixOS and Hyprland setups:
 
-Your status bar displays the following information:
+- **[OrynOS](https://github.com/OrynVail/OrynOS)** - A declarative, high-performance NixOS configuration built with Hyprland, TTY login, and modular design
+- **[Omarchy](https://github.com/basecamp/omarchy/tree/master)** - Opinionated Arch/Hyprland Setup that turns a fresh Arch installation into a fully-configured, beautiful, and modern web development system
+- **[omarchy-nix](https://github.com/henrysipp/omarchy-nix)** - NixOS version of the Omarchy configuration
 
-### Left Side
-- **🖥️ CPU** - System usage (click for btop)
-- **🏠 Workspaces** - Workspace indicator (1-5)
-
-### Center
-- **🕐 Clock** - Date and time (click to toggle day name)
-
-### Right Side
-- **📋 Tray** - System tray icons
-- **🔵 Bluetooth** - Connection status (click for Blueberry)
-- **📶 Network** - WiFi/Ethernet status (click for NetworkManager)
-- **🔊 Volume** - Audio level (click for PulseAudio control)
-- **💡 Brightness** - Screen brightness (scroll to adjust)
-- **⚡ Power Profile** - Performance mode indicator
-- **🔋 Battery** - Battery status and percentage
-
-## 🛠️ Customization
-
-### Themes
-The configuration uses a Tokyo Night color scheme. Colors are defined in:
-- `home/hyprland/waybar.nix` - Waybar colors
-- `home/programs/ghostty.nix` - Terminal themes
-- `home/hyprland/looknfeel.nix` - Window manager colors
-
-### Adding Applications
-To add new applications:
-1. Add the package to `home/default.nix`
-2. Create configuration file in `home/programs/` if needed
-3. Add keybindings in `home/hyprland/bindings.nix`
-
-### Window Rules
-Modify window behavior in `home/hyprland/windows.nix`:
-- Opacity settings
-- Float/tile preferences
-- Size and position rules
-
-## 🔧 System Settings
-
-### Auto-lock Configuration
-- **Lock screen**: 10 minutes of idle time
-- **Display off**: 10.5 minutes of idle time
-- **Suspend**: After screen locks
-
-### Audio Setup
-- **Backend**: PipeWire with PulseAudio compatibility
-- **Controls**: Hardware keys + waybar integration
-- **Applications**: PulseAudio Volume Control (pavucontrol)
-
-### Locale & Language
-- **System locale**: en_US.UTF-8
-- **Timezone**: Asia/Dubai
-- **Keyboard layout**: US
-
-## 📝 Notes
-
-- **Flake-based configuration** for reproducible builds
-- **Home Manager** for user-specific configurations  
-- **GPU acceleration** enabled for compatible applications
-- **Wayland-first** setup with XWayland fallback
-- **No transparency** - all windows are fully opaque for performance
-
-## 🤝 Contributing
+## Contributing
 
 Feel free to fork this repository and adapt it to your needs. If you find improvements or fixes, pull requests are welcome!
 
-## 📄 License
+## License
 
 This configuration is provided as-is for educational and personal use. 
