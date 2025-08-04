@@ -90,7 +90,12 @@
     shell = pkgs.fish;
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "libsoup-2.74.3"  # Required by some GNOME applications, has known CVEs but needed for compatibility
+    ];
+  };
 
   # System services
   services.dbus.enable = true;

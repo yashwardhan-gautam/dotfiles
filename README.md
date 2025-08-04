@@ -106,6 +106,7 @@ home-manager switch --flake .#unalome
 | `Super + T` | Terminal (alternative) |
 | `Super + B` | Browser (Brave) |
 | `Super + E` | File manager (Nautilus) |
+| `Super + N` | Neovim editor |
 
 ### Session Management
 | Shortcut | Action |

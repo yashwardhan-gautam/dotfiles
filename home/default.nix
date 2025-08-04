@@ -61,6 +61,7 @@
     xclip # Command line interface to X selections (clipboard)
     wget # Non-interactive network downloader
     curl # Tool for transferring data with URL syntax
+    fastfetch # Fast system information tool
     # btop is now configured via programs.btop in programs/btop.nix
     zoxide # A smarter cd command
 

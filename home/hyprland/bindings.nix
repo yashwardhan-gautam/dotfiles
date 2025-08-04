@@ -94,6 +94,9 @@
 
       # Browser
       "SUPER, B, exec, $browser"
+
+      # Neovim editor
+      "SUPER, N, exec, $terminal -e nvim"
     ];
 
     bindm = [
