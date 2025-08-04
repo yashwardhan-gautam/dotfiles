@@ -1,6 +1,5 @@
 {...}: let
-  # Default to everforest wallpaper
-  selected_wallpaper_path = "~/.config/hypr/wallpapers/everforest.jpg";
+  selected_wallpaper_path = "~/.config/hypr/wallpapers/macos.jpg";
 in {
   # Copy wallpapers to the config directory
   home.file = {
