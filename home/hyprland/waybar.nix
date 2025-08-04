@@ -98,13 +98,7 @@ in {
             "9" = "9";
             active = "󱓻";
           };
-          persistent-workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
-          };
+          # No persistent workspaces - only show workspaces as they are created
         };
         cpu = {
           interval = 10;

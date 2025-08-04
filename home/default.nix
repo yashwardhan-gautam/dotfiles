@@ -63,7 +63,6 @@
     curl # Tool for transferring data with URL syntax
     # btop is now configured via programs.btop in programs/btop.nix
     zoxide # A smarter cd command
-    loupe # A modern, fast, and user-friendly file manager (GUI)
 
     # --- Version Control ---
     git # Distributed version control system
@@ -81,6 +80,7 @@
     # --- Media Tools ---
     vlc
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
+    geeqie # Fast and lightweight image viewer
 
     # --- Other Applications ---
     qalculate-gtk # Powerful and versatile desktop calculator
