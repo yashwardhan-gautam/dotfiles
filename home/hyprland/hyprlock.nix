@@ -1,6 +1,6 @@
 {...}: let
   # Use the same wallpaper as hyprpaper for consistency
-  selected_wallpaper_path = "~/.config/hypr/wallpapers/tokyo-night.jpg";
+  selected_wallpaper_path = "~/.config/hypr/wallpapers/everforest.jpg";
 
   # Default color scheme (can be overridden by colorScheme if available)
   # backgroundRgb = "rgba(26, 27, 38, 0.8)";

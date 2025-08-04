@@ -4,7 +4,6 @@
       # Core services
       "hypridle"
       "mako"
-      "waybar"
       "systemctl --user start hyprpolkitagent"
       "wl-clipboard --clipboard regular"
       "wl-clip-persist --clipboard regular"
