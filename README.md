@@ -2,6 +2,13 @@
 
 A modern, opinionated NixOS configuration featuring Hyprland window manager with a complete desktop environment setup.
 
+## Screenshots
+
+![Latest Desktop Screenshot](media/2025-08-05-021925_hyprshot.png)
+![Desktop Screenshot](media/2025-08-05-021633_hyprshot.png)
+![Desktop Screenshot](media/2025-08-05-021352_hyprshot.png)
+![Desktop Screenshot](media/2025-08-05-014356_hyprshot.png)
+
 ## Table of Contents
 - [Overview](#overview)
 - [Quick Start](#quick-start)
