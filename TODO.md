@@ -6,7 +6,7 @@
 - [ ] use [sherlock](https://github.com/Skxxtz/sherlock) instead of waybar  
 
 - [ ] add a clipboard manager, add on waybar top  
-- [ ] use yazi instead of current file manager
+- [ ] use [yazi](https://www.youtube.com/watch?v=iKb3cHDD9hw) instead of current file manager
 - [ ] check for the [unified menu system](https://www.youtube.com/watch?v=Cft6mZDzIng&t=131s) and if I want to replicate some of that
 - [ ] use flameshot instead of current snapshot, add it to waybar top  
 - [ ] replace screenshots with screen-recording to readme  
