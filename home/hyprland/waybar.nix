@@ -32,6 +32,16 @@ in {
           margin-right: 3px;
         }
 
+        #workspaces button:hover {
+          background-color: rgba(192, 202, 245, 0.08);
+          border-radius: 6px;
+        }
+
+        #workspaces button.active {
+          background-color: rgba(192, 202, 245, 0.12);
+          border-radius: 6px;
+        }
+
         #custom-dropbox,
         #cpu,
         #power-profiles-daemon,
@@ -96,7 +106,6 @@ in {
             "7" = "7";
             "8" = "8";
             "9" = "9";
-            active = "󱓻";
           };
           # No persistent workspaces - only show workspaces as they are created
         };

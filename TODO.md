@@ -14,3 +14,5 @@
 - [ ] add startup applications - terminal, browser with last thing, mail (thunderbird?)  
 - [ ] check for the performance related stuff, remove animations etc, have proper battery life config  
 - [ ] add OBS, a local media player that can download audios from youtube or use youtube-dl for that  
+- [ ] check wallpapers from [nordiac-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers)
+- [ ] check if we can have dynamic themeing (not really important to me)
