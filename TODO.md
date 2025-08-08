@@ -3,7 +3,7 @@
 - [ ] add cpp, rust and their debugger support  
 - [ ] leetcode and other CP stuff  
 - [ ] claude code, and avante.nvim support  
-- [ ] use [sherlock](https://github.com/Skxxtz/sherlock) instead of waybar  
+- [ ] use [sherlock](https://github.com/Skxxtz/sherlock) instead of wofi  
 
 - [ ] add a clipboard manager, add on waybar top  
 - [ ] use [open-code](https://github.com/sst/opencode) instead of gemini
