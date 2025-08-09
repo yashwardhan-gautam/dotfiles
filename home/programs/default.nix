@@ -10,5 +10,6 @@
     ./obsidian.nix
     ./zoxide.nix
     ./fonts.nix
+    ./obs-studio.nix
   ];
 }

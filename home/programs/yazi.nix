@@ -13,6 +13,22 @@
         max_width = 1000;
         max_height = 1000;
       };
+
+      # Always open video files with VLC
+      opener = {
+        play = [
+          {
+            run = "vlc \"$@\"";
+            orphan = true; # detach from terminal
+            desc = "VLC";
+          }
+        ];
+      };
+      open = {
+        rules = [
+          { mime = "video/*"; use = ["play"]; }
+        ];
+      };
     };
 
     enableFishIntegration = true;

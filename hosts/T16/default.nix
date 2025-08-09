@@ -2,8 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 {
-  lib,
-  config,
   pkgs,
   inputs,
   ...
@@ -75,6 +73,8 @@
     jack.enable = true;
   };
 
+  # XDG portals are configured via Home Manager in `home/programs/xdg.nix`
+
   # Security services
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
@@ -104,8 +104,8 @@
 
   # System services
   services.dbus.enable = true;
-  services.gvfs.enable = true; # For nautilus
-  services.tumbler.enable = true; # Thumbnails
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
