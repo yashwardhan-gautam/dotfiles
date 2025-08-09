@@ -89,7 +89,6 @@
     # --- Media Tools ---
     vlc
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
-    geeqie # Fast and lightweight image viewer
 
     # --- Other Applications ---
     qalculate-gtk # Powerful and versatile desktop calculator
