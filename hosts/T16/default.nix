@@ -93,7 +93,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [
-      "libsoup-2.74.3"  # Required by some GNOME applications, has known CVEs but needed for compatibility
+      "libsoup-2.74.3" # Required by some GNOME applications, has known CVEs but needed for compatibility
     ];
   };
 

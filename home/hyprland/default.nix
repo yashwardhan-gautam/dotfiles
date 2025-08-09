@@ -44,7 +44,7 @@
     qt6.qtwayland
 
     # File manager
-    nautilus
+    yazi
 
     # Network and system tray
     networkmanagerapplet

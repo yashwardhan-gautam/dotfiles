@@ -53,7 +53,7 @@ home-manager switch --flake .#unalome
 ### Core Applications
 - **Terminal**: Ghostty (GPU-accelerated)
 - **Browser**: Brave (default), Chromium (available)
-- **File Manager**: Nautilus
+- **File Manager**: Yazi (terminal file manager)
 - **Editor**: Neovim with LazyVim configuration
 - **Launcher**: Wofi (application launcher)
 - **Audio**: PulseAudio with PipeWire backend
@@ -112,7 +112,7 @@ home-manager switch --flake .#unalome
 | `Super + Return` | Terminal (Ghostty) |
 | `Super + T` | Terminal (alternative) |
 | `Super + B` | Browser (Brave) |
-| `Super + E` | File manager (Nautilus) |
+| `Super + E` | File manager (Yazi) |
 | `Super + N` | Neovim editor |
 
 ### Session Management

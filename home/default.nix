@@ -58,11 +58,20 @@
     fd # A simple, fast and user-friendly alternative to 'find'
     ripgrep # A line-oriented search tool that recursively searches the current directory for a regex pattern
     fzf # A command-line fuzzy finder
+    file # Required by Yazi for file type detection
+    jq # JSON preview
+    poppler # PDF preview utilities
+    resvg # SVG preview
+    imagemagick # Font, HEIC, JPEG XL preview
+    p7zip # Archive extraction and preview
     xclip # Command line interface to X selections (clipboard)
+    wl-clipboard # Clipboard support on Wayland
     wget # Non-interactive network downloader
     curl # Tool for transferring data with URL syntax
     fastfetch # Fast system information tool
     zoxide # A smarter cd command
+    chafa # ASCII image fallback (optional)
+    ueberzugpp # Image preview helper (optional)
 
     # --- Version Control ---
     git # Distributed version control system
