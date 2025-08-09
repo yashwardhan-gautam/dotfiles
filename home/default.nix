@@ -85,6 +85,7 @@
     blueberry # Alternative Bluetooth configuration tool
     qbittorrent
     discord
+    yt-dlp
 
     # --- Media Tools ---
     vlc
@@ -95,7 +96,7 @@
     gimp # GNU Image Manipulation Program
     code-cursor # (Assuming this is a specific application, if not, it might need clarification)
     telegram-desktop # Official Telegram Desktop client
-    gemini-cli # (Assuming this is a specific CLI tool)
+    opencode
 
     # --- Shells & Terminal Utilities ---
     ghostty # A GPU-accelerated terminal emulator (related to home/programs/ghostty.nix)
