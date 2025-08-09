@@ -2,6 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 {
+  lib,
+  config,
   pkgs,
   inputs,
   ...
@@ -96,6 +98,9 @@
       "libsoup-2.74.3" # Required by some GNOME applications, has known CVEs but needed for compatibility
     ];
   };
+
+  # No Flameshot overlay (using Hyprshot instead)
+  nixpkgs.overlays = [];
 
   # System services
   services.dbus.enable = true;

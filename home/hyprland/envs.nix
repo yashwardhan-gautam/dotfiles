@@ -36,6 +36,9 @@
       "TERMINAL,ghostty"
       "BROWSER,brave"
 
+      # Hyprshot save directory
+      "HYPRSHOT_DIR,~/Pictures/Screenshots"
+
       # Locale settings to fix UTF-8 issues for all applications including btop
       "LC_ALL,en_US.UTF-8"
       "LANG,en_US.UTF-8"

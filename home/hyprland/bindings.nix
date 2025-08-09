@@ -74,10 +74,10 @@
       "SUPER, S, togglespecialworkspace, magic"
       "SUPER SHIFT, S, movetoworkspace, special:magic"
 
-       # Screenshots
-      ", PRINT, exec, flameshot gui -c -p ~/Pictures/Screenshots"
-      "SHIFT, PRINT, exec, flameshot screen -c -p ~/Pictures/Screenshots"
-      "CTRL, PRINT, exec, flameshot full -c -p ~/Pictures/Screenshots"
+      # Screenshots (Hyprshot)
+      ", PRINT, exec, hyprshot -m region"
+      "SHIFT, PRINT, exec, hyprshot -m output"
+      "CTRL, PRINT, exec, hyprshot -m window"
 
       # Color picker
       "SUPER, PRINT, exec, hyprpicker -a"

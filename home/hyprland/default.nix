@@ -15,7 +15,7 @@
     hypridle
     hyprlock
     hyprpicker
-    flameshot
+    hyprshot
 
     # Wayland utilities
     wl-clipboard
