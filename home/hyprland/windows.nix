@@ -23,6 +23,10 @@
       "float, class:^(clipse)$"
       "size 622 652, class:^(clipse)$"
       "stayfocused, class:^(clipse)$"
+      # Fallback on window title when class is not set
+      "float, title:^(clipse)$"
+      "size 622 652, title:^(clipse)$"
+      "stayfocused, title:^(clipse)$"
     ];
 
     layerrule = [

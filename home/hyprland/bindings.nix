@@ -83,7 +83,7 @@
       "SUPER, PRINT, exec, hyprpicker -a"
 
       # Clipboard manager
-      "CTRL SUPER, V, exec, ghostty --class=clipse -e clipse"
+      "CTRL SUPER, V, exec, ghostty --class=clipse --title=clipse -e clipse"
 
       # Terminal
       "SUPER, Return, exec, $terminal"
