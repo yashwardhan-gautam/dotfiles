@@ -96,6 +96,7 @@
     gimp # GNU Image Manipulation Program
     code-cursor # (Assuming this is a specific application, if not, it might need clarification)
     telegram-desktop # Official Telegram Desktop client
+    thunderbird
     opencode
 
     # --- Shells & Terminal Utilities ---

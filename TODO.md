@@ -2,10 +2,8 @@
 
 - [ ] add cpp, rust and their debugger support  
 - [ ] leetcode and other CP stuff  
-- [ ] claude code, and avante.nvim support  
 
-- [ ] use [open-code](https://github.com/sst/opencode) instead of gemini
-- [ ] add startup applications - terminal, browser with last thing, mail (thunderbird?)  
+- [ ] use [open-code](https://github.com/sst/opencode) along with claude code
 - [x] add OBS, a local media player that can download audios from youtube or use youtube-dl for that  
 - [ ] check [typix](https://github.com/loqusion/typix?tab=readme-ov-file)
 - [ ] check wallpapers from [nordiac-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers)

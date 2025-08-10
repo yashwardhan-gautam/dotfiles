@@ -7,7 +7,7 @@
     # Minimal, sensible defaults; users can extend in ~/.config/yazi if needed
     settings = {
       mgr = {
-        show_hidden = true;
+        show_hidden = false;
       };
       preview = {
         max_width = 1000;
@@ -26,7 +26,10 @@
       };
       open = {
         rules = [
-          { mime = "video/*"; use = ["play"]; }
+          {
+            mime = "video/*";
+            use = ["play"];
+          }
         ];
       };
     };
