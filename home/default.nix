@@ -28,6 +28,7 @@
     gcc15 # GNU C/C++ compiler
     # clang # C/C++/Objective-C compiler
     clang-tools # Clang development tools (e.g., clang-format, clang-tidy)
+    cmake-lint
     pkg-config # Helper for compiling against installed libraries
     gtest # Google Test framework for C++
     gbenchmark # Google Benchmark library for C++

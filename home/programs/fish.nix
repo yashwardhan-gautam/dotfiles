@@ -17,6 +17,7 @@
       "v" = "nvim";
       "cd" = "z";
       "ls" = "eza";
+      "ns" = "nix-shell";
     };
     interactiveShellInit = ''
       set -U fish_greeting
