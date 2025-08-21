@@ -9,6 +9,6 @@
 - [ ] check wallpapers from [nordiac-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers)
 - [ ] check if we can have dynamic themeing (not really important to me), check [stylix](https://nix-community.github.io/stylix/installation.html)
 - [ ] check for the [unified menu system](https://www.youtube.com/watch?v=Cft6mZDzIng&t=131s) and if I want to replicate some of that
-- [ ] use this for [clipboard manager](https://github.com/lilyinstarlight/nixos-cosmic/tree/main/pkgs/cosmic-ext-applet-clipboard-manager)
+- [ ] use this for [clipboard manager](https://github.com/lilyinstarlight/nixos-cosmic/tree/main/pkgs/cosmic-ext-applet-clipboard-manager), also check for other [relevant](https://github.com/lilyinstarlight/nixos-cosmic/blob/main/flake.nix) cosmic apps to try
 - [ ] youtube music with brave for music player as a desktop app
 - [ ] replace screenshots with screen-recording to readme  
