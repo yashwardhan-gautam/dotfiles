@@ -86,6 +86,7 @@
     blueberry # Alternative Bluetooth configuration tool
     qbittorrent
     discord
+    gnome-boxes
     yt-dlp
 
     # --- Media Tools ---
