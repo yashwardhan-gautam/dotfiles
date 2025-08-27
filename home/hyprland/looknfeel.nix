@@ -1,14 +1,20 @@
-{...}: let
+{config, ...}: let
   # Default Tokyo Night colors
   inactiveBorder = "rgba(414868b3)"; # 0.7 alpha = b3 in hex
   activeBorder = "rgba(7aa2f7b3)"; # 0.7 alpha = b3 in hex
+  
+  # Calculate scaled values based on scale factor
+  scaledGapsIn = 0 * config.dotfiles.scale;
+  scaledGapsOut = 0 * config.dotfiles.scale;
+  scaledBorderSize = 1 * config.dotfiles.scale;
+  scaledRounding = 4 * config.dotfiles.scale;
 in {
   wayland.windowManager.hyprland.settings = {
     general = {
-      gaps_in = 0;
-      gaps_out = 0;
+      gaps_in = scaledGapsIn;
+      gaps_out = scaledGapsOut;
 
-      border_size = 1;
+      border_size = scaledBorderSize;
 
       "col.active_border" = activeBorder;
       "col.inactive_border" = inactiveBorder;
@@ -21,7 +27,7 @@ in {
     };
 
     decoration = {
-      rounding = 4;
+      rounding = scaledRounding;
 
       shadow = {
         enabled = false; # Performance: Disable shadows

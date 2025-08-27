@@ -1,7 +1,14 @@
-{...}: let
+{config, lib, ...}: let
   # Default colors (Tokyo Night theme)
   backgroundRgb = "rgb(26, 27, 38)";
   foregroundRgb = "rgb(192, 202, 245)";
+  
+  # Extract font size from primary_font and scale it
+  fontSize = lib.toInt (lib.last (lib.splitString " " config.dotfiles.primary_font));
+  scaledFontSize = fontSize + 4; # Waybar typically uses slightly larger font
+  
+  # Extract font family from primary_font
+  fontFamily = lib.removeSuffix " ${toString fontSize}" config.dotfiles.primary_font;
 in {
   home.file = {
     ".config/waybar/style.css" = {
@@ -13,8 +20,8 @@ in {
           border: none;
           border-radius: 0;
           min-height: 0;
-          font-family: CaskaydiaMono Nerd Font;
-          font-size: 15px;
+          font-family: ${fontFamily};
+          font-size: ${toString scaledFontSize}px;
           color: ${foregroundRgb};
         }
 

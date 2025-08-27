@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, config, ...}: {
   imports = [
     ./autostart.nix
     ./bindings.nix
@@ -17,9 +17,7 @@
     "$messenger" = lib.mkDefault "signal-desktop";
     "$webapp" = lib.mkDefault "$browser --app";
 
-    # Monitor configuration - can be overridden
-    monitor = [
-      ",preferred,auto,1.0"
-    ];
+    # Monitor configuration using dotfiles.monitors option
+    monitor = config.dotfiles.monitors;
   };
 }

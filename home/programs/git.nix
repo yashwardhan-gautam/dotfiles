@@ -1,8 +1,8 @@
-{...}: {
+{config, ...}: {
   programs.git = {
     enable = true;
-    userName = "yashwardhna-gautam";
-    userEmail = "gautamyashwardhan@gmail.com";
+    userName = config.dotfiles.full_name;
+    userEmail = config.dotfiles.email_address;
 
     extraConfig = {
       init.defaultBranch = "main";

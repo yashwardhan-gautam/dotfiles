@@ -1,10 +1,16 @@
-{...}: {
+{config, lib, ...}: let
+  # Extract font size from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> 11)
+  fontSize = lib.toInt (lib.last (lib.splitString " " config.dotfiles.primary_font));
+  # Extract font family from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> "JetBrainsMono Nerd Font")
+  fontFamily = lib.removeSuffix " ${toString fontSize}" config.dotfiles.primary_font;
+in {
   programs.ghostty = {
     enable = true;
     package = null; # ghostty is not in nixpkgs yet
     clearDefaultKeybinds = true;
     settings = {
-      font-size = 14;
+      font-family = fontFamily;
+      font-size = fontSize;
       window-decoration = "none";
       theme = "gruvbox-dark";
       maximize = true;

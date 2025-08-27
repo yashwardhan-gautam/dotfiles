@@ -1,5 +1,7 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   imports = [
+    ../config.nix
+    ../user-config.nix
     ./programs/default.nix
     ./hyprland
   ];

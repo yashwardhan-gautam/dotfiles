@@ -12,3 +12,5 @@
 - [ ] use this for [clipboard manager](https://github.com/lilyinstarlight/nixos-cosmic/tree/main/pkgs/cosmic-ext-applet-clipboard-manager), also check for other [relevant](https://github.com/lilyinstarlight/nixos-cosmic/blob/main/flake.nix) cosmic apps to try
 - [ ] youtube music with brave for music player as a desktop app
 - [ ] replace screenshots with screen-recording to readme  
+- [ ] figure out fingerprint and see if 1password can work with it
+- [ ] use chromium instead of brave, and use a light theme everywhere
