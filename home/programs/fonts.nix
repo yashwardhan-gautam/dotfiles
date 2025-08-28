@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   # Extract font family from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> "JetBrainsMono Nerd Font")
   fontFamily = lib.head (lib.splitString " " (lib.removeSuffix " ${toString (lib.last (lib.splitString " " config.dotfiles.primary_font))}" config.dotfiles.primary_font));
 in {

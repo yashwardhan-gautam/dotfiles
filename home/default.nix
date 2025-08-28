@@ -1,4 +1,4 @@
-{pkgs, config, ...}: {
+{pkgs, ...}: {
   imports = [
     ../config.nix
     ../user-config.nix

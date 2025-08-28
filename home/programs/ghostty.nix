@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   # Extract font size from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> 11)
   fontSize = lib.toInt (lib.last (lib.splitString " " config.dotfiles.primary_font));
   # Extract font family from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> "JetBrainsMono Nerd Font")
