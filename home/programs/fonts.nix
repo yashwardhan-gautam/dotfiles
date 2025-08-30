@@ -11,7 +11,7 @@ in {
     defaultFonts = {
       serif = ["Noto Serif"];
       sansSerif = [fontFamily "Noto Sans"];
-      monospace = [fontFamily "Caskaydia Mono Nerd Font"];
+      monospace = [fontFamily "JetBrainsMono Nerd Font"];
     };
   };
 }
