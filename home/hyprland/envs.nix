@@ -29,8 +29,8 @@
       "XCOMPOSEFILE,~/.XCompose"
       "EDITOR,nvim"
 
-      # GTK theme - default to dark
-      "GTK_THEME,Adwaita:dark"
+      # GTK theme - default to light
+      "GTK_THEME,Adwaita"
 
       # Default apps
       "TERMINAL,ghostty"

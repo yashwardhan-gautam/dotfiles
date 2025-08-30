@@ -1,3 +1,5 @@
+# Neovim configuration with Gruvbox Light theme
+# Gruvbox theme: https://github.com/morhetz/gruvbox
 {...}: {
   xdg.desktopEntries.nvim = {
     name = "Neovim";

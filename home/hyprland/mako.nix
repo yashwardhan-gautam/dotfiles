@@ -3,11 +3,12 @@
     enable = true;
 
     settings = {
-      # Default dark theme colors
-      background-color = "#1a1b26";
-      text-color = "#c0caf5";
-      border-color = "#7aa2f7";
-      progress-color = "#bb9af7";
+      # Gruvbox Light theme colors - Retro groove color scheme
+      # https://github.com/morhetz/gruvbox
+      background-color = "#fbf1c7";
+      text-color = "#3c3836";
+      border-color = "#458588";
+      progress-color = "#b16286";
 
       width = 420;
       height = 110;

@@ -1,3 +1,5 @@
+# Ghostty terminal configuration with Gruvbox Light theme
+# Gruvbox theme: https://github.com/morhetz/gruvbox
 {
   config,
   lib,
@@ -16,7 +18,7 @@ in {
       font-family = fontFamily;
       font-size = fontSize;
       window-decoration = "none";
-      theme = "gruvbox-dark";
+      theme = "gruvbox-light";
       maximize = true;
       keybind = [
         # Application/Window Management
@@ -95,31 +97,8 @@ in {
       ];
     };
     themes = {
-      "gruvbox-dark" = {
-        background = "1d2021";
-        cursor-color = "ebdbb2";
-        foreground = "ebdbb2";
-        palette = [
-          "0=#1d2021"
-          "1=#cc241d"
-          "2=#98971a"
-          "3=#d79921"
-          "4=#458588"
-          "5=#b16286"
-          "6=#689d6a"
-          "7=#a89984"
-          "8=#928374"
-          "9=#fb4934"
-          "10=#98971a"
-          "11=#fabd2f"
-          "12=#83a598"
-          "13=#d3869b"
-          "14=#8ec07c"
-          "15=#ebdbb2"
-        ];
-        selection-background = "504945";
-        selection-foreground = "ebdbb2";
-      };
+      # Gruvbox Light theme - Retro groove color scheme
+      # https://github.com/morhetz/gruvbox
       "gruvbox-light" = {
         background = "fbf1c7";
         cursor-color = "d65d0e";

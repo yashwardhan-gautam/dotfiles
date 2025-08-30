@@ -1,7 +1,8 @@
 {config, ...}: let
-  # Default Tokyo Night colors
-  inactiveBorder = "rgba(414868b3)"; # 0.7 alpha = b3 in hex
-  activeBorder = "rgba(7aa2f7b3)"; # 0.7 alpha = b3 in hex
+  # Gruvbox Light theme colors - Retro groove color scheme
+  # https://github.com/morhetz/gruvbox
+  inactiveBorder = "rgba(3c3836b3)"; # 0.7 alpha = b3 in hex
+  activeBorder = "rgba(458588b3)"; # 0.7 alpha = b3 in hex
   
   # Calculate scaled values based on scale factor
   scaledGapsIn = 0 * config.dotfiles.scale;
