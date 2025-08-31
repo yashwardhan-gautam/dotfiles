@@ -1,5 +1,5 @@
 {...}: let
-  selected_wallpaper_path = "~/.config/hypr/wallpapers/everforest.jpg";
+  selected_wallpaper_path = "~/.config/hypr/wallpapers/starry-sky.png";
 in {
   # Copy wallpapers to the config directory
   home.file = {
