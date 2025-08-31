@@ -22,9 +22,10 @@ A modern, opinionated NixOS configuration featuring Hyprland window manager with
 
 This dotfiles repository provides a complete NixOS desktop environment featuring:
 - **Hyprland** - Modern tiling Wayland compositor
-- **Tokyo Night** theme with custom colors
+- **Gruvbox Light** theme with custom colors
 - **Waybar** - Customizable status bar
 - **Ghostty** - GPU-accelerated terminal emulator
+- **Zen Browser** - Privacy-focused web browser
 - **Neovim** - Configured with LazyVim
 - **Audio/Video** - PipeWire with multimedia controls
 - **Security** - Hyprlock screen locker with idle management
@@ -52,7 +53,7 @@ home-manager switch --flake .#unalome
 
 ### Core Applications
 - **Terminal**: Ghostty (GPU-accelerated)
-- **Browser**: Brave (default), Chromium (available)
+- **Browser**: Zen Browser (default), Brave & Chromium (available)
 - **File Manager**: Yazi (terminal file manager)
 - **Editor**: Neovim with LazyVim configuration
 - **Launcher**: Wofi (application launcher)

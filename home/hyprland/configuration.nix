@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./autostart.nix
     ./bindings.nix
@@ -11,7 +15,7 @@
     # Default applications
     "$terminal" = lib.mkDefault "ghostty";
     "$fileManager" = lib.mkDefault "$terminal -e yazi";
-    "$browser" = lib.mkDefault "brave";
+    "$browser" = lib.mkDefault "zen-twilight";
     "$music" = lib.mkDefault "spotify";
     "$passwordManager" = lib.mkDefault "1password";
     "$messenger" = lib.mkDefault "signal-desktop";

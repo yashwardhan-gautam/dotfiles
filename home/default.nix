@@ -1,9 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ../config.nix
     ../user-config.nix
     ./programs/default.nix
     ./hyprland
+    inputs.zen-browser.homeModules.twilight
   ];
 
   # Home Manager basic settings
@@ -69,6 +74,7 @@
     p7zip # Archive extraction and preview
     xclip # Command line interface to X selections (clipboard)
     wl-clipboard # Clipboard support on Wayland
+    wl-color-picker
     wget # Non-interactive network downloader
     curl # Tool for transferring data with URL syntax
     fastfetch # Fast system information tool
@@ -81,7 +87,7 @@
     lazygit # A simple terminal UI for git commands
 
     # --- Browsers ---
-    brave # Default web browser
+    brave # Alternative browser
     chromium # Alternative browser for web apps
 
     # --- Bluetooth Management (alternatives) ---
@@ -134,4 +140,50 @@
   ];
 
   programs.home-manager.enable = true;
+
+  # Desktop entries
+  xdg.desktopEntries.zen-browser = {
+    name = "Zen Browser";
+    comment = "A privacy-focused web browser";
+    exec = "zen-browser %U";
+    icon = "zen-browser";
+    terminal = false;
+    categories = ["Network" "WebBrowser"];
+    mimeType = [
+      "text/html"
+      "text/xml"
+      "application/xhtml+xml"
+      "application/xml"
+      "application/rss+xml"
+      "application/rdf+xml"
+      "image/gif"
+      "image/jpeg"
+      "image/png"
+      "image/webp"
+      "video/webm"
+      "video/ogg"
+      "audio/ogg"
+      "audio/mpeg"
+      "audio/x-mpegurl"
+      "video/mp4"
+      "video/x-m4v"
+      "audio/mp4"
+      "application/ogg"
+      "application/x-ogg"
+    ];
+  };
+
+  # Zen Browser configuration
+  programs.zen-browser = {
+    enable = true;
+    profiles."default" = {
+      # Basic configuration without complex theme for now
+      spaces = {
+        "Default" = {
+          id = "00000000-0000-0000-0000-000000000000";
+          position = 1000;
+        };
+      };
+    };
+  };
 }

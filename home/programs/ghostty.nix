@@ -16,7 +16,7 @@ in {
     clearDefaultKeybinds = true;
     settings = {
       font-family = fontFamily;
-      font-size = 13;
+      font-size = 13.5;
       window-decoration = "none";
       theme = "gruvbox-light";
       maximize = true;

@@ -34,7 +34,7 @@
 
       # Default apps
       "TERMINAL,ghostty"
-      "BROWSER,brave"
+      "BROWSER,zen-twilight"
 
       # Hyprshot save directory
       "HYPRSHOT_DIR,~/Pictures/Screenshots"
