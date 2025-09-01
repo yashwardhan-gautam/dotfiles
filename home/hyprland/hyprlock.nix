@@ -16,7 +16,9 @@ in {
         no_fade_in = false;
       };
       auth = {
-        fingerprint.enabled = false;
+        fingerprint.enabled = true;
+        fingerprint.device = "auto";
+        fingerprint.timeout = 30;
       };
       background = {
         monitor = "";

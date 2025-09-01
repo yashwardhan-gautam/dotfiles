@@ -17,7 +17,7 @@
     "$fileManager" = lib.mkDefault "$terminal -e yazi";
     "$browser" = lib.mkDefault "zen-twilight";
     "$music" = lib.mkDefault "spotify";
-    "$passwordManager" = lib.mkDefault "1password";
+    "$passwordManager" = lib.mkDefault "bitwarden";
     "$messenger" = lib.mkDefault "signal-desktop";
     "$webapp" = lib.mkDefault "$browser --app";
 

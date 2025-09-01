@@ -60,6 +60,7 @@ home-manager switch --flake .#unalome
 - **Audio**: PulseAudio with PipeWire backend
 - **Bluetooth**: Blueberry manager
 - **Network**: NetworkManager with GUI applet
+- **Password Manager**: Bitwarden (open-source password manager)
 
 ### Development Tools
 - **Git** - Configured with user settings
@@ -74,8 +75,7 @@ home-manager switch --flake .#unalome
 #### Basic Window Control
 | Shortcut | Action |
 |----------|---------|
-| `Super + Q` | Close active window |
-| `Super + Backspace` | Close active window (alternative) |
+| `Ctrl + Q` | Close active window |
 | `Super + V` | Toggle floating mode |
 | `Super + J` | Toggle split direction |
 | `Super + P` | Toggle pseudo-tiling |
@@ -112,7 +112,7 @@ home-manager switch --flake .#unalome
 | `Super + Space` | Application launcher (Wofi) |
 | `Super + Return` | Terminal (Ghostty) |
 | `Super + T` | Terminal (alternative) |
-| `Super + B` | Browser (Brave) |
+| `Super + B` | Browser (Zen Browser) |
 | `Super + E` | File manager (Yazi) |
 | `Super + N` | Neovim editor |
 

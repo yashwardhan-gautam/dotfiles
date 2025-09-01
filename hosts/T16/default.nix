@@ -79,6 +79,13 @@
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
 
+  # PAM fingerprint authentication
+  security.pam.services = {
+    login.fprintAuth = true;
+    sudo.fprintAuth = true;
+    su.fprintAuth = true;
+  };
+
   # Enable fish shell
   programs.fish.enable = true;
 
@@ -91,6 +98,13 @@
     extraGroups = ["networkmanager" "wheel" "video" "audio"];
     shell = pkgs.fish;
   };
+
+  # System packages
+  environment.systemPackages = with pkgs; [
+    bitwarden
+    fprintd
+    libfprint
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -105,7 +119,11 @@
   # System services
   services.dbus.enable = true;
   services.gvfs.enable = true;
+  services.udisks2.enable = true;
   services.tumbler.enable = true;
+
+  # Fingerprint authentication
+  services.fprintd.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;

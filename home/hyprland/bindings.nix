@@ -6,8 +6,8 @@
       "SUPER SHIFT, SPACE, exec, pkill -SIGUSR1 waybar"
 
       # Window management
-      "SUPER, Q, killactive,"
-      "SUPER, Backspace, killactive,"
+      "CTRL, Q, killactive,"
+      # "SUPER, Backspace, killactive,"
 
       # Session management
       "SUPER, ESCAPE, exec, hyprlock"
