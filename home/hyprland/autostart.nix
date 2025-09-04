@@ -9,6 +9,9 @@
       "wl-clip-persist --clipboard regular"
       "clipse -listen"
 
+      # Screen shaders
+      "hyprshade on vibrance"
+
       # Authentication
       "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 

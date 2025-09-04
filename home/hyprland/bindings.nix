@@ -1,6 +1,9 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
     bind = [
+      # Screen shader toggle
+      ", F1, exec, hyprshade toggle blue-light-filter"
+
       # Application launcher
       "SUPER, space, exec, wofi --show drun --sort-order=alphabetical"
       "SUPER SHIFT, SPACE, exec, pkill -SIGUSR1 waybar"

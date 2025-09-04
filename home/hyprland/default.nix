@@ -16,6 +16,7 @@
     hyprlock
     hyprpicker
     hyprshot
+    hyprshade
 
     # Wayland utilities
     wl-clipboard
