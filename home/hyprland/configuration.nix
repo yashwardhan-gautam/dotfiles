@@ -10,7 +10,7 @@
     ./input.nix
     ./looknfeel.nix
     ./windows.nix
-    ./hyprgrass.nix
+    ./gestures.nix
   ];
   wayland.windowManager.hyprland.settings = {
     # Default applications

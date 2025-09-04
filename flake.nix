@@ -12,10 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland"; # IMPORTANT
-    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -27,7 +23,6 @@
     nixpkgs,
     home-manager,
     hyprland,
-    hyprgrass,
     zen-browser,
     ...
   } @ inputs: {

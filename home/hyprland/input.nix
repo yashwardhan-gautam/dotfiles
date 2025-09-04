@@ -11,9 +11,15 @@
 
       touchpad = {
         natural_scroll = true;
+        disable_while_typing = true;
+        clickfinger_behavior = false;
+        middle_button_emulation = false;
+        tap-to-click = true;
+        drag_lock = false;
+        tap-and-drag = true;
       };
     };
 
-    # Gestures configuration completely removed - using hyprgrass plugin instead
+    # Gestures are configured in gestures.nix using Hyprland's native gesture system
   };
 }
