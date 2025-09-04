@@ -14,10 +14,6 @@
       };
     };
 
-    # Gestures configuration
-    gestures = lib.mkDefault {
-      workspace_swipe = true;
-      workspace_swipe_fingers = 3;
-    };
+    # Gestures configuration completely removed - using hyprgrass plugin instead
   };
 }

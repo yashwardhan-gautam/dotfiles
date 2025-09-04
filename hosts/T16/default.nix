@@ -95,7 +95,7 @@
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
-    extraGroups = ["networkmanager" "wheel" "video" "audio"];
+    extraGroups = ["networkmanager" "wheel" "video" "audio" "input"];
     shell = pkgs.fish;
   };
 
