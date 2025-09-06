@@ -2,7 +2,7 @@
 
 - [ ] add cpp, rust and their debugger support  
 - [ ] leetcode and other CP stuff  
-- [ ] try [walker](https://github.com/abenz1267/walker) instead of wofi, check for all integrations
+- [x] try [walker](https://github.com/abenz1267/walker) instead of wofi, check for all integrations -> nope wofi is better
 - [ ] use [open-code](https://github.com/sst/opencode) along with claude code
 - [x] add OBS, a local media player that can download audios from youtube or use youtube-dl for that  
 - [ ] check [typix](https://github.com/loqusion/typix?tab=readme-ov-file)

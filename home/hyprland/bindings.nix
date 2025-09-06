@@ -100,6 +100,10 @@
 
       # Neovim editor
       "SUPER, N, exec, $terminal -e nvim"
+
+      # Alt+Tab to cycle between windows
+      "ALT, Tab, cyclenext,"
+      "ALT SHIFT, Tab, cyclenext, prev"
     ];
 
     bindm = [

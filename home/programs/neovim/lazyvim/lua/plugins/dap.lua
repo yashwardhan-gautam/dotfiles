@@ -46,6 +46,11 @@ return {
       vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Step over" })
       vim.keymap.set("n", "<leader>dO", dap.step_out, { desc = "Step out" })
       vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
+      
+      -- DAP UI keymaps
+      local dapui = require("dapui")
+      vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Dap UI" })
+      vim.keymap.set({ "n", "v" }, "<leader>de", dapui.eval, { desc = "Eval" })
     end,
   },
 }
