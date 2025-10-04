@@ -1,0 +1,11 @@
+[Unit]
+Description=Dotfiles and System Configuration Backup
+Wants=backup.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/unalome/dotfiles/scripts/backup.sh
+User=unalome
+
+[Install]
+WantedBy=multi-user.target

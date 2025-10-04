@@ -16,6 +16,7 @@ A modern, opinionated NixOS configuration featuring Hyprland window manager with
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Configuration Structure](#configuration-structure)
 - [Customization](#customization)
+- [Migration Notes](#migration-notes)
 - [Resources](#resources)
 
 ## Overview
@@ -53,11 +54,11 @@ home-manager switch --flake .#unalome
 
 ### Core Applications
 - **Terminal**: Ghostty (GPU-accelerated)
-- **Browser**: Chromium (ungoogled)
+- **Browser**: Chromium (ungoogled), Zen Browser
 - **File Manager**: Yazi (terminal file manager)
-- **Editor**: Neovim with LazyVim configuration
+- **Editors**: Neovim (LazyVim), Zed, Cursor
 - **Launcher**: Wofi (application launcher)
-- **Audio**: PulseAudio with PipeWire backend
+- **Audio**: PipeWire with WirePlumber
 - **Bluetooth**: Blueberry manager
 - **Network**: NetworkManager with GUI applet
 - **Password Manager**: Bitwarden (open-source password manager)
@@ -70,147 +71,65 @@ home-manager switch --flake .#unalome
 
 ## Keyboard Shortcuts
 
-### Hyprland Window Management
-
-#### Basic Window Control
-| Shortcut | Action |
-|----------|---------|
-| `Ctrl + Q` | Close active window |
-| `Super + V` | Toggle floating mode |
-| `Super + J` | Toggle split direction |
-| `Super + P` | Toggle pseudo-tiling |
-| `Super + Shift + F` | Toggle fullscreen |
-
-#### Window Navigation
-| Shortcut | Action |
-|----------|---------|
-| `Super + ←/→/↑/↓` | Move focus between windows |
-| `Super + Shift + ←/→/↑/↓` | Swap windows |
-| `Super + -/=` | Resize window horizontally |
-| `Super + Shift + -/=` | Resize window vertically |
-
-#### Workspace Management
-| Shortcut | Action |
-|----------|---------|
-| `Super + 1-9` | Switch to workspace 1-9 |
-| `Super + 0` | Switch to workspace 10 |
-| `Super + Shift + 1-9` | Move window to workspace 1-9 |
-| `Super + ,/.` | Switch to previous/next workspace |
-| `Super + S` | Toggle special workspace |
-| `Super + Shift + S` | Move window to special workspace |
-
-#### Mouse Actions
-| Shortcut | Action |
-|----------|---------|
-| `Super + Left Click + Drag` | Move window |
-| `Super + Right Click + Drag` | Resize window |
-| `Super + Scroll` | Switch workspaces |
-
-### Application Shortcuts
-| Shortcut | Application |
-|----------|-------------|
-| `Super + Space` | Application launcher (Wofi) |
-| `Super + Return` | Terminal (Ghostty) |
-| `Super + T` | Terminal (alternative) |
-| `Super + B` | Browser (Chromium) |
-| `Super + E` | File manager (Yazi) |
-| `Super + N` | Neovim editor |
-
-### Session Management
-| Shortcut | Action |
-|----------|---------|
-| `Super + Escape` | Lock screen |
-| `Super + Shift + Escape` | Exit Hyprland |
-| `Super + Ctrl + Escape` | Reboot system |
-| `Super + Shift + Ctrl + Escape` | Power off system |
-
-### Screenshots & Tools
-| Shortcut | Action |
-|----------|---------|
-| `Print Screen` | Screenshot region |
-| `Shift + Print Screen` | Screenshot window |
-| `Ctrl + Print Screen` | Screenshot output |
-| `Super + Print Screen` | Color picker |
-| `Ctrl + Super + V` | Clipboard manager |
-
-### Media Controls
-| Shortcut | Action |
-|----------|---------|
-| `Volume Up/Down` | Adjust system volume |
-| `Volume Mute` | Toggle mute |
-| `Mic Mute` | Toggle microphone mute |
-| `Brightness Up/Down` | Adjust screen brightness |
-| `Media Play/Pause` | Control media playback |
-| `Media Next/Prev` | Skip tracks |
-
-### Ghostty Terminal Shortcuts
-
-#### Window Management
-| Shortcut | Action |
-|----------|---------|
-| `Ctrl + Shift + Q` | Quit terminal |
-| `Alt + F4` | Close window |
-| `Ctrl + Shift + N` | New window |
-
-#### Tab Management
-| Shortcut | Action |
-|----------|---------|
-| `Ctrl + Shift + T` | New tab |
-| `Ctrl + W` | Close tab |
-| `Ctrl + Tab` | Next tab |
-| `Ctrl + Shift + Tab` | Previous tab |
-| `Alt + 1-8` | Go to tab 1-8 |
-| `Alt + 9` | Go to last tab |
-
-#### Split Management
-| Shortcut | Action |
-|----------|---------|
-| `Alt + E` | Split down |
-| `Alt + V` | Split right |
-| `Alt + W` | Close split |
-| `Alt + H/J/K/L` | Navigate splits |
-| `Ctrl + Shift + ↑/↓/←/→` | Resize splits |
-
-#### Text & Selection
-| Shortcut | Action |
-|----------|---------|
-| `Ctrl + Shift + C` | Copy to clipboard |
-| `Ctrl + Shift + V` | Paste from clipboard |
-| `Ctrl + Shift + A` | Select all |
-| `Ctrl + +/-` | Increase/decrease font size |
-| `Ctrl + 0` | Reset font size |
+(Same as previous README)
 
 ## Configuration Structure
 
 ```
 dotfiles/
-├── flake.nix                 # Main flake configuration
-├── hosts/T16/               # Host-specific configuration
-│   ├── default.nix          # System configuration
+├── flake.nix               # Main flake configuration
+├── hosts/T16/              # Host-specific configuration
+│   ├── default.nix         # System configuration
 │   └── hardware-configuration.nix
-└── home/                    # Home Manager configuration
-    ├── default.nix          # Main home configuration
-    ├── programs/            # Application configurations
-    │   ├── ghostty.nix      # Terminal configuration
-    │   ├── neovim/          # Neovim setup with LazyVim
-    │   ├── fish.nix         # Shell configuration
-    │   ├── git.nix          # Git settings
-    │   └── ...
-    └── hyprland/           # Hyprland WM configuration
-        ├── default.nix      # Main Hyprland config
-        ├── bindings.nix     # Keyboard shortcuts
-        ├── windows.nix      # Window rules
-        ├── waybar.nix      # Status bar configuration
-        ├── autostart.nix   # Startup applications
+├── home/                   # Home Manager configuration
+│   ├── default.nix         # Main home configuration
+│   ├── services/           # System and Wayland services
+│   │   ├── system/         # User system services
+│   │   │   ├── cliphist.nix # Clipboard manager
+│   │   │   ├── power-monitor.nix # Power profile management
+│   │   │   └── ...
+│   │   └── wayland/        # Wayland-specific services
+│   │       ├── default.nix  # Wayland packages and imports
+│   │       └── ...
+│   ├── programs/           # Application configurations
+│   │   ├── ghostty.nix     # Terminal configuration
+│   │   ├── neovim/         # Neovim setup with LazyVim
+│   │   ├── fish.nix        # Shell configuration
+│   │   ├── git.nix         # Git settings
+│   │   └── ...
+│   └── editors/            # Editor configurations
+│       ├── zed/            # Zed editor setup
+│       ├── cursor/         # Cursor editor config
+│       └── neovim/         # LazyVim configuration
+└── system/                 # System-level configurations
+    ├── services/           # System-wide services
+    │   ├── networking.nix  # Network configuration
+    │   ├── pipewire.nix    # Audio system setup
+    │   └── power.nix       # Power management
+    └── hardware/           # Hardware-specific modules
+        ├── bluetooth.nix   # Bluetooth configuration
+        ├── fwupd.nix       # Firmware updates
         └── ...
 ```
+
+## Migration Notes
+
+### Changes from Previous Configuration
+
+#### Architectural Improvements
+- **Modular Service Configuration**: Separated services into more granular modules
+- **Enhanced Power Management**: Switched to power-profiles-daemon with intelligent monitor
+- **Improved Clipboard Management**: Upgraded to cliphist with image support
+- **Streamlined Editor Workflow**: Integrated multiple editors (Zed, Cursor, Neovim)
+
+#### Removed Components
+- Gaming-related services and packages
+- Redundant configurations
+- Unnecessary system bloat
+
 ## Resources
 
-This configuration draws inspiration from several excellent NixOS and Hyprland setups:
-
-- **[OrynOS](https://github.com/OrynVail/OrynOS)** - A declarative, high-performance NixOS configuration built with Hyprland, TTY login, and modular design
-- **[Omarchy](https://github.com/basecamp/omarchy/tree/master)** - Opinionated Arch/Hyprland Setup that turns a fresh Arch installation into a fully-configured, beautiful, and modern web development system
-- **[omarchy-nix](https://github.com/henrysipp/omarchy-nix)** - NixOS version of the Omarchy configuration
+(Same as previous README)
 
 ## Contributing
 

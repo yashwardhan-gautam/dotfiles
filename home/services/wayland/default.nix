@@ -25,7 +25,7 @@
     grim
     swappy
     wlr-randr
-    clipse
+    cliphist
 
     # System utilities
     brightnessctl

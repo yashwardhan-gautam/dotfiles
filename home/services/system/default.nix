@@ -1,21 +1,7 @@
-{pkgs, ...}: {
-  # System-level user services
-  services.clipman.enable = true;
-  
-  # Polkit agent
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    Unit = {
-      Description = "polkit-gnome-authentication-agent-1";
-      Wants = ["graphical-session.target"];
-      WantedBy = ["graphical-session.target"];
-      After = ["graphical-session.target"];
-    };
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
+{
+  imports = [
+    ./cliphist.nix
+    ./polkit-agent.nix
+    ./power-monitor.nix
+  ];
 }
