@@ -1,34 +1,111 @@
-{pkgs, inputs, ...}: {
+{pkgs, inputs, lib, config, ...}: let
+  telaIconTheme = pkgs.callPackage ./tela-icons.nix {
+    src = inputs.tela-icon-theme;
+  };
+  
+  # Dynamic icon variant based on Stylix polarity
+  iconVariant = if config.stylix.polarity == "light" then "Tela" else "Tela-dark";
+  
+  # Dynamic GTK theme based on Stylix polarity  
+  gtkThemeName = if config.stylix.polarity == "light" then "Adwaita" else "Adwaita-dark";
+  
+in {
+  # GTK Configuration
   gtk = {
     enable = true;
     
+    # Tela Icon Theme with dynamic variant selection
     iconTheme = {
-      name = "Tela";
-      package = pkgs.callPackage ./tela-icons.nix {
-        src = inputs.tela-icon-theme;
-      };
+      name = iconVariant;
+      package = telaIconTheme;
     };
     
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
+    # Dynamic GTK theme selection (let Stylix handle this)
+    # theme = {
+    #   name = gtkThemeName;
+    #   package = pkgs.gnome-themes-extra;
+    # };
     
+    # Cursor theme
     cursorTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
+      size = 24;
     };
     
+    # Font configuration (will be overridden by Stylix)
     font = {
       name = "Noto Sans";
-      size = 10;
+      size = 11;
+    };
+    
+    # GTK3 settings
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = config.stylix.polarity == "dark";
+      gtk-recent-files-limit = 20;
+      gtk-enable-animations = true;
+    };
+    
+    # GTK4 settings
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = config.stylix.polarity == "dark";
+      gtk-recent-files-limit = 20;
+      gtk-enable-animations = true;
     };
   };
 
-  # QT theming
+  # Qt theming with dynamic selection
   qt = {
     enable = true;
     platformTheme.name = "adwaita";
-    style.name = "adwaita-dark";
+    style.name = if config.stylix.polarity == "light" then "adwaita" else "adwaita-dark";
+  };
+  
+  # XDG configuration for icon theme
+  xdg.configFile = {
+    # Ensure proper icon theme configuration
+    "gtk-3.0/settings.ini".text = lib.generators.toINI {} {
+      Settings = {
+        gtk-icon-theme-name = iconVariant;
+        gtk-theme-name = gtkThemeName;
+        gtk-cursor-theme-name = "Adwaita";
+        gtk-cursor-theme-size = 24;
+        gtk-font-name = "Noto Sans 11";
+        gtk-application-prefer-dark-theme = config.stylix.polarity == "dark";
+        gtk-enable-animations = true;
+      };
+    };
+    
+    "gtk-4.0/settings.ini".text = lib.generators.toINI {} {
+      Settings = {
+        gtk-icon-theme-name = iconVariant;
+        gtk-theme-name = gtkThemeName;
+        gtk-cursor-theme-name = "Adwaita";
+        gtk-cursor-theme-size = 24;
+        gtk-font-name = "Noto Sans 11";
+        gtk-application-prefer-dark-theme = config.stylix.polarity == "dark";
+        gtk-enable-animations = true;
+      };
+    };
+  };
+
+  # Ensure icon themes are available
+  home.packages = [
+    telaIconTheme
+    pkgs.adwaita-icon-theme
+    pkgs.gnome-themes-extra
+  ];
+  
+  # Environment variables for proper theming
+  home.sessionVariables = {
+    # GTK theme variables
+    GTK_THEME = gtkThemeName;
+    
+    # Icon theme
+    XCURSOR_THEME = "Adwaita";
+    XCURSOR_SIZE = "24";
+    
+    # Ensure XDG directories are set
+    XDG_DATA_DIRS = "$XDG_DATA_DIRS:${telaIconTheme}/share";
   };
 }

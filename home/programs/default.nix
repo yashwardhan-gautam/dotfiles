@@ -11,5 +11,6 @@
     ./zoxide.nix
     ./fonts.nix
     ./obs-studio.nix
+    ./xdg.nix
   ];
 }
