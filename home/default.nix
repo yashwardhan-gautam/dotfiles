@@ -1,22 +1,42 @@
 {
-  pkgs,
+  config,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
+    ./editors
+    ./terminal
+    ./software
+    ./services
+    ./shared
     ../config.nix
     ../user-config.nix
-    ./programs/default.nix
-    ./hyprland
-    inputs.zen-browser.homeModules.twilight
+    inputs.nix-index-db.homeModules.nix-index
+    inputs.stylix.homeModules.stylix
   ];
 
-  # Home Manager basic settings
-  home.username = "unalome";
-  home.homeDirectory = "/home/unalome";
-  home.stateVersion = "25.11";
+  home = {
+    username = "unalome";
+    homeDirectory = "/home/unalome";
+    stateVersion = "25.11";
+  };
 
-  # Basic packages
+  # disable manuals as nmd fails to build often
+  manual = {
+    html.enable = false;
+    json.enable = false;
+    manpages.enable = false;
+  };
+
+  # let HM manage itself when in standalone mode
+  programs.home-manager.enable = true;
+
+  programs.nix-index = {
+    enable = true;
+  };
+
+  # Basic packages (preserved from original with some additions)
   home.packages = with pkgs; [
     # --- Programming Languages & Runtimes ---
     nodejs # JavaScript runtime
@@ -33,17 +53,16 @@
     cmake # Cross-platform build system
     ninja # Small build system
     gcc15 # GNU C/C++ compiler
-    # clang # C/C++/Objective-C compiler
-    clang-tools # Clang development tools (e.g., clang-format, clang-tidy)
+    clang-tools # Clang development tools
     cmake-lint
     pkg-config # Helper for compiling against installed libraries
     gtest # Google Test framework for C++
     gbenchmark # Google Benchmark library for C++
     codespell # Check for common misspellings in code
     cppcheck # Static analysis tool for C/C++ code
-    doxygen # Documentation system for C++, C, Java, Objective-C, Python, IDL, Fortran, VHDL, PHP, C#, and D
+    doxygen # Documentation system
     gdb # GNU Debugger for C/C++
-    gotools # Go tools (e.g., gofmt, govet)
+    gotools # Go tools
 
     # --- Python Development Tools ---
     (python312.withPackages (ps:
@@ -56,15 +75,15 @@
       ]))
 
     # --- Lua Specific Tools ---
-    lua-language-server # Language server for Lua (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
-    stylua # Lua code formatter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    lua-language-server # Language server for Lua
+    stylua # Lua code formatter
 
     # --- System Utilities & CLI Tools ---
     tree # List contents of directories in a tree-like format
     eza # Modern replacement for `ls`
-    bat # `cat` clone with syntax highlighting and Git integration
+    bat # `cat` clone with syntax highlighting
     fd # A simple, fast and user-friendly alternative to 'find'
-    ripgrep # A line-oriented search tool that recursively searches the current directory for a regex pattern
+    ripgrep # A line-oriented search tool
     fzf # A command-line fuzzy finder
     file # Required by Yazi for file type detection
     jq # JSON preview
@@ -86,11 +105,10 @@
     git # Distributed version control system
     lazygit # A simple terminal UI for git commands
 
-    # --- Browsers ---
-    brave # Alternative browser
+    # --- Browsers (Custom requirement: only Chromium) ---
     chromium # Alternative browser for web apps
 
-    # --- Bluetooth Management (alternatives) ---
+    # --- Bluetooth Management ---
     blueberry # Alternative Bluetooth configuration tool
     qbittorrent
     discord
@@ -99,37 +117,36 @@
 
     # --- Media Tools ---
     vlc
-    ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
+    ffmpeg # Complete, cross-platform solution
 
     # --- Other Applications ---
     qalculate-gtk # Powerful and versatile desktop calculator
     gimp # GNU Image Manipulation Program
-    code-cursor # (Assuming this is a specific application, if not, it might need clarification)
+    code-cursor # Cursor editor
     telegram-desktop # Official Telegram Desktop client
     opencode
     bitwarden # Open-source password manager
-    fprintd # Fingerprint authentication daemon
 
     # --- Shells & Terminal Utilities ---
-    ghostty # A GPU-accelerated terminal emulator (related to home/programs/ghostty.nix)
-    fish # User-friendly command line shell (related to home/programs/fish.nix)
-    starship # The minimal, blazing-fast, and infinitely customizable prompt for any shell (related to home/programs/starship.nix)
+    ghostty # A GPU-accelerated terminal emulator
+    fish # User-friendly command line shell
+    starship # The minimal, blazing-fast, and infinitely customizable prompt
 
-    # --- Language Servers & Linters (General/Misc) ---
-    tree-sitter # Parser generator tool and an incremental parsing library (related to home/programs/neovim/lazyvim/lua/plugins/treesitter.lua)
-    alejandra # Nix code formatter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
-    nodePackages.prettier # Opinionated code formatter for various languages (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
-    shfmt # Shell script formatter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
-    golangci-lint # Fast Go linters runner (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
-    hadolint # Dockerfile linter (related to home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
+    # --- Language Servers & Linters ---
+    tree-sitter # Parser generator tool
+    alejandra # Nix code formatter
+    nodePackages.prettier # Opinionated code formatter
+    shfmt # Shell script formatter
+    golangci-lint # Fast Go linters runner
+    hadolint # Dockerfile linter
     shellcheck # Shell script static analysis tool
-    tflint # Terraform linter (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua, home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
-    gopls # Go language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
-    nixd # Nix language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
-    pyright # Pyright language server for Python (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
-    terraform-ls # Terraform language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua, home/programs/neovim/lazyvim/lua/plugins/none-ls.lua)
-    yaml-language-server # YAML language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
-    cmake-language-server # CMake language server (related to home/programs/neovim/lazyvim/lua/plugins/lsp.lua)
+    tflint # Terraform linter
+    gopls # Go language server
+    nixd # Nix language server
+    pyright # Pyright language server for Python
+    terraform-ls # Terraform language server
+    yaml-language-server # YAML language server
+    cmake-language-server # CMake language server
 
     # --- System Services/Daemons ---
     redis # In-memory data structure store
@@ -138,54 +155,28 @@
     nerd-fonts.jetbrains-mono # JetBrains Mono Nerd Font
 
     # --- Desktop Integration ---
-    xdg-desktop-portal-gtk # GTK portal for XDG desktop (related to home/programs/neovim/default.nix, home/programs/xdg.nix)
+    xdg-desktop-portal-gtk # GTK portal for XDG desktop
+
+    # --- Additional from @kaku/ pattern ---
+    # GNOME Applications
+    amberol # Music player
+    celluloid # Video player with YouTube support
+    nautilus # File manager
+    gnome-text-editor # Text editor
+    loupe # Image viewer
+    resources # System resource monitor
+
+    # Development Tools
+    bottom # System resource monitor
+    skim # Fuzzy finder alternative to fzf
+
+    # Communication
+    vesktop # Discord client with Vencord integration
+    telegram-desktop
+
+    # Additional tools from @kaku/
+    inkscape # Vector graphics editor
   ];
 
-  programs.home-manager.enable = true;
 
-  # Desktop entries
-  xdg.desktopEntries.zen-browser = {
-    name = "Zen Browser";
-    comment = "A privacy-focused web browser";
-    exec = "zen-browser %U";
-    icon = "zen-browser";
-    terminal = false;
-    categories = ["Network" "WebBrowser"];
-    mimeType = [
-      "text/html"
-      "text/xml"
-      "application/xhtml+xml"
-      "application/xml"
-      "application/rss+xml"
-      "application/rdf+xml"
-      "image/gif"
-      "image/jpeg"
-      "image/png"
-      "image/webp"
-      "video/webm"
-      "video/ogg"
-      "audio/ogg"
-      "audio/mpeg"
-      "audio/x-mpegurl"
-      "video/mp4"
-      "video/x-m4v"
-      "audio/mp4"
-      "application/ogg"
-      "application/x-ogg"
-    ];
-  };
-
-  # Zen Browser configuration
-  programs.zen-browser = {
-    enable = true;
-    profiles."default" = {
-      # Basic configuration without complex theme for now
-      spaces = {
-        "Default" = {
-          id = "00000000-0000-0000-0000-000000000000";
-          position = 1000;
-        };
-      };
-    };
-  };
 }

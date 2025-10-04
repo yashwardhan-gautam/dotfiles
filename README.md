@@ -25,7 +25,7 @@ This dotfiles repository provides a complete NixOS desktop environment featuring
 - **Gruvbox Light** theme with custom colors
 - **Waybar** - Customizable status bar
 - **Ghostty** - GPU-accelerated terminal emulator
-- **Zen Browser** - Privacy-focused web browser
+- **Chromium** - Ungoogled Chromium browser
 - **Neovim** - Configured with LazyVim
 - **Audio/Video** - PipeWire with multimedia controls
 - **Security** - Hyprlock screen locker with idle management
@@ -53,7 +53,7 @@ home-manager switch --flake .#unalome
 
 ### Core Applications
 - **Terminal**: Ghostty (GPU-accelerated)
-- **Browser**: Zen Browser (default), Brave & Chromium (available)
+- **Browser**: Chromium (ungoogled)
 - **File Manager**: Yazi (terminal file manager)
 - **Editor**: Neovim with LazyVim configuration
 - **Launcher**: Wofi (application launcher)
@@ -112,7 +112,7 @@ home-manager switch --flake .#unalome
 | `Super + Space` | Application launcher (Wofi) |
 | `Super + Return` | Terminal (Ghostty) |
 | `Super + T` | Terminal (alternative) |
-| `Super + B` | Browser (Zen Browser) |
+| `Super + B` | Browser (Chromium) |
 | `Super + E` | File manager (Yazi) |
 | `Super + N` | Neovim editor |
 

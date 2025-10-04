@@ -1,9 +1,16 @@
 {
-  description = "unalome nixOS";
+  description = "unalome nixOS configuration with @kaku/ architecture";
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -12,42 +19,55 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
+    nix-index-db = {
+      url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    hyprland,
-    zen-browser,
-    ...
-  } @ inputs: {
-    # T16 NixOS Configuration
-    nixosConfigurations.T16 = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      system = "x86_64-linux";
-      modules = [
-        (import ./hosts/T16/default.nix)
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.unalome = import ./home/default.nix;
-        }
-      ];
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Standalone home-manager configuration
-    homeConfigurations.unalome = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = {inherit inputs;};
-      modules = [./home/default.nix];
+    tela-icon-theme = {
+      url = "github:vinceliuice/Tela-icon-theme";
+      flake = false;
     };
   };
+
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+
+      perSystem = { config, pkgs, ... }: {
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [ alejandra git ];
+          name = "dotfiles";
+        };
+        formatter = pkgs.alejandra;
+      };
+
+      flake = {
+        nixosConfigurations = {
+          T16 = inputs.nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/T16
+              inputs.chaotic.nixosModules.default
+            ];
+          };
+        };
+
+        homeConfigurations = {
+          unalome = inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+            extraSpecialArgs = { inherit inputs; };
+            modules = [ ./home ];
+          };
+        };
+      };
+    };
 }
