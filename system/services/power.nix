@@ -1,6 +1,5 @@
 {
-  # Power management for laptop
-  services.power-profiles-daemon.enable = true;
+  # Power management for laptop (using TLP instead of power-profiles-daemon)
   services.upower.enable = true;
   
   # TLP for advanced power management

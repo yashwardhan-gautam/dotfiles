@@ -57,7 +57,7 @@
             modules = [
               ./hosts/T16
               inputs.chaotic.nixosModules.default
-            ];
+            ] ++ (import ./system).laptop;
           };
         };
 

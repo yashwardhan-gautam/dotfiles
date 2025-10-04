@@ -1,18 +1,10 @@
 {pkgs, ...}: {
   imports = [
-    ./hardware-configuration.nix
+    ../../system/hardware/hardware-configuration.nix
   ];
 
   # Host-specific configuration
   networking.hostName = "T16";
-  
-  # Boot configuration
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
-  
-  # Nix settings
-  nix.settings.experimental-features = ["nix-command" "flakes"];
   
   # Set your time zone (preserving existing setting)
   time.timeZone = "Asia/Dubai";
@@ -59,15 +51,14 @@
     libfprint
   ];
 
-  # VMware guest additions (if needed)
-  virtualisation.vmware.guest.enable = true;
+  # VMware guest additions (if running in VM)
+  virtualisation.vmware.guest.enable = false; # Disable if not in VM
 
   # System services specific to this host
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.tumbler.enable = true;
-  services.fprintd.enable = true;
 
   # System state version
   system.stateVersion = "25.11";
