@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  browser = ["zen"];
+  browser = ["zen-browser"];
   imageViewer = ["org.gnome.Loupe"];
   videoPlayer = ["io.github.celluloid_player.Celluloid"];
   audioPlayer = ["io.bassi.Amberol"];
@@ -143,7 +143,7 @@ in {
   home.packages = [
     # used by `gio open` and xdp-gtk
     (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-      foot start "$@"
+      ghostty start "$@"
     '')
     pkgs.xdg-utils
   ];
