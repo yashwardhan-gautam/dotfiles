@@ -106,7 +106,7 @@
     lazygit # A simple terminal UI for git commands
 
     # --- Browsers (Custom requirement: only Chromium) ---
-    chromium # Alternative browser for web apps
+
 
     # --- Bluetooth Management ---
     blueberry # Alternative Bluetooth configuration tool

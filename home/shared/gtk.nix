@@ -1,10 +1,6 @@
 {pkgs, inputs, lib, config, ...}: let
-  telaIconTheme = pkgs.callPackage ./tela-icons.nix {
-    src = inputs.tela-icon-theme;
-  };
-  
-  # Dynamic icon variant based on Stylix polarity
-  iconVariant = if config.stylix.polarity == "light" then "Tela" else "Tela-dark";
+  # Using Adwaita icon theme instead of Tela
+  iconVariant = if config.stylix.polarity == "light" then "Adwaita" else "Adwaita-dark";
   
   # Dynamic GTK theme based on Stylix polarity  
   gtkThemeName = if config.stylix.polarity == "light" then "Adwaita" else "Adwaita-dark";
@@ -17,7 +13,7 @@ in {
     # Tela Icon Theme with dynamic variant selection
     iconTheme = {
       name = iconVariant;
-      package = telaIconTheme;
+      package = pkgs.adwaita-icon-theme;
     };
     
     # Dynamic GTK theme selection (let Stylix handle this)
@@ -91,7 +87,6 @@ in {
 
   # Ensure icon themes are available
   home.packages = [
-    telaIconTheme
     pkgs.adwaita-icon-theme
     pkgs.gnome-themes-extra
   ];
@@ -104,8 +99,5 @@ in {
     # Icon theme
     XCURSOR_THEME = "Adwaita";
     XCURSOR_SIZE = "24";
-    
-    # Ensure XDG directories are set
-    XDG_DATA_DIRS = "$XDG_DATA_DIRS:${telaIconTheme}/share";
   };
 }

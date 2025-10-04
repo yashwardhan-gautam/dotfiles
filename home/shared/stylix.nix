@@ -103,32 +103,6 @@ in {
     };
   };
   
-  # Create a theme switcher script
-  home.packages = with pkgs; [
-    (writeShellScriptBin "theme-switch" ''
-      #!/usr/bin/env bash
-      
-      DOTFILES_DIR="$HOME/dotfiles"
-      STYLIX_FILE="$DOTFILES_DIR/home/shared/stylix.nix"
-      
-      case "$1" in
-        "dark"|"gruvbox-dark-hard")
-          echo "Switching to Gruvbox Dark Hard theme..."
-          sed -i 's/selectedTheme = "[^"]*"/selectedTheme = "gruvbox-dark-hard"/' "$STYLIX_FILE"
-          ;;
-        "light"|"gruvbox-light")
-          echo "Switching to Gruvbox Light theme..."
-          sed -i 's/selectedTheme = "[^"]*"/selectedTheme = "gruvbox-light"/' "$STYLIX_FILE"
-          ;;
-        *)
-          echo "Usage: theme-switch [dark|light]"
-          echo "Current theme: ${selectedTheme}"
-          exit 1
-          ;;
-      esac
-      
-      echo "Theme switched. Rebuilding home-manager configuration..."
-      cd "$DOTFILES_DIR" && home-manager switch --flake .#unalome
-    '')
-  ];
+  # Theme switcher script defined in theme-manager.nix
+  home.packages = [];
 }
