@@ -165,7 +165,8 @@ home/
     │   ├── mako.nix                # Notifications (works with both) 📦 mako
     │   ├── hypridle.nix            # Idle management (universal) 📦 hypridle
     │   ├── hyprlock.nix            # Screen lock (works with both) 📦 hyprlock
-    │   └── wofi.nix                # Application launcher (works with both) 📦 wofi
+    │   ├── wofi.nix                # Application launcher (works with both) 📦 wofi
+    │   └── wlogout.nix             # Logout menu (Wayland-native) 📦 wlogout
     │
     ├── hyprland/                   # Hyprland-specific configuration
     │   ├── default.nix             # Hyprland setup → shared 📦 hyprshot, hyprpaper
@@ -182,10 +183,7 @@ home/
     │
     └── niri/                       # NEW: Niri compositor configuration
         ├── default.nix             # Niri setup → shared 🌊 niri 📦 seatd, jaq
-        ├── niri.nix                # Main Niri configuration 🌊 niri
-        ├── binds.nix               # Niri key bindings → niri.nix
-        ├── rules.nix               # Window rules and behaviors → niri.nix
-        └── settings.nix            # Compositor settings and configuration → niri.nix
+        └── config.kdl              # Main Niri configuration in KDL format 🌊 niri
 ```
 
 ### Benefits of This Structure
@@ -195,6 +193,161 @@ home/
 3. **Scalability**: Easy to add more window managers (sway, river, etc.)
 4. **Modularity**: Each compositor can import shared components as needed
 5. **Organization**: Logical grouping makes the configuration easier to navigate
+
+### Niri Configuration Approach
+
+The Niri configuration uses a **KDL (KubeConf Document Language)** format for cleaner and more readable configuration management. This approach is inspired by [JotaFab/s13los](https://github.com/JotaFab/s13los/blob/main/modules/home/niri/config.kdl) repository.
+
+#### KDL Configuration Structure
+```kdl
+// config.kdl - Main Niri configuration
+output "eDP-1" {
+    scale 1.0
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@60"
+    scale 1.0
+    position x=0 y=-1080
+}
+
+layout {
+    gaps 12
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+}
+
+binds {
+    "Mod+Return" { spawn "ghostty"; }
+    "Mod+Q" { close-window; }
+    "Mod+F" { maximize-column; }
+    // ... additional keybindings
+}
+
+window-rules {
+    geometry-corner-radius 12.0
+    clip-to-geometry true
+    
+    match app-id="firefox" {
+        open-maximized true
+    }
+}
+```
+
+#### Advantages of KDL Format
+1. **Readability**: More intuitive syntax compared to nested Nix expressions
+2. **Maintainability**: Easier to modify and understand configuration options
+3. **Native Support**: Direct support by Niri compositor without translation layers
+4. **Validation**: Built-in syntax validation and error reporting
+5. **Documentation**: Self-documenting structure with clear hierarchies
+
+### Material Design 3 Integration
+
+The configuration can be enhanced with **Material You** theming using [mitsugen](https://github.com/DimitrisMilonopoulos/mitsugen), which provides dynamic color generation based on wallpapers following Google's Material Design 3 specifications.
+
+#### Material You Theming Workflow
+```bash
+# Install mitsugen
+git clone https://github.com/DimitrisMilonopoulos/mitsugen.git
+cd mitsugen && chmod +x install.sh && ./install.sh
+poetry install
+
+# Generate themes from wallpaper
+poetry run python src/main.py --wallpaper ~/wallpapers/current.jpg --ui
+
+# For light theme variant
+poetry run python src/main.py --wallpaper ~/wallpapers/current.jpg -l
+```
+
+#### Supported Applications
+- **System-wide**: GTK4/GTK3 applications with consistent Material Design colors
+- **Desktop Environment**: GNOME Shell theming with dynamic color adaptation
+- **Development**: VS Code with Material You custom CSS integration
+- **Productivity**: Obsidian with Adwaita theme compatibility
+- **Communication**: Discord via BetterDiscord Material theme
+- **Media**: Spotify with Material You color schemes
+- **File Management**: Papirus adaptive folder icons matching color palette
+
+#### Benefits of Material Design 3
+1. **Dynamic Colors**: Automatic color palette generation from wallpapers
+2. **Accessibility**: Built-in contrast and readability standards
+3. **Consistency**: Unified theming across all applications
+4. **Personalization**: Wallpaper-driven color schemes for unique aesthetics
+5. **Modern Design**: Latest Material Design principles and components
+
+### Wayland Logout Menu Integration
+
+The desktop environment can be enhanced with [wlogout](https://github.com/ArtsyMacaw/wlogout), a Wayland-native logout menu that provides elegant power management options with full customization support.
+
+#### wlogout Configuration Structure
+```json
+// ~/.config/wlogout/layout - Custom button layout
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Shutdown",
+    "keybind" : "s"
+},
+{
+    "label" : "reboot", 
+    "action" : "systemctl reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+},
+{
+    "label" : "logout",
+    "action" : "hyprctl dispatch exit || niri msg action quit",
+    "text" : "Logout", 
+    "keybind" : "l"
+}
+```
+
+#### Waybar Integration
+```json
+// waybar configuration module
+"custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "wlogout -p layer-shell",
+    "class": "power-button"
+}
+```
+
+#### Material Design 3 Styling
+```css
+/* ~/.config/wlogout/style.css - Material You theming */
+window {
+    background-color: rgba(30, 30, 46, 0.9);
+    backdrop-filter: blur(20px);
+}
+
+button {
+    background-color: @surface-container;
+    color: @on-surface;
+    border-radius: 12px;
+    border: 2px solid @outline-variant;
+    transition: all 200ms ease-in-out;
+}
+
+button:hover {
+    background-color: @primary-container;
+    color: @on-primary-container;
+    border-color: @primary;
+}
+```
+
+#### Power Management Features
+1. **Session Control**: Logout from Hyprland/Niri sessions
+2. **System Power**: Shutdown, reboot, suspend, hibernate options
+3. **Screen Lock**: Integration with hyprlock for both compositors
+4. **Keyboard Navigation**: Vim-like keybindings for quick access
+5. **Visual Feedback**: Smooth animations and Material Design transitions
+6. **Accessibility**: High contrast support and screen reader compatibility
 
 ### XDG Portal Integration
 
@@ -319,16 +472,64 @@ xdg.portal = {
 3. Set up shared wallpapers and themes
 
 #### Phase 2: Niri Integration
-1. Add Niri compositor configuration
-2. Port key bindings from kaku configuration
-3. Configure window rules and settings
+1. Create `config.kdl` file using KDL format (inspired by [JotaFab/s13los](https://github.com/JotaFab/s13los))
+2. Convert existing Nix-based settings to KDL syntax
+3. Port key bindings and window rules to unified KDL configuration
+4. Set up Niri package integration in `default.nix`
 
 #### Phase 3: Testing & Optimization
 1. Test switching between Hyprland and Niri
 2. Verify XDG portal functionality in both environments
 3. Optimize shared component loading
 
-#### Phase 4: Package Consolidation
+#### Phase 4: Material Design 3 Theming
+1. Explore Material You theming with [mitsugen](https://github.com/DimitrisMilonopoulos/mitsugen)
+2. Generate dynamic color schemes from wallpapers using Material Design 3 color system
+3. Apply Material You themes to:
+   - **GTK4/GTK3** applications for consistent system theming
+   - **GNOME Shell** for desktop environment integration
+   - **VS Code** with custom CSS for development environment
+   - **Obsidian** with Adwaita theme compatibility
+   - **Discord** via BetterDiscord Material theme
+   - **Spotify** with Material You color adaptation
+4. Configure adaptive folder icons with Papirus integration
+5. Set up wallpaper-based dynamic theming workflow
+
+#### Phase 5: Wayland Logout Menu Integration
+1. Integrate [wlogout](https://github.com/ArtsyMacaw/wlogout) for elegant logout/power management
+2. Configure wlogout with Material Design 3 theming to match system aesthetic
+3. Add waybar integration with custom logout button and styling
+4. Set up custom layout with power options:
+   - **Logout** - End current session
+   - **Shutdown** - Power off system
+   - **Reboot** - Restart system
+   - **Suspend** - Sleep mode
+   - **Lock** - Screen lock (hyprlock/niri lock)
+   - **Hibernate** - Deep sleep mode
+5. Configure keyboard shortcuts and waybar click actions
+6. Style with CSS to match Material You color scheme
+
+#### Phase 6: Package Consolidation
 1. Identify packages to add from kaku (if desired)
 2. Consider replacing some tools (e.g., ghostty vs foot)
 3. Evaluate browser setup (privacy-focused vs development-focused)
+
+## References and Inspiration
+
+### Niri Configuration
+- **[JotaFab/s13los](https://github.com/JotaFab/s13los)** - Inspiration for KDL-based Niri configuration approach
+- **[Niri Compositor](https://github.com/YaLTeR/niri)** - Official Niri scrollable-tiling Wayland compositor
+- **[KDL Document Language](https://kdl.dev/)** - Configuration language specification
+
+### Material Design & Theming
+- **[mitsugen](https://github.com/DimitrisMilonopoulos/mitsugen)** - Material You theming for GNOME, GTK4/GTK3, and various applications
+- **[Material Design 3](https://m3.material.io/)** - Google's latest design system with dynamic color
+- **[Papirus Folders](https://github.com/PapirusDevelopmentTeam/papirus-folders)** - Adaptive folder icons for Material theming
+
+### Wayland System Integration
+- **[wlogout](https://github.com/ArtsyMacaw/wlogout)** - Wayland-native logout menu with customizable power management options
+- **[waybar](https://github.com/Alexays/Waybar)** - Highly customizable Wayland bar for Sway and Wlroots-based compositors
+
+### Related Projects
+- **[Niri Flake](https://github.com/sodiboo/niri-flake)** - NixOS integration for Niri compositor
+- **[Hyprland](https://hyprland.org/)** - Alternative dynamic tiling Wayland compositor
