@@ -349,6 +349,64 @@ button:hover {
 5. **Visual Feedback**: Smooth animations and Material Design transitions
 6. **Accessibility**: High contrast support and screen reader compatibility
 
+### DankMaterialShell Desktop Environment
+
+[DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell) offers a comprehensive desktop shell built with QuickShell and Go, specifically optimized for Niri and Hyprland compositors with integrated Material Design 3 theming.
+
+#### Architecture and Features
+- **QuickShell Foundation**: Modern QML-based shell framework for Wayland
+- **Dual Compositor Support**: Native optimization for both Niri and Hyprland
+- **Material Design 3**: Built-in matugen integration for dynamic theming
+- **Plugin System**: Extensible architecture for custom widgets and functionality
+- **Unified Interface**: Single configuration system for all desktop components
+
+#### Core Components
+```bash
+# Installation and setup
+git clone https://github.com/AvengeMedia/DankMaterialShell.git
+cd DankMaterialShell
+# Follow installation instructions for dependencies
+```
+
+#### Desktop Shell Modules
+1. **Dashboard**: Central information hub with calendar, weather, system monitoring
+2. **Dock**: Dynamic application launcher with Material You theming
+3. **Settings Panel**: Comprehensive system configuration interface
+4. **Spotlight Search**: Unified search for applications, files, and system functions
+5. **Audio/Brightness Controls**: Integrated system control widgets
+6. **Lock Screen**: Material Design screen lock with blur effects
+
+#### Application Integration
+- **GTK/Qt Theming**: Automatic theme application via Colloid and qt6ct
+- **Terminal Colors**: Dynamic color schemes for Ghostty, Kitty, and other terminals
+- **Firefox Theming**: Material Fox integration or pywalfox support
+- **Calendar Sync**: vdirsyncer integration for Google Calendar, Office365
+
+#### Configuration Structure
+```json
+// ~/.config/DankMaterialShell/settings.json
+{
+  "theme": {
+    "matugen_enabled": true,
+    "auto_gtk_theming": true,
+    "auto_qt_theming": true
+  },
+  "widgets": {
+    "dock_enabled": true,
+    "dashboard_enabled": true,
+    "spotlight_enabled": true
+  }
+}
+```
+
+#### Benefits of DankMaterialShell
+1. **Unified Experience**: Single shell managing all desktop components
+2. **Native Compositor Integration**: Optimized specifically for Niri/Hyprland
+3. **Automatic Theming**: Seamless Material Design 3 application across all apps
+4. **Plugin Ecosystem**: Extensible with community and custom widgets
+5. **Modern Architecture**: QML/Go foundation for performance and maintainability
+6. **Active Development**: Regular updates and community support via Discord
+
 ### XDG Portal Integration
 
 #### How XDG Portals Work
@@ -509,7 +567,24 @@ xdg.portal = {
 5. Configure keyboard shortcuts and waybar click actions
 6. Style with CSS to match Material You color scheme
 
-#### Phase 6: Package Consolidation
+#### Phase 6: DankMaterialShell Desktop Environment
+1. Explore [DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell) as comprehensive desktop shell
+2. Evaluate QuickShell-based architecture optimized for Niri and Hyprland (already partially integrated in current niri config)
+3. Test integrated Material Design 3 theming with matugen support
+4. Configure desktop shell components:
+   - **Dashboard** - Central hub with calendar, weather, and system info
+   - **Dock** - Application launcher with dynamic theming
+   - **Settings Panel** - Unified system configuration interface
+   - **Spotlight Search** - Application and file search functionality
+   - **Audio Controls** - Volume and media player integration
+   - **Brightness Controls** - Display brightness management
+   - **Lock Screen** - Integrated screen lock with Material Design
+5. Set up automatic app theming for GTK/Qt applications
+6. Configure terminal integration (Ghostty, Kitty) with dynamic colors
+7. Integrate Firefox theming via Material Fox or pywalfox
+8. Test plugin system for custom widgets and functionality
+
+#### Phase 7: Package Consolidation
 1. Identify packages to add from kaku (if desired)
 2. Consider replacing some tools (e.g., ghostty vs foot)
 3. Evaluate browser setup (privacy-focused vs development-focused)
@@ -529,6 +604,11 @@ xdg.portal = {
 ### Wayland System Integration
 - **[wlogout](https://github.com/ArtsyMacaw/wlogout)** - Wayland-native logout menu with customizable power management options
 - **[waybar](https://github.com/Alexays/Waybar)** - Highly customizable Wayland bar for Sway and Wlroots-based compositors
+
+### Desktop Shell Environments
+- **[DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell)** - Comprehensive desktop shell built with QuickShell & Go, optimized for Niri & Hyprland
+- **[QuickShell](https://github.com/outfoxxed/quickshell)** - Modern QML-based shell framework for Wayland compositors
+- **[matugen](https://github.com/InioX/matugen)** - Material Design 3 color generation tool for dynamic theming
 
 ### Related Projects
 - **[Niri Flake](https://github.com/sodiboo/niri-flake)** - NixOS integration for Niri compositor
