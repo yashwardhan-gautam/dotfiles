@@ -133,6 +133,8 @@
 
     # --- System Services/Daemons ---
     redis # In-memory data structure store
+    docker # Container platform
+    docker-compose # Docker Compose for multi-container applications
 
     # --- Fonts ---
     nerd-fonts.jetbrains-mono # JetBrains Mono Nerd Font

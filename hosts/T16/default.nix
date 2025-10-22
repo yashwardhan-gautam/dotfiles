@@ -131,5 +131,15 @@
 
   virtualisation.vmware.guest.enable = true;
   services.openssh.enable = true;
+  
+  # Docker configuration
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
+  
+  # Add user to docker group
+  users.users.unalome.extraGroups = ["networkmanager" "wheel" "video" "audio" "input" "docker"];
+  
   system.stateVersion = "25.11";
 }
