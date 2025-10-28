@@ -13,4 +13,6 @@
 - [ ] youtube music with brave for music player as a desktop app
 - [ ] replace screenshots with screen-recording to readme  
 - [ ] figure out fingerprint and see if 1password can work with it
-- [ ] use chromium instead of brave, and use a light theme everywhere
+- [ ] use chromium instead of brave, and use a light theme everywhere   
+- [ ]  add a param flag inside flake itself, so total two flags (one for machine and the other one for WM). We can have separate for cosmic, hyprland and niri and switch between three (make another folder for it)  
+- [ ] Update the files to use stylix for styling   
