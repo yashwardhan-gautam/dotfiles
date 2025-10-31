@@ -16,3 +16,4 @@
 - [ ] use chromium instead of brave, and use a light theme everywhere   
 - [ ]  add a param flag inside flake itself, so total two flags (one for machine and the other one for WM). We can have separate for cosmic, hyprland and niri and switch between three (make another folder for it)  
 - [ ] Update the files to use stylix for styling   
+- [ ] use [vicinae](https://docs.vicinae.com/) instead of wofi/walker etc.  
