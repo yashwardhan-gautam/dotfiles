@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.settings = {
     bind = [
       # Screen shader toggle
-      ", F1, exec, hyprshade toggle blue-light-filter"
+      ", F8, exec, hyprshade toggle blue-light-filter"
 
       # Application launcher
       "SUPER, space, exec, wofi --show drun --sort-order=alphabetical"
