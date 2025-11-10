@@ -95,13 +95,13 @@
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
-    extraGroups = ["networkmanager" "wheel" "video" "audio" "input"];
+    extraGroups = ["networkmanager" "wheel" "video" "audio" "input" "docker"];
     shell = pkgs.fish;
   };
 
   # System packages
   environment.systemPackages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     fprintd
     libfprint
   ];
@@ -137,9 +137,6 @@
     enable = true;
     enableOnBoot = true;
   };
-  
-  # Add user to docker group
-  users.users.unalome.extraGroups = ["networkmanager" "wheel" "video" "audio" "input" "docker"];
   
   system.stateVersion = "25.11";
 }

@@ -107,7 +107,7 @@
     code-cursor # (Assuming this is a specific application, if not, it might need clarification)
     telegram-desktop # Official Telegram Desktop client
     opencode
-    bitwarden # Open-source password manager
+    bitwarden-desktop # Open-source password manager
     fprintd # Fingerprint authentication daemon
 
     # --- Shells & Terminal Utilities ---

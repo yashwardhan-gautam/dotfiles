@@ -18,6 +18,9 @@
       # Clipboard history
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
+
+      # Ensure audio is unmuted on startup
+      "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0"
     ];
 
     exec = [

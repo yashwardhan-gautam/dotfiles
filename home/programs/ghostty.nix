@@ -13,6 +13,7 @@ in {
   programs.ghostty = {
     enable = true;
     package = null; # ghostty is not in nixpkgs yet
+    systemd.enable = false; # Cannot enable systemd when package is null
     clearDefaultKeybinds = true;
     settings = {
       font-family = fontFamily;
