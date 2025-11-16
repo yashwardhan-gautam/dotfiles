@@ -1,13 +1,18 @@
 {
   pkgs,
+  lib,
   inputs,
+  windowManager ? "cosmic",
   ...
 }: {
   imports = [
     ../config.nix
     ../user-config.nix
     ./programs/default.nix
+    # Conditionally import window manager configuration
+  ] ++ lib.optionals (windowManager == "hyprland") [
     ./hyprland
+  ] ++ [
     inputs.zen-browser.homeModules.twilight
   ];
 

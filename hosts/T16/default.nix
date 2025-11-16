@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running 'nixos-help').
 {
   pkgs,
+  lib,
   inputs,
+  windowManager ? "cosmic",
   ...
 }: {
   imports = [
@@ -37,17 +39,27 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable Hyprland
-  programs.hyprland = {
+  # Conditionally enable Hyprland
+  programs.hyprland = lib.mkIf (windowManager == "hyprland") {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland.enable = true;
   };
 
-  # Display Manager - using SDDM for Hyprland
-  services.displayManager.sddm = {
+  # Conditionally enable COSMIC
+  services.desktopManager.cosmic = lib.mkIf (windowManager == "cosmic") {
     enable = true;
-    wayland.enable = true;
+  };
+
+  # Conditionally enable Display Manager based on window manager
+  services.displayManager = {
+    sddm = lib.mkIf (windowManager == "hyprland") {
+      enable = true;
+      wayland.enable = true;
+    };
+    cosmic-greeter = lib.mkIf (windowManager == "cosmic") {
+      enable = true;
+    };
   };
 
   # Enable X11 for XWayland support
