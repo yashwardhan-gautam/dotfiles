@@ -1,5 +1,5 @@
-# Neovim configuration with Gruvbox Light theme
-# Gruvbox theme: https://github.com/morhetz/gruvbox
+# Neovim configuration with Catppuccin Frappe theme
+# Catppuccin theme: https://github.com/catppuccin/nvim
 {...}: {
   xdg.desktopEntries.nvim = {
     name = "Neovim";

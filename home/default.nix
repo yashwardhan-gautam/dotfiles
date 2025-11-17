@@ -95,8 +95,7 @@
     brave # Alternative browser
     chromium # Alternative browser for web apps
 
-    # --- Bluetooth Management (alternatives) ---
-    blueberry # Alternative Bluetooth configuration tool
+    # --- Applications ---
     qbittorrent
     discord
     gnome-boxes

@@ -1,5 +1,5 @@
-# Ghostty terminal configuration with Gruvbox Light theme
-# Gruvbox theme: https://github.com/morhetz/gruvbox
+# Ghostty terminal configuration with Catppuccin Frappe theme
+# Catppuccin theme: https://github.com/catppuccin/catppuccin
 {
   config,
   lib,
@@ -17,9 +17,9 @@ in {
     clearDefaultKeybinds = true;
     settings = {
       font-family = fontFamily;
-      font-size = 13.5;
+      font-size = 13;
       window-decoration = "none";
-      theme = "gruvbox-light";
+      theme = "catppuccin-frappe";
       maximize = true;
       keybind = [
         # Application/Window Management
@@ -174,6 +174,81 @@ in {
         ];
         selection-background = "353749";
         selection-foreground = "cdd6f4";
+      };
+      catppuccin-macchiato = {
+        background = "24273a";
+        cursor-color = "f4dbd6";
+        foreground = "cad3f5";
+        palette = [
+          "0=#494d64"
+          "1=#ed8796"
+          "2=#a6da95"
+          "3=#eed49f"
+          "4=#8aadf4"
+          "5=#f5bde6"
+          "6=#8bd5ca"
+          "7=#b8c0e0"
+          "8=#5b6078"
+          "9=#ed8796"
+          "10=#a6da95"
+          "11=#eed49f"
+          "12=#8aadf4"
+          "13=#f5bde6"
+          "14=#8bd5ca"
+          "15=#a5adcb"
+        ];
+        selection-background = "5b6078";
+        selection-foreground = "cad3f5";
+      };
+      catppuccin-frappe = {
+        background = "303446";
+        cursor-color = "f2d5cf";
+        foreground = "c6d0f5";
+        palette = [
+          "0=#51576d"
+          "1=#e78284"
+          "2=#a6d189"
+          "3=#e5c890"
+          "4=#8caaee"
+          "5=#f4b8e4"
+          "6=#81c8be"
+          "7=#b5bfe2"
+          "8=#626880"
+          "9=#e78284"
+          "10=#a6d189"
+          "11=#e5c890"
+          "12=#8caaee"
+          "13=#f4b8e4"
+          "14=#81c8be"
+          "15=#a5adce"
+        ];
+        selection-background = "626880";
+        selection-foreground = "c6d0f5";
+      };
+      catppuccin-frappe-light = {
+        background = "414559";
+        cursor-color = "f2d5cf";
+        foreground = "c6d0f5";
+        palette = [
+          "0=#51576d"
+          "1=#e78284"
+          "2=#a6d189"
+          "3=#e5c890"
+          "4=#8caaee"
+          "5=#f4b8e4"
+          "6=#81c8be"
+          "7=#b5bfe2"
+          "8=#626880"
+          "9=#e78284"
+          "10=#a6d189"
+          "11=#e5c890"
+          "12=#8caaee"
+          "13=#f4b8e4"
+          "14=#81c8be"
+          "15=#a5adce"
+        ];
+        selection-background = "626880";
+        selection-foreground = "c6d0f5";
       };
       catppuccin-latte = {
         background = "eff1f5";
