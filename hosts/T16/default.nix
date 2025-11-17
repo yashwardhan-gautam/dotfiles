@@ -51,6 +51,14 @@
     enable = true;
   };
 
+  # Exclude unwanted COSMIC default applications
+  environment.cosmic.excludePackages = lib.mkIf (windowManager == "cosmic") (with pkgs; [
+    cosmic-edit      # Text editor
+    cosmic-term      # Terminal emulator
+    cosmic-store     # App store
+    cosmic-player    # Media player
+  ]);
+
   # Conditionally enable Display Manager based on window manager
   services.displayManager = {
     sddm = lib.mkIf (windowManager == "hyprland") {
@@ -113,9 +121,12 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    bitwarden-desktop
     fprintd
     libfprint
+    # COSMIC utilities
+    tasks # Task management app for COSMIC
+    quick-webapps # Web App Manager for COSMIC
+    parabolic # YouTube downloader (yt-dlp frontend)
   ];
 
   nixpkgs.config = {

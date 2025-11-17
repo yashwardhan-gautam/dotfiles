@@ -71,7 +71,6 @@
     fd # A simple, fast and user-friendly alternative to 'find'
     ripgrep # A line-oriented search tool that recursively searches the current directory for a regex pattern
     fzf # A command-line fuzzy finder
-    file # Required by Yazi for file type detection
     jq # JSON preview
     poppler # PDF preview utilities
     resvg # SVG preview
@@ -107,7 +106,6 @@
 
     # --- Other Applications ---
     qalculate-gtk # Powerful and versatile desktop calculator
-    gimp # GNU Image Manipulation Program
     code-cursor # (Assuming this is a specific application, if not, it might need clarification)
     telegram-desktop # Official Telegram Desktop client
     opencode
@@ -148,38 +146,6 @@
   ];
 
   programs.home-manager.enable = true;
-
-  # Desktop entries
-  xdg.desktopEntries.zen-browser = {
-    name = "Zen Browser";
-    comment = "A privacy-focused web browser";
-    exec = "zen-browser %U";
-    icon = "zen-browser";
-    terminal = false;
-    categories = ["Network" "WebBrowser"];
-    mimeType = [
-      "text/html"
-      "text/xml"
-      "application/xhtml+xml"
-      "application/xml"
-      "application/rss+xml"
-      "application/rdf+xml"
-      "image/gif"
-      "image/jpeg"
-      "image/png"
-      "image/webp"
-      "video/webm"
-      "video/ogg"
-      "audio/ogg"
-      "audio/mpeg"
-      "audio/x-mpegurl"
-      "video/mp4"
-      "video/x-m4v"
-      "audio/mp4"
-      "application/ogg"
-      "application/x-ogg"
-    ];
-  };
 
   # Zen Browser configuration
   programs.zen-browser = {

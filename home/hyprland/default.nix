@@ -44,9 +44,6 @@
     qt5.qtwayland
     qt6.qtwayland
 
-    # File manager
-    yazi
-
     # Network and system tray
     networkmanagerapplet
     # Note: blueberry is installed in home/default.nix and used in waybar

@@ -119,7 +119,6 @@ in {
         cpu = {
           interval = 10;
           format = "󰍛";
-          on-click = "ghostty -e btop";
         };
         clock = {
           format = "{:%d-%B, %I:%M %p}";
