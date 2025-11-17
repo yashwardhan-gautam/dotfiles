@@ -7,14 +7,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -22,8 +21,8 @@
   outputs = {
     nixpkgs,
     home-manager,
-    hyprland,
     zen-browser,
+    niri-flake,
     ...
   } @ inputs: let
     # Helper function to create a NixOS configuration
@@ -35,6 +34,7 @@
       system = "x86_64-linux";
       modules = [
         (import ./hosts/${machine}/default.nix)
+        niri-flake.nixosModules.niri
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -46,25 +46,19 @@
       ];
     };
   in {
-    # Default configuration (COSMIC)
+    # Default configuration (Niri)
     nixosConfigurations.T16 = mkNixOSConfig {
       machine = "T16";
-      windowManager = "cosmic";
+      windowManager = "niri";
     };
 
-    # COSMIC variant (explicit)
+    # COSMIC variant
     nixosConfigurations.T16-cosmic = mkNixOSConfig {
       machine = "T16";
       windowManager = "cosmic";
     };
 
-    # Hyprland variant
-    nixosConfigurations.T16-hyprland = mkNixOSConfig {
-      machine = "T16";
-      windowManager = "hyprland";
-    };
-
-    # Niri variant (future)
+    # Niri variant (explicit)
     nixosConfigurations.T16-niri = mkNixOSConfig {
       machine = "T16";
       windowManager = "niri";

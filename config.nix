@@ -16,7 +16,7 @@
     monitors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [",preferred,auto,1.0"];
-      description = "Monitor configuration strings for Hyprland";
+      description = "Monitor configuration strings for window manager";
       example = ["DP-1,2560x1440@144,0x0,1" "HDMI-A-1,1920x1080@60,2560x0,1"];
     };
 

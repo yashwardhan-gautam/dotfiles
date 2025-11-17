@@ -10,8 +10,8 @@
     ../user-config.nix
     ./programs/default.nix
     # Conditionally import window manager configuration
-  ] ++ lib.optionals (windowManager == "hyprland") [
-    ./hyprland
+  ] ++ lib.optionals (windowManager == "niri") [
+    ./niri
   ] ++ [
     inputs.zen-browser.homeModules.twilight
   ];

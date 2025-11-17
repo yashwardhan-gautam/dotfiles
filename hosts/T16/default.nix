@@ -39,11 +39,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Conditionally enable Hyprland
-  programs.hyprland = lib.mkIf (windowManager == "hyprland") {
+  # Conditionally enable Niri
+  programs.niri = lib.mkIf (windowManager == "niri") {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    xwayland.enable = true;
+    # Override package to disable tests which can fail in build environments
+    package = pkgs.niri.overrideAttrs (oldAttrs: {
+      doCheck = false;
+    });
   };
 
   # Conditionally enable COSMIC
@@ -53,12 +55,14 @@
 
   # Conditionally enable Display Manager based on window manager
   services.displayManager = {
-    sddm = lib.mkIf (windowManager == "hyprland") {
+    # Use GDM for both Niri and Cosmic
+    gdm = lib.mkIf (windowManager == "niri" || windowManager == "cosmic") {
       enable = true;
-      wayland.enable = true;
+      wayland = true;
     };
+    # Keep cosmic-greeter only as fallback
     cosmic-greeter = lib.mkIf (windowManager == "cosmic") {
-      enable = true;
+      enable = lib.mkDefault false; # GDM takes precedence
     };
   };
 
@@ -85,7 +89,15 @@
     jack.enable = true;
   };
 
-  # XDG portals are configured via Home Manager in `home/programs/xdg.nix`
+  # XDG portals configuration
+  xdg.portal = lib.mkIf (windowManager == "niri") {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
 
   # Security services
   security.polkit.enable = true;
@@ -93,7 +105,7 @@
 
   # PAM fingerprint authentication
   security.pam.services = {
-    login.fprintAuth = true;
+    login.fprintAuth = lib.mkForce true;
     sudo.fprintAuth = true;
     su.fprintAuth = true;
   };
@@ -116,6 +128,8 @@
     bitwarden-desktop
     fprintd
     libfprint
+  ] ++ lib.optionals (windowManager == "niri") [
+    pkgs.niri  # Ensure Niri is in system packages for GDM session detection
   ];
 
   nixpkgs.config = {
@@ -125,11 +139,14 @@
     ];
   };
 
-  # No Flameshot overlay (using Hyprshot instead)
+  # No overlays needed
   nixpkgs.overlays = [];
 
   # System services
   services.dbus.enable = true;
+  services.dbus.packages = lib.mkIf (windowManager == "niri") [
+    pkgs.gcr
+  ];
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.tumbler.enable = true;
