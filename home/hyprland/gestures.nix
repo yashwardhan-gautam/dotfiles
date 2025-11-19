@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Install libinput-gestures for reliable touchpad gesture support
   home.packages = with pkgs; [
     libinput-gestures
@@ -20,7 +17,7 @@
   systemd.user.services.libinput-gestures = {
     Unit = {
       Description = "Libinput Gestures";
-      After = [ "graphical-session.target" ];
+      After = ["graphical-session.target"];
     };
     Service = {
       Type = "simple";
@@ -28,15 +25,15 @@
       Restart = "on-failure";
     };
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = ["graphical-session.target"];
     };
   };
 
   wayland.windowManager.hyprland.settings = {
     # Disable workspace animations for instant gesture response
     animation = [
-      "workspaces, 0"  # No workspace switch animations
-      "specialWorkspace, 0"  # No special workspace animations
+      "workspaces, 0" # No workspace switch animations
+      "specialWorkspace, 0" # No special workspace animations
     ];
   };
 }

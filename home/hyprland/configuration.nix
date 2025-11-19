@@ -14,7 +14,7 @@
   ];
   wayland.windowManager.hyprland.settings = {
     # Default applications
-    "$terminal" = lib.mkDefault "ghostty";
+    "$terminal" = lib.mkDefault "kitty";
     "$fileManager" = lib.mkDefault "cosmic-files";
     "$browser" = lib.mkDefault "zen-twilight";
     "$music" = lib.mkDefault "spotify";

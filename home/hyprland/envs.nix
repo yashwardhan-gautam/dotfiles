@@ -33,7 +33,7 @@
       "GTK_THEME,Adwaita"
 
       # Default apps
-      "TERMINAL,ghostty"
+      "TERMINAL,kitty"
       "BROWSER,zen-twilight"
 
       # Hyprshot save directory

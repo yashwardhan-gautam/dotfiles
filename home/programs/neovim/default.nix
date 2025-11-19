@@ -4,7 +4,7 @@
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     comment = "Edit text files";
-    exec = "ghostty -e nvim %F";
+    exec = "kitty -e nvim %F";
     icon = "nvim";
     terminal = false;
     categories = ["Utility" "TextEditor"];

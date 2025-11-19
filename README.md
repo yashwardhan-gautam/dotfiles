@@ -24,7 +24,7 @@ This dotfiles repository provides a complete NixOS desktop environment featuring
 - **Hyprland** - Modern tiling Wayland compositor
 - **Gruvbox Light** theme with custom colors
 - **Waybar** - Customizable status bar
-- **Ghostty** - GPU-accelerated terminal emulator
+- **Kitty** - GPU-accelerated terminal emulator
 - **Zen Browser** - Privacy-focused web browser
 - **Neovim** - Configured with LazyVim
 - **Audio/Video** - PipeWire with multimedia controls
@@ -52,7 +52,7 @@ home-manager switch --flake .#unalome
 ## Applications
 
 ### Core Applications
-- **Terminal**: Ghostty (GPU-accelerated)
+- **Terminal**: Kitty (GPU-accelerated)
 - **Browser**: Zen Browser (default), Brave & Chromium (available)
 - **File Manager**: Yazi (terminal file manager)
 - **Editor**: Neovim with LazyVim configuration
@@ -110,7 +110,7 @@ home-manager switch --flake .#unalome
 | Shortcut | Application |
 |----------|-------------|
 | `Super + Space` | Application launcher (Wofi) |
-| `Super + Return` | Terminal (Ghostty) |
+| `Super + Return` | Terminal (Kitty) |
 | `Super + T` | Terminal (alternative) |
 | `Super + B` | Browser (Zen Browser) |
 | `Super + E` | File manager (Yazi) |
@@ -143,7 +143,7 @@ home-manager switch --flake .#unalome
 | `Media Play/Pause` | Control media playback |
 | `Media Next/Prev` | Skip tracks |
 
-### Ghostty Terminal Shortcuts
+### Kitty Terminal Shortcuts
 
 #### Window Management
 | Shortcut | Action |
@@ -160,16 +160,16 @@ home-manager switch --flake .#unalome
 | `Ctrl + Tab` | Next tab |
 | `Ctrl + Shift + Tab` | Previous tab |
 | `Alt + 1-8` | Go to tab 1-8 |
-| `Alt + 9` | Go to last tab |
+| `Alt + 9` | Go to tab 9 |
 
-#### Split Management
+#### Split Management (Windows)
 | Shortcut | Action |
 |----------|---------|
-| `Alt + E` | Split down |
-| `Alt + V` | Split right |
-| `Alt + W` | Close split |
-| `Alt + H/J/K/L` | Navigate splits |
-| `Ctrl + Shift + ↑/↓/←/→` | Resize splits |
+| `Alt + E` | Split horizontally |
+| `Alt + V` | Split vertically |
+| `Alt + W` | Close window |
+| `Alt + H/J/K/L` | Navigate windows |
+| `Ctrl + Shift + ↑/↓/←/→` | Resize windows |
 
 #### Text & Selection
 | Shortcut | Action |
@@ -191,7 +191,7 @@ dotfiles/
 └── home/                    # Home Manager configuration
     ├── default.nix          # Main home configuration
     ├── programs/            # Application configurations
-    │   ├── ghostty.nix      # Terminal configuration
+    │   ├── kitty.nix        # Terminal configuration
     │   ├── neovim/          # Neovim setup with LazyVim
     │   ├── fish.nix         # Shell configuration
     │   ├── git.nix          # Git settings

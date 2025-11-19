@@ -23,7 +23,7 @@ dotfiles/
     │   ├── btop.nix                    # System resource monitor 📦 btop
     │   ├── fish.nix                    # Fish shell configuration 📦 fish
     │   ├── fonts.nix                   # Font configuration 📦 nerd-fonts
-    │   ├── ghostty.nix                 # GPU-accelerated terminal emulator 📦 ghostty
+    │   ├── kitty.nix                   # GPU-accelerated terminal emulator 📦 kitty
     │   ├── git.nix                     # Git configuration and aliases 📦 git
     │   ├── neovim/                     # Neovim editor configuration
     │   │   ├── default.nix             # Neovim setup 📦 neovim
@@ -112,7 +112,7 @@ This configuration depends on the following external flakes and packages:
 ### Development Setup
 - **Neovim with LazyVim**: Comprehensive IDE setup with LSP, DAP, and plugins
 - **Multi-language Support**: C/C++, Python, Go, Rust, Lua, JavaScript, Nix
-- **Terminal Tools**: Fish shell, Starship prompt, Ghostty terminal
+- **Terminal Tools**: Fish shell, Starship prompt, Kitty terminal
 - **Version Control**: Git with LazyGit TUI integration
 
 ### Media & Productivity
@@ -223,7 +223,7 @@ layout {
 }
 
 binds {
-    "Mod+Return" { spawn "ghostty"; }
+    "Mod+Return" { spawn "kitty"; }
     "Mod+Q" { close-window; }
     "Mod+F" { maximize-column; }
     // ... additional keybindings
@@ -378,7 +378,7 @@ cd DankMaterialShell
 
 #### Application Integration
 - **GTK/Qt Theming**: Automatic theme application via Colloid and qt6ct
-- **Terminal Colors**: Dynamic color schemes for Ghostty, Kitty, and other terminals
+- **Terminal Colors**: Dynamic color schemes for Kitty and other terminals
 - **Firefox Theming**: Material Fox integration or pywalfox support
 - **Calendar Sync**: vdirsyncer integration for Google Calendar, Office365
 
@@ -489,7 +489,7 @@ xdg.portal = {
 
 #### Development (Extended)
 - **Editors**: `helix`, `zed` (vs neovim focus in dotfiles)
-- **Terminal**: `foot` (vs ghostty in dotfiles)
+- **Terminal**: `foot` (vs kitty in dotfiles)
 - **Shell**: `nushell` (vs fish in dotfiles)
 
 #### System Tools
@@ -501,7 +501,7 @@ xdg.portal = {
 ### Dotfiles-Specific Packages
 #### Development (Specialized)
 - **Editor**: `neovim` with LazyVim (comprehensive IDE setup)
-- **Terminal**: `ghostty` (GPU-accelerated)
+- **Terminal**: `kitty` (GPU-accelerated)
 - **Shell**: `fish` (user-friendly)
 - **Additional**: `code-cursor`, `opencode`
 
@@ -580,13 +580,13 @@ xdg.portal = {
    - **Brightness Controls** - Display brightness management
    - **Lock Screen** - Integrated screen lock with Material Design
 5. Set up automatic app theming for GTK/Qt applications
-6. Configure terminal integration (Ghostty, Kitty) with dynamic colors
+6. Configure terminal integration (Kitty) with dynamic colors
 7. Integrate Firefox theming via Material Fox or pywalfox
 8. Test plugin system for custom widgets and functionality
 
 #### Phase 7: Package Consolidation
 1. Identify packages to add from kaku (if desired)
-2. Consider replacing some tools (e.g., ghostty vs foot)
+2. Consider replacing some tools (e.g., kitty vs foot)
 3. Evaluate browser setup (privacy-focused vs development-focused)
 
 ## References and Inspiration

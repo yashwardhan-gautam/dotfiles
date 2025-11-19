@@ -113,7 +113,7 @@
     fprintd # Fingerprint authentication daemon
 
     # --- Shells & Terminal Utilities ---
-    ghostty # A GPU-accelerated terminal emulator (related to home/programs/ghostty.nix)
+    kitty # A GPU-accelerated terminal emulator (related to home/programs/kitty.nix)
     fish # User-friendly command line shell (related to home/programs/fish.nix)
     starship # The minimal, blazing-fast, and infinitely customizable prompt for any shell (related to home/programs/starship.nix)
 
