@@ -5,21 +5,24 @@
   windowManager ? "cosmic",
   ...
 }: {
-  imports = [
-    ../config.nix
-    ../user-config.nix
-    ./programs/default.nix
-    # Conditionally import window manager configuration
-  ] ++ lib.optionals (windowManager == "hyprland") [
-    ./hyprland
-  ] ++ [
-    inputs.zen-browser.homeModules.twilight
-  ];
+  imports =
+    [
+      ../config.nix
+      ../user-config.nix
+      ./programs/default.nix
+      # Conditionally import window manager configuration
+    ]
+    ++ lib.optionals (windowManager == "hyprland") [
+      ./hyprland
+    ]
+    ++ [
+      inputs.zen-browser.homeModules.twilight
+    ];
 
   # Home Manager basic settings
   home.username = "unalome";
   home.homeDirectory = "/home/unalome";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   # Basic packages
   home.packages = with pkgs; [

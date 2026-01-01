@@ -53,10 +53,10 @@
 
   # Exclude unwanted COSMIC default applications
   environment.cosmic.excludePackages = lib.mkIf (windowManager == "cosmic") (with pkgs; [
-    cosmic-edit      # Text editor
-    cosmic-term      # Terminal emulator
-    cosmic-store     # App store
-    cosmic-player    # Media player
+    cosmic-edit # Text editor
+    cosmic-term # Terminal emulator
+    cosmic-store # App store
+    cosmic-player # Media player
   ]);
 
   # Conditionally enable Display Manager based on window manager
@@ -153,12 +153,12 @@
 
   virtualisation.vmware.guest.enable = true;
   services.openssh.enable = true;
-  
+
   # Docker configuration
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
   };
-  
-  system.stateVersion = "25.11";
+
+  system.stateVersion = "26.05";
 }

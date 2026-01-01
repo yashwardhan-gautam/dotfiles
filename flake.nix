@@ -12,7 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,21 +29,22 @@
     mkNixOSConfig = {
       machine ? "T16",
       windowManager ? "cosmic",
-    }: nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs windowManager;};
-      system = "x86_64-linux";
-      modules = [
-        (import ./hosts/${machine}/default.nix)
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs windowManager;};
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.unalome = import ./home/default.nix;
-        }
-      ];
-    };
+    }:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs windowManager;};
+        system = "x86_64-linux";
+        modules = [
+          (import ./hosts/${machine}/default.nix)
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs windowManager;};
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.unalome = import ./home/default.nix;
+          }
+        ];
+      };
   in {
     # Default configuration (COSMIC)
     nixosConfigurations.T16 = mkNixOSConfig {
