@@ -1,6 +1,6 @@
 # Neovim configuration with Catppuccin Frappe theme
 # Catppuccin theme: https://github.com/catppuccin/nvim
-{...}: {
+{pkgs, ...}: {
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     comment = "Edit text files";
@@ -17,13 +17,40 @@
     defaultEditor = false;
     withNodeJs = true;
     withPython3 = true;
-
-    # add extra packages if required, but make sure they don't conflict with any other declaration
-    # extraPackages = with pkgs; [
-    # ];
   };
 
-  # lua config
+  # Neovim-related packages: LSPs, formatters, linters, tree-sitter
+  home.packages = with pkgs; [
+    # Lua (for neovim config)
+    lua5_1
+    luajitPackages.luarocks
+    lua-language-server
+    stylua
+
+    # Tree-sitter
+    tree-sitter
+
+    # Formatters
+    alejandra # Nix
+    nodePackages.prettier # JS/TS/JSON/etc
+    shfmt # Shell
+
+    # Linters
+    golangci-lint # Go
+    hadolint # Dockerfile
+    shellcheck # Shell
+    tflint # Terraform
+
+    # Language Servers
+    gopls # Go
+    nixd # Nix
+    pyright # Python
+    terraform-ls # Terraform
+    yaml-language-server # YAML
+    cmake-language-server # CMake
+  ];
+
+  # Lua config
   xdg.configFile = {
     "nvim" = {
       source = ./lazyvim;

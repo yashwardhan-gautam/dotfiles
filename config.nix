@@ -20,4 +20,11 @@
       description = "Email address for git and other applications";
     };
   };
+
+  # User Configuration - Edit these values to customize your dotfiles
+  config.dotfiles = {
+    primary_font = "JetBrainsMono Nerd Font 14";
+    full_name = "yashwardhan-gautam";
+    email_address = "gautamyashwardhan@gmail.com";
+  };
 }
