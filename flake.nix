@@ -7,10 +7,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+     hyprland = {
+       url = "github:hyprwm/Hyprland";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
+
+     niri = {
+       url = "github:YaLTeR/niri";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -36,8 +41,15 @@
         modules = [
           (import ./hosts/${machine}/default.nix)
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
+           {
+             nixpkgs.overlays = [
+               (final: prev: {
+                 niri = inputs.niri.packages.${prev.system}.default.overrideAttrs (_: {
+                   doCheck = false;
+                 });
+               })
+             ];
+             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = {inherit inputs windowManager;};
             home-manager.backupFileExtension = "backup";
