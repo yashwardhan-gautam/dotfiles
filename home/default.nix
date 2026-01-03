@@ -2,7 +2,6 @@
   pkgs,
   lib,
   inputs,
-  windowManager ? "cosmic",
   ...
 }: {
   imports =
@@ -10,13 +9,9 @@
       ../config.nix
       ../user-config.nix
       ./programs/default.nix
-      # Conditionally import window manager configuration
-    ]
-    ++ lib.optionals (windowManager == "hyprland") [
-      ./hyprland
-    ]
-    ++ [
+      ./niri
       inputs.zen-browser.homeModules.twilight
+      inputs.dms.homeModules.dankMaterialShell.default
     ];
 
   # Home Manager basic settings
@@ -149,6 +144,12 @@
   ];
 
   programs.home-manager.enable = true;
+
+  # DankMaterialShell (DMS) home-manager configuration
+  programs.dankMaterialShell = {
+    enable = true;
+    # package option removed
+  };
 
   # Zen Browser configuration
   programs.zen-browser = {

@@ -17,3 +17,15 @@
 - [ ]  add a param flag inside flake itself, so total two flags (one for machine and the other one for WM). We can have separate for cosmic, hyprland and niri and switch between three (make another folder for it)  
 - [ ] Update the files to use stylix for styling   
 - [ ] use [vicinae](https://docs.vicinae.com/) instead of wofi/walker etc.  
+
+
+- [ ] niri config.kdl, source it
+- [ ] fix display brightness control not working
+- [ ] fix shortcuts -> based on old hyprland + check the changes from the [repo](https://gitlab.com/theblackdon/arch-config/-/tree/main/modules/bdots-niri/dotfiles?ref_type=heads)
+- [ ] change the granularity of volume from 10 points to 5 points
+- [ ] check application level controls
+- [ ] check how to make the zen browser better using [zen mods](https://www.youtube.com/watch?v=Hx4QgMLBfr0)
+- [ ] top bar change the contrast depending on the wallpaper
+- [ ] how to configure the tabs inside kitty, move between them using alt+j/k for better navigation, fix vertical split
+- [ ] get rid of hyprland, and update the alias while building from `T16-niri` or `T16-cosmic` to T16 only
+- [ ] check where do i get the notes from ? the obsidian ones saved in mac

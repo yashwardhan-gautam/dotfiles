@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Ensure obsidian package is available (already in system packages)
   home.packages = with pkgs; [
     obsidian

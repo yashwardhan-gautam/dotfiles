@@ -5,7 +5,6 @@
   pkgs,
   lib,
   inputs,
-  windowManager ? "cosmic",
   ...
 }: {
   imports = [
@@ -39,45 +38,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Conditionally enable Hyprland
-  programs.hyprland = lib.mkIf (windowManager == "hyprland") {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    xwayland.enable = true;
-  };
-
-  # Conditionally enable COSMIC
-  services.desktopManager.cosmic = lib.mkIf (windowManager == "cosmic") {
-    enable = true;
-  };
-
-  # Exclude unwanted COSMIC default applications
-  environment.cosmic.excludePackages = lib.mkIf (windowManager == "cosmic") (with pkgs; [
-    cosmic-edit # Text editor
-    cosmic-term # Terminal emulator
-    cosmic-store # App store
-    cosmic-player # Media player
-  ]);
-
-  # Conditionally enable Display Manager based on window manager
-  services.displayManager = {
-    sddm = lib.mkIf (windowManager == "hyprland") {
-      enable = true;
-      wayland.enable = true;
-    };
-    cosmic-greeter = lib.mkIf (windowManager == "cosmic") {
-      enable = true;
-    };
-  };
-
-  # Enable X11 for XWayland support
-  services.xserver.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,10 +84,6 @@
   environment.systemPackages = with pkgs; [
     fprintd
     libfprint
-    # COSMIC utilities
-    tasks # Task management app for COSMIC
-    quick-webapps # Web App Manager for COSMIC
-    parabolic # YouTube downloader (yt-dlp frontend)
   ];
 
   nixpkgs.config = {
@@ -138,6 +95,23 @@
 
   # No Flameshot overlay (using Hyprshot instead)
   nixpkgs.overlays = [];
+
+  # DankMaterialShell (DMS) configuration
+  programs.dankMaterialShell = {
+    enable = true;
+    # package option removed as it does not exist
+    systemd = {
+      enable = true;             # Systemd service for auto-start
+      restartIfChanged = true;   # Auto-restart when DMS changes
+    };
+
+    enableSystemMonitoring = true;     # System monitoring widgets (dgop)
+    enableClipboard = true;            # Clipboard history manager
+    enableVPN = true;                  # VPN management widget
+    enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
+    enableAudioWavelength = true;      # Audio visualizer (cava)
+    enableCalendarEvents = true;       # Calendar integration (khal)
+  };
 
   # System services
   services.dbus.enable = true;
