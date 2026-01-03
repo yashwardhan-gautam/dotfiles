@@ -3,9 +3,6 @@
 # and in the NixOS manual (accessible by running 'nixos-help').
 {
   pkgs,
-  lib,
-  inputs,
-  windowManager ? "cosmic",
   ...
 }: {
   imports = [
@@ -39,36 +36,19 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Conditionally enable Hyprland
-  programs.hyprland = lib.mkIf (windowManager == "hyprland") {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    xwayland.enable = true;
-  };
-
-  # Conditionally enable COSMIC
-  services.desktopManager.cosmic = lib.mkIf (windowManager == "cosmic") {
-    enable = true;
-  };
+  # Enable COSMIC Desktop
+  services.desktopManager.cosmic.enable = true;
 
   # Exclude unwanted COSMIC default applications
-  environment.cosmic.excludePackages = lib.mkIf (windowManager == "cosmic") (with pkgs; [
+  environment.cosmic.excludePackages = with pkgs; [
     cosmic-edit      # Text editor
     cosmic-term      # Terminal emulator
     cosmic-store     # App store
     cosmic-player    # Media player
-  ]);
+  ];
 
-  # Conditionally enable Display Manager based on window manager
-  services.displayManager = {
-    sddm = lib.mkIf (windowManager == "hyprland") {
-      enable = true;
-      wayland.enable = true;
-    };
-    cosmic-greeter = lib.mkIf (windowManager == "cosmic") {
-      enable = true;
-    };
-  };
+  # Enable COSMIC greeter
+  services.displayManager.cosmic-greeter.enable = true;
 
   # Enable X11 for XWayland support
   services.xserver.enable = true;
@@ -93,11 +73,8 @@
     jack.enable = true;
   };
 
-  # XDG portals are configured via Home Manager in `home/programs/xdg.nix`
-
   # Security services
   security.polkit.enable = true;
-  security.pam.services.swaylock = {};
 
   # PAM fingerprint authentication
   security.pam.services = {
@@ -136,7 +113,6 @@
     ];
   };
 
-  # No Flameshot overlay (using Hyprshot instead)
   nixpkgs.overlays = [];
 
   # System services
