@@ -1,5 +1,49 @@
 {
   "nodes": {
+    "dgop": {
+      "inputs": {
+        "nixpkgs": [
+          "dms",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762835999,
+        "narHash": "sha256-UykYGrGFOFTmDpKTLNxj1wvd1gbDG4TkqLNSbV0TYwk=",
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "rev": "799301991cd5dcea9b64245f9d500dcc76615653",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dgop",
+        "type": "github"
+      }
+    },
+    "dms": {
+      "inputs": {
+        "dgop": "dgop",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1765552734,
+        "narHash": "sha256-rWjWYu5rs3ZOJ4YJpvIscBZSYu74thJHc0VYyYKJTUc=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "7fb358bada0d3a229ec5ee6aaad0f9b64f367331",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "ref": "stable",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -7,11 +51,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767437240,
-        "narHash": "sha256-OA0dBHhccdupFXp+/eaFfb8K1dQxk61in4aF5ITGVX8=",
+        "lastModified": 1767515539,
+        "narHash": "sha256-4fHDswBZac5vE8WA9qczUgPo3TvJVF9uOvcXhPpnqJ0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1cfa305fba94468f665de1bd1b62dddf2e0cb012",
+        "rev": "12cc14271b250b2b46bf681352da91a8d2efec26",
         "type": "github"
       },
       "original": {
@@ -58,8 +102,31 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "dms",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764663772,
+        "narHash": "sha256-sHqLmm0wAt3PC4vczJeBozI1/f4rv9yp3IjkClHDXDs=",
+        "ref": "refs/heads/master",
+        "rev": "26531fc46ef17e9365b03770edd3fb9206fcb460",
+        "revCount": 713,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      },
+      "original": {
+        "rev": "26531fc46ef17e9365b03770edd3fb9206fcb460",
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      }
+    },
     "root": {
       "inputs": {
+        "dms": "dms",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "zen-browser": "zen-browser"
@@ -73,11 +140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767471827,
-        "narHash": "sha256-72DL50LDA7X/p+08EMdOkJ14huxy3NAfgp6QbR7m214=",
+        "lastModified": 1767502237,
+        "narHash": "sha256-rRrn9I4H692troUl5pBtE3Y5mG2msSMU/2ro7+ZQrFM=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "9215d4e7c0b470cfe97ee791bbf52ce6522b51c0",
+        "rev": "e3efa5e2b53982f985044062c98426ec75d6695b",
         "type": "github"
       },
       "original": {

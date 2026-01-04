@@ -1,10 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running 'nixos-help').
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -36,19 +30,27 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable COSMIC Desktop
-  services.desktopManager.cosmic.enable = true;
+  # Minimal greeter for niri (greetd + tuigreet)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${pkgs.niri}/share/wayland-sessions";
+        user = "greeter";
+      };
+    };
+  };
 
-  # Exclude unwanted COSMIC default applications
-  environment.cosmic.excludePackages = with pkgs; [
-    cosmic-edit      # Text editor
-    cosmic-term      # Terminal emulator
-    cosmic-store     # App store
-    cosmic-player    # Media player
-  ];
-
-  # Enable COSMIC greeter
-  services.displayManager.cosmic-greeter.enable = true;
+  # Prevent greetd from polluting system logs with session output
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
 
   # Enable X11 for XWayland support
   services.xserver.enable = true;
@@ -103,9 +105,9 @@
   environment.systemPackages = with pkgs; [
     fprintd
     libfprint
-    # COSMIC utilities
-    tasks # Task management app for COSMIC
-    quick-webapps # Web App Manager for COSMIC
+    # Greeter
+    tuigreet
+    # General utilities
     parabolic # YouTube downloader (yt-dlp frontend)
   ];
 
@@ -132,12 +134,12 @@
 
   virtualisation.vmware.guest.enable = true;
   services.openssh.enable = true;
-  
+
   # Docker configuration
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
   };
-  
+
   system.stateVersion = "26.05";
 }

@@ -11,35 +11,38 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # DankMaterialShell - Desktop shell for niri
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
-    zen-browser,
     ...
   } @ inputs: let
     # Helper function to create a NixOS configuration
-    mkNixOSConfig = {
-      machine ? "T16",
-    }: nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      system = "x86_64-linux";
-      modules = [
-        (import ./hosts/${machine}/default.nix)
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.unalome = import ./home/default.nix;
-        }
-      ];
-    };
+    mkNixOSConfig = {machine ? "T16"}:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          (import ./hosts/${machine}/default.nix)
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.unalome = import ./home/default.nix;
+          }
+        ];
+      };
   in {
-    # COSMIC configuration
-    nixosConfigurations.T16-cosmic = mkNixOSConfig {
+    nixosConfigurations.T16 = mkNixOSConfig {
       machine = "T16";
     };
 

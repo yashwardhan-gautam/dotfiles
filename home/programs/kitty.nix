@@ -1,23 +1,22 @@
-# Kitty terminal configuration with Catppuccin Frappe theme
-# Catppuccin theme: https://github.com/catppuccin/catppuccin
-{
-  config,
-  lib,
-  ...
-}: let
-  # Extract font size from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> 11)
-  fontSize = lib.toInt (lib.last (lib.splitString " " config.dotfiles.primary_font));
-  # Extract font family from primary_font (e.g., "JetBrainsMono Nerd Font 11" -> "JetBrainsMono Nerd Font")
-  fontFamily = lib.removeSuffix " ${toString fontSize}" config.dotfiles.primary_font;
-in {
+{...}: {
   programs.kitty = {
     enable = true;
     font = {
-      name = fontFamily;
-      size = 12;
+      name = "MesloLGS Nerd Font Mono";
+      size = 11;
     };
 
     settings = {
+      # Font rendering
+      text_composition_strategy = "platform";
+      bold_font = "auto";
+      italic_font = "auto";
+      bold_italic_font = "auto";
+      disable_ligatures = "never";
+
+      # Wayland native rendering
+      linux_display_server = "wayland";
+
       # Window settings
       hide_window_decorations = "yes";
       remember_window_size = "no";

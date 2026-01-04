@@ -8,5 +8,7 @@
     ./obsidian.nix
     ./zoxide.nix
     ./obs-studio.nix
+    ./niri
+    ./gtk.nix
   ];
 }

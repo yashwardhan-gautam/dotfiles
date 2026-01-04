@@ -7,7 +7,27 @@
     ../config.nix
     ./programs/default.nix
     inputs.zen-browser.homeModules.twilight
+    inputs.dms.homeModules.dankMaterialShell.default
   ];
+
+  # DankMaterialShell configuration
+  programs.dankMaterialShell = {
+    enable = true;
+
+    # Auto-start DMS via systemd
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+
+    # Core features
+    enableSystemMonitoring = true; # dgop
+    enableClipboard = true;
+    enableVPN = true;
+    enableDynamicTheming = true; # matugen
+    enableAudioWavelength = true; # cava
+    enableCalendarEvents = true; # khal
+  };
 
   # Home Manager basic settings
   home.username = "unalome";
@@ -17,10 +37,13 @@
   # Basic packages
   home.packages = with pkgs; [
     # Programming Languages & Build Tools
+    nodejs
     rustc
     cargo
     go
     gotools
+    lua5_1
+    luajitPackages.luarocks
     gnumake
     cmake
     ninja
@@ -47,6 +70,28 @@
         pygobject3
       ]))
 
+    # Language Servers
+    lua-language-server
+    gopls
+    nixd
+    pyright
+    terraform-ls
+    yaml-language-server
+    cmake-language-server
+
+    # Formatters
+    stylua
+    alejandra
+    nodePackages.prettier
+    shfmt
+
+    # Linters
+    tree-sitter
+    golangci-lint
+    hadolint
+    shellcheck
+    tflint
+
     # CLI Tools
     tree
     eza
@@ -60,6 +105,8 @@
     imagemagick
     p7zip
     xclip
+    wl-clipboard
+    wl-color-picker
     wget
     curl
     fastfetch
@@ -73,10 +120,21 @@
 
     # Applications
     brave
+    chromium
     qbittorrent
     discord
     gnome-boxes
     yt-dlp
+    code-cursor
+    cursor-cli
+    opencode
+    qalculate-gtk
+    telegram-desktop
+    bitwarden-desktop
+
+    # Media
+    vlc
+    ffmpeg
 
     # Shell & Terminal
     kitty
@@ -87,8 +145,49 @@
     redis
     docker
     docker-compose
-    xdg-desktop-portal-gtk # GTK portal for XDG desktop (related to home/programs/neovim/default.nix, home/programs/xdg.nix)
+    fprintd
+    xdg-desktop-portal-gtk
+
+    # Fonts
+    nerd-fonts.meslo-lg
+
+    # System fonts for browsers and apps
+    noto-fonts # Google Noto fonts (good Unicode coverage)
+    noto-fonts-color-emoji # Emoji support
+    liberation_ttf # Metric-compatible with Arial, Times, Courier
+    inter # Modern UI font (like SF Pro)
+    roboto # Android/Material Design font
+    source-sans-pro # Adobe Source Sans
+    font-awesome # Icon font
   ];
+
+  # Font configuration
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = ["MesloLGS Nerd Font Mono"];
+    };
+  };
+
+  # Better font rendering (hinting & antialiasing)
+  xdg.configFile."fontconfig/conf.d/99-custom.conf".text = ''
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <match target="font">
+        <edit name="antialias" mode="assign"><bool>true</bool></edit>
+        <edit name="hinting" mode="assign"><bool>true</bool></edit>
+        <edit name="hintstyle" mode="assign"><const>hintslight</const></edit>
+        <edit name="rgba" mode="assign"><const>rgb</const></edit>
+        <edit name="lcdfilter" mode="assign"><const>lcddefault</const></edit>
+      </match>
+    </fontconfig>
+  '';
+
+  # Ensure Screenshots directory exists
+  home.activation.createScreenshotsDir = inputs.home-manager.lib.hm.dag.entryAfter ["writeBoundary"] ''
+    mkdir -p $HOME/Pictures/Screenshots
+  '';
 
   programs.home-manager.enable = true;
 

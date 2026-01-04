@@ -1,0 +1,189 @@
+// Niri Configuration
+// Window management only - DankMaterialShell handles desktop features
+// (launcher, lock, notifications, brightness, media, clipboard, screenshots)
+
+// =====================
+// Input Configuration
+// =====================
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        scroll-factor 1.0
+        click-method "clickfinger"
+        dwt
+    }
+
+    mouse {
+        natural-scroll
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// =====================
+// Layout Configuration
+// =====================
+layout {
+    gaps 0
+
+    focus-ring {
+        width 2
+        active-color "#8caaee"
+        inactive-color "#626880"
+    }
+
+    border {
+        off
+    }
+
+    default-column-width { proportion 0.5; }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+}
+
+// =====================
+// Environment Variables
+// =====================
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORM "wayland"
+    MOZ_ENABLE_WAYLAND "1"
+}
+
+// =====================
+// Keybindings
+// DMS handles: notifications, brightness, media, screenshots via its bar
+// =====================
+binds {
+    // === Application Launchers ===
+    Mod+Return { spawn "kitty"; }
+    Mod+Space { spawn "dms" "ipc" "call" "spotlight" "toggle"; }  // DMS Spotlight/Launcher
+    Mod+E { spawn "nautilus"; }
+    Mod+B { spawn "zen"; }
+
+    // === DMS Features ===
+    Mod+Escape { spawn "dms" "ipc" "call" "lock" "lock"; }              // Lock screen
+    Mod+V { spawn "dms" "ipc" "call" "clipboard" "toggle"; }            // Clipboard history
+    Mod+N { spawn "dms" "ipc" "call" "notifications" "toggle"; }        // Notifications panel
+    Mod+Shift+N { spawn "dms" "ipc" "call" "notepad" "toggle"; }        // Notepad
+    Mod+M { spawn "dms" "ipc" "call" "processlist" "toggle"; }          // Process/Task manager
+    Mod+Alt+S { spawn "dms" "ipc" "call" "settings" "toggle"; }         // DMS Settings
+
+    // === Hardware Keys (via DMS) ===
+    XF86AudioRaiseVolume { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
+    XF86AudioLowerVolume { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
+    XF86AudioMute { spawn "dms" "ipc" "call" "audio" "mute"; }
+    XF86AudioMicMute { spawn "dms" "ipc" "call" "audio" "micmute"; }
+    XF86MonBrightnessUp { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
+    XF86MonBrightnessDown { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
+
+    // === Screenshots (via DMS) ===
+    // Print = area selection, Ctrl+Print = full screen
+    // Without Shift = clipboard only, With Shift = file + clipboard
+    Print { spawn "dms" "screenshot" "--no-file"; }                     // Area → clipboard
+    Ctrl+Print { spawn "dms" "screenshot" "full" "--no-file"; }         // Full screen → clipboard
+    Shift+Print { spawn "dms" "screenshot"; }                           // Area → file + clipboard
+    Ctrl+Shift+Print { spawn "dms" "screenshot" "full"; }               // Full screen → file + clipboard
+    Alt+Print { spawn "dms" "screenshot" "window" "--no-file"; }         // Window → clipboard
+    Alt+Shift+Print { spawn "dms" "screenshot" "window"; }                // Window → file + clipboard
+
+    // === Window Management ===
+    Mod+Q { close-window; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+D { switch-preset-column-width; }
+    Mod+Shift+Space { reset-window-height; }
+
+    // Focus movement (vim-style)
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+L { focus-column-right; }
+
+    // Move windows
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K { move-window-up-or-to-workspace-up; }
+    Mod+Shift+L { move-column-right; }
+
+    // Resize windows
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Workspace Management
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // Navigate workspaces
+    Mod+Tab { focus-workspace-down; }
+    Mod+Shift+Tab { focus-workspace-up; }
+
+    // Session Management (quit niri)
+    Mod+Shift+E { quit; }
+    Mod+Shift+R { spawn "niri" "msg" "action" "reload-config"; }
+}
+
+// =====================
+// Window Rules
+// =====================
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"^(firefox|zen.*)$"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id="^kitty$"
+    default-column-width { proportion 0.5; }
+}
+
+window-rule {
+    match app-id="^org.gnome.Nautilus$"
+    default-column-width { proportion 0.4; }
+}
+
+window-rule {
+    match app-id="^pavucontrol$"
+    match app-id="^nm-connection-editor$"
+    match app-id="^blueman-manager$"
+    open-floating true
+}
+
+window-rule {
+    match title="Picture-in-Picture"
+    open-floating true
+}
