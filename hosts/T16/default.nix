@@ -89,11 +89,8 @@
   # Enable dconf for GTK applications
   programs.dconf.enable = true;
 
-  # Enable niri compositor (alongside COSMIC)
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-  };
+  # Enable niri compositor (using nixpkgs version)
+  programs.niri.enable = true;
 
   users.users.unalome = {
     isNormalUser = true;
