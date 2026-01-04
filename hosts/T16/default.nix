@@ -89,6 +89,12 @@
   # Enable dconf for GTK applications
   programs.dconf.enable = true;
 
+  # Enable niri compositor (alongside COSMIC)
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
+
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
@@ -136,5 +142,5 @@
     enableOnBoot = true;
   };
   
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }

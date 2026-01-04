@@ -11,12 +11,18 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     zen-browser,
+    niri,
     ...
   } @ inputs: let
     # Helper function to create a NixOS configuration
@@ -27,6 +33,8 @@
       system = "x86_64-linux";
       modules = [
         (import ./hosts/${machine}/default.nix)
+        niri.nixosModules.niri
+        {nixpkgs.overlays = [niri.overlays.niri];}
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -47,7 +55,10 @@
     homeConfigurations.unalome = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       extraSpecialArgs = {inherit inputs;};
-      modules = [./home/default.nix];
+      modules = [
+        niri.homeModules.niri
+        ./home/default.nix
+      ];
     };
   };
 }
