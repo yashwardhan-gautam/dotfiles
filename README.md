@@ -1,13 +1,6 @@
 # unalome's NixOS Dotfiles
 
-A modern, opinionated NixOS configuration featuring Hyprland window manager with a complete desktop environment setup.
-
-## Screenshots
-
-![Latest Desktop Screenshot](media/2025-08-05-021925_hyprshot.png)
-![Desktop Screenshot](media/2025-08-05-021633_hyprshot.png)
-![Desktop Screenshot](media/2025-08-05-021352_hyprshot.png)
-![Desktop Screenshot](media/2025-08-05-014356_hyprshot.png)
+A modern, opinionated NixOS configuration featuring **Niri** compositor with **DankMaterialShell** desktop environment.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -15,20 +8,18 @@ A modern, opinionated NixOS configuration featuring Hyprland window manager with
 - [Applications](#applications)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
 - [Configuration Structure](#configuration-structure)
-- [Customization](#customization)
 - [Resources](#resources)
 
 ## Overview
 
 This dotfiles repository provides a complete NixOS desktop environment featuring:
-- **Hyprland** - Modern tiling Wayland compositor
-- **Gruvbox Light** theme with custom colors
-- **Waybar** - Customizable status bar
-- **Kitty** - GPU-accelerated terminal emulator
+- **Niri** - Scrollable tiling Wayland compositor
+- **DankMaterialShell** - Modern desktop shell (launcher, notifications, clipboard, screenshots, etc.)
+- **Catppuccin Frappe** theme
+- **Ghostty** - GPU-accelerated terminal emulator
 - **Zen Browser** - Privacy-focused web browser
 - **Neovim** - Configured with LazyVim
 - **Audio/Video** - PipeWire with multimedia controls
-- **Security** - Hyprlock screen locker with idle management
 
 ## Quick Start
 
@@ -52,128 +43,141 @@ home-manager switch --flake .#unalome
 ## Applications
 
 ### Core Applications
-- **Terminal**: Kitty (GPU-accelerated)
+- **Terminal**: Ghostty (GPU-accelerated)
 - **Browser**: Zen Browser (default), Brave & Chromium (available)
-- **File Manager**: Yazi (terminal file manager)
+- **File Manager**: Yazi (terminal), COSMIC Files (GUI)
 - **Editor**: Neovim with LazyVim configuration
-- **Launcher**: Wofi (application launcher)
-- **Audio**: PulseAudio with PipeWire backend
-- **Bluetooth**: Blueberry manager
-- **Network**: NetworkManager with GUI applet
-- **Password Manager**: Bitwarden (open-source password manager)
+- **Launcher**: DankMaterialShell Spotlight
+- **Audio**: PipeWire
+- **Clipboard**: DankMaterialShell clipboard manager
+- **Screenshots**: DankMaterialShell screenshot tool
+- **Password Manager**: Bitwarden
 
 ### Development Tools
 - **Git** - Configured with user settings
 - **Fish Shell** - User-friendly shell with Starship prompt
-- **btop** - Modern system resource monitor
 - **LazyGit** - Terminal UI for Git operations
 
 ## Keyboard Shortcuts
 
-### Hyprland Window Management
-
-#### Basic Window Control
+### Help
 | Shortcut | Action |
-|----------|---------|
-| `Ctrl + Q` | Close active window |
-| `Super + V` | Toggle floating mode |
-| `Super + J` | Toggle split direction |
-| `Super + P` | Toggle pseudo-tiling |
-| `Super + Shift + F` | Toggle fullscreen |
+|----------|--------|
+| `Mod + Shift + /` | Show all shortcuts (hotkey overlay) |
 
-#### Window Navigation
-| Shortcut | Action |
-|----------|---------|
-| `Super + ←/→/↑/↓` | Move focus between windows |
-| `Super + Shift + ←/→/↑/↓` | Swap windows |
-| `Super + -/=` | Resize window horizontally |
-| `Super + Shift + -/=` | Resize window vertically |
-
-#### Workspace Management
-| Shortcut | Action |
-|----------|---------|
-| `Super + 1-9` | Switch to workspace 1-9 |
-| `Super + 0` | Switch to workspace 10 |
-| `Super + Shift + 1-9` | Move window to workspace 1-9 |
-| `Super + ,/.` | Switch to previous/next workspace |
-| `Super + S` | Toggle special workspace |
-| `Super + Shift + S` | Move window to special workspace |
-
-#### Mouse Actions
-| Shortcut | Action |
-|----------|---------|
-| `Super + Left Click + Drag` | Move window |
-| `Super + Right Click + Drag` | Resize window |
-| `Super + Scroll` | Switch workspaces |
-
-### Application Shortcuts
+### Application Launchers
 | Shortcut | Application |
 |----------|-------------|
-| `Super + Space` | Application launcher (Wofi) |
-| `Super + Return` | Terminal (Kitty) |
-| `Super + T` | Terminal (alternative) |
-| `Super + B` | Browser (Zen Browser) |
-| `Super + E` | File manager (Yazi) |
-| `Super + N` | Neovim editor |
+| `Mod + Return` | Terminal (Ghostty) |
+| `Mod + Space` | Application launcher (DMS Spotlight) |
+| `Mod + E` | File manager (Yazi) |
+| `Mod + B` | Browser (Zen) |
+
+### DankMaterialShell Features
+| Shortcut | Action |
+|----------|--------|
+| `Mod + Escape` | Lock screen |
+| `Mod + V` | Clipboard history |
+| `Mod + N` | Notifications panel |
+| `Mod + Shift + N` | Notepad |
+| `Mod + M` | Process/Task manager |
+| `Mod + Alt + S` | DMS Settings |
+
+### Window Management
+| Shortcut | Action |
+|----------|--------|
+| `Mod + Q` | Close window |
+| `Mod + F` | Maximize column |
+| `Mod + Shift + F` | Fullscreen window |
+| `Mod + D` | Cycle preset column widths (33%/50%/67%) |
+| `Mod + Shift + Space` | Reset window height |
+
+### Window Navigation (Vim-style)
+| Shortcut | Action |
+|----------|--------|
+| `Mod + H` | Focus column left |
+| `Mod + J` | Focus window/workspace down |
+| `Mod + K` | Focus window/workspace up |
+| `Mod + L` | Focus column right |
+
+### Move Windows
+| Shortcut | Action |
+|----------|--------|
+| `Mod + Shift + H` | Move column left |
+| `Mod + Shift + J` | Move window down/to workspace below |
+| `Mod + Shift + K` | Move window up/to workspace above |
+| `Mod + Shift + L` | Move column right |
+
+### Resize Windows
+| Shortcut | Action |
+|----------|--------|
+| `Mod + -` | Decrease column width 10% |
+| `Mod + =` | Increase column width 10% |
+| `Mod + Shift + -` | Decrease window height 10% |
+| `Mod + Shift + =` | Increase window height 10% |
+
+### Workspace Management
+| Shortcut | Action |
+|----------|--------|
+| `Mod + 1-9` | Switch to workspace 1-9 |
+| `Mod + Shift + 1-9` | Move window to workspace 1-9 |
+| `Mod + Tab` | Next workspace |
+| `Mod + Shift + Tab` | Previous workspace |
 
 ### Session Management
 | Shortcut | Action |
-|----------|---------|
-| `Super + Escape` | Lock screen |
-| `Super + Shift + Escape` | Exit Hyprland |
-| `Super + Ctrl + Escape` | Reboot system |
-| `Super + Shift + Ctrl + Escape` | Power off system |
+|----------|--------|
+| `Mod + Shift + E` | Quit Niri |
+| `Mod + Shift + R` | Reload Niri config |
 
-### Screenshots & Tools
+### Screenshots (via DMS)
 | Shortcut | Action |
-|----------|---------|
-| `Print Screen` | Screenshot region |
-| `Shift + Print Screen` | Screenshot window |
-| `Ctrl + Print Screen` | Screenshot output |
-| `Super + Print Screen` | Color picker |
-| `Ctrl + Super + V` | Clipboard manager |
+|----------|--------|
+| `Print` | Area selection → clipboard |
+| `Shift + Print` | Area selection → file + clipboard |
+| `Ctrl + Print` | Full screen → clipboard |
+| `Ctrl + Shift + Print` | Full screen → file + clipboard |
+| `Alt + Print` | Window → clipboard |
+| `Alt + Shift + Print` | Window → file + clipboard |
 
-### Media Controls
-| Shortcut | Action |
-|----------|---------|
-| `Volume Up/Down` | Adjust system volume |
+### Media Controls (Hardware Keys)
+| Key | Action |
+|-----|--------|
+| `Volume Up/Down` | Adjust volume (±3%) |
 | `Volume Mute` | Toggle mute |
 | `Mic Mute` | Toggle microphone mute |
-| `Brightness Up/Down` | Adjust screen brightness |
-| `Media Play/Pause` | Control media playback |
-| `Media Next/Prev` | Skip tracks |
+| `Brightness Up/Down` | Adjust brightness (±5%) |
 
-### Kitty Terminal Shortcuts
+### Ghostty Terminal Shortcuts
 
 #### Window Management
 | Shortcut | Action |
-|----------|---------|
+|----------|--------|
 | `Ctrl + Shift + Q` | Quit terminal |
 | `Alt + F4` | Close window |
 | `Ctrl + Shift + N` | New window |
 
 #### Tab Management
 | Shortcut | Action |
-|----------|---------|
+|----------|--------|
 | `Ctrl + Shift + T` | New tab |
 | `Ctrl + W` | Close tab |
 | `Ctrl + Tab` | Next tab |
 | `Ctrl + Shift + Tab` | Previous tab |
-| `Alt + 1-8` | Go to tab 1-8 |
-| `Alt + 9` | Go to tab 9 |
+| `Alt + 1-9` | Go to tab 1-9 |
 
-#### Split Management (Windows)
+#### Split Management
 | Shortcut | Action |
-|----------|---------|
+|----------|--------|
 | `Alt + E` | Split horizontally |
 | `Alt + V` | Split vertically |
-| `Alt + W` | Close window |
-| `Alt + H/J/K/L` | Navigate windows |
-| `Ctrl + Shift + ↑/↓/←/→` | Resize windows |
+| `Alt + W` | Close split |
+| `Alt + H/J/K/L` | Navigate splits |
+| `Ctrl + Shift + ↑/↓/←/→` | Resize splits |
 
 #### Text & Selection
 | Shortcut | Action |
-|----------|---------|
+|----------|--------|
 | `Ctrl + Shift + C` | Copy to clipboard |
 | `Ctrl + Shift + V` | Paste from clipboard |
 | `Ctrl + Shift + A` | Select all |
@@ -185,37 +189,30 @@ home-manager switch --flake .#unalome
 ```
 dotfiles/
 ├── flake.nix                 # Main flake configuration
-├── hosts/T16/               # Host-specific configuration
-│   ├── default.nix          # System configuration
+├── config.nix                # User configuration options
+├── hosts/T16/                # Host-specific configuration
+│   ├── default.nix           # System configuration
 │   └── hardware-configuration.nix
-└── home/                    # Home Manager configuration
-    ├── default.nix          # Main home configuration
-    ├── programs/            # Application configurations
-    │   ├── kitty.nix        # Terminal configuration
-    │   ├── neovim/          # Neovim setup with LazyVim
-    │   ├── fish.nix         # Shell configuration
-    │   ├── git.nix          # Git settings
-    │   └── ...
-    └── hyprland/           # Hyprland WM configuration
-        ├── default.nix      # Main Hyprland config
-        ├── bindings.nix     # Keyboard shortcuts
-        ├── windows.nix      # Window rules
-        ├── waybar.nix      # Status bar configuration
-        ├── autostart.nix   # Startup applications
+└── home/                     # Home Manager configuration
+    ├── default.nix           # Main home config + DMS setup
+    └── programs/             # Application configurations
+        ├── ghostty.nix       # Terminal configuration
+        ├── neovim/           # Neovim setup with LazyVim
+        ├── fish.nix          # Shell configuration
+        ├── git.nix           # Git settings
+        ├── gtk.nix           # GTK/Qt theming (Catppuccin)
+        ├── niri/             # Niri compositor config
+        │   ├── default.nix   # Niri home-manager setup
+        │   └── config.kdl    # Niri keybindings & settings
         └── ...
 ```
+
 ## Resources
 
-This configuration draws inspiration from several excellent NixOS and Hyprland setups:
-
-- **[OrynOS](https://github.com/OrynVail/OrynOS)** - A declarative, high-performance NixOS configuration built with Hyprland, TTY login, and modular design
-- **[Omarchy](https://github.com/basecamp/omarchy/tree/master)** - Opinionated Arch/Hyprland Setup that turns a fresh Arch installation into a fully-configured, beautiful, and modern web development system
-- **[omarchy-nix](https://github.com/henrysipp/omarchy-nix)** - NixOS version of the Omarchy configuration
-
-## Contributing
-
-Feel free to fork this repository and adapt it to your needs. If you find improvements or fixes, pull requests are welcome!
+- [Niri](https://github.com/YaLTeR/niri) - Scrollable tiling Wayland compositor
+- [DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell) - Desktop shell for Niri
+- [Catppuccin](https://github.com/catppuccin/catppuccin) - Soothing pastel theme
 
 ## License
 
-This configuration is provided as-is for educational and personal use. 
+This configuration is provided as-is for educational and personal use.

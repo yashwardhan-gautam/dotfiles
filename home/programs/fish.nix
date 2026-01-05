@@ -18,6 +18,8 @@
       "cd" = "z";
       "ls" = "eza";
       "ns" = "nix-shell --run fish";
+      "nfu" = "nix flake update";
+      "nfc" = "nix flake check";
     };
     interactiveShellInit = ''
       set -U fish_greeting

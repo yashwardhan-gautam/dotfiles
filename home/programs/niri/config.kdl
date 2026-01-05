@@ -3,6 +3,13 @@
 // (launcher, lock, notifications, brightness, media, clipboard, screenshots)
 
 // =====================
+// Hotkey Overlay
+// =====================
+hotkey-overlay {
+    skip-at-startup
+}
+
+// =====================
 // Input Configuration
 // =====================
 input {
@@ -66,10 +73,13 @@ environment {
 // DMS handles: notifications, brightness, media, screenshots via its bar
 // =====================
 binds {
+    // === Help ===
+    Mod+Shift+Slash { show-hotkey-overlay; }  // Mod+? to show all shortcuts
+
     // === Application Launchers ===
-    Mod+Return { spawn "kitty"; }
+    Mod+Return { spawn "ghostty"; }
     Mod+Space { spawn "dms" "ipc" "call" "spotlight" "toggle"; }  // DMS Spotlight/Launcher
-    Mod+E { spawn "nautilus"; }
+    Mod+E { spawn "ghostty" "-e" "yazi"; }
     Mod+B { spawn "zen"; }
 
     // === DMS Features ===
@@ -167,12 +177,13 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^kitty$"
+    match app-id="^com.mitchellh.ghostty$"
     default-column-width { proportion 0.5; }
+    geometry-corner-radius 0
 }
 
 window-rule {
-    match app-id="^org.gnome.Nautilus$"
+    match app-id="^com.system76.CosmicFiles$"
     default-column-width { proportion 0.4; }
 }
 

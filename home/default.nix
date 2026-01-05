@@ -93,6 +93,7 @@
     tflint
 
     # CLI Tools
+    yazi
     tree
     eza
     bat
@@ -111,14 +112,13 @@
     curl
     fastfetch
     zoxide
-    chafa
-    ueberzugpp
 
     # Version Control
     git
     lazygit
 
     # Applications
+    cosmic-files
     brave
     chromium
     qbittorrent
@@ -137,7 +137,7 @@
     ffmpeg
 
     # Shell & Terminal
-    kitty
+    ghostty
     fish
     starship
 
@@ -149,7 +149,7 @@
     xdg-desktop-portal-gtk
 
     # Fonts
-    nerd-fonts.meslo-lg
+    nerd-fonts.jetbrains-mono
 
     # System fonts for browsers and apps
     noto-fonts # Google Noto fonts (good Unicode coverage)
@@ -165,7 +165,7 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = ["MesloLGS Nerd Font Mono"];
+      monospace = ["JetBrainsMono Nerd Font"];
     };
   };
 

@@ -129,6 +129,12 @@
   # Fingerprint authentication
   services.fprintd.enable = true;
 
+  # Power profiles daemon (required for DMS battery profile switching on AMD)
+  services.power-profiles-daemon.enable = true;
+
+  # UPower for battery monitoring
+  services.upower.enable = true;
+
   # Bluetooth
   hardware.bluetooth.enable = true;
 

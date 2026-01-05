@@ -4,7 +4,7 @@
     ./neovim
     ./git.nix
     ./fish.nix
-    ./kitty.nix
+    ./ghostty.nix
     ./obsidian.nix
     ./zoxide.nix
     ./obs-studio.nix
