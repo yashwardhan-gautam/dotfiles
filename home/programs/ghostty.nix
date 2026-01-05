@@ -4,10 +4,11 @@
   xdg.configFile."ghostty/config".text = ''
     # Font Configuration
     font-family = JetBrainsMono Nerd Font
-    font-size = 11.2
+    font-size = 11
 
     # Window Settings
-    window-decoration = false
+    window-decoration = server
+    gtk-titlebar = false
     window-padding-x = 0
     window-padding-y = 0
     confirm-close-surface = false
@@ -112,4 +113,3 @@
     keybind = ctrl+shift+a=select_all
   '';
 }
-
