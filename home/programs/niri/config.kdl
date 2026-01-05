@@ -77,7 +77,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }  // Mod+? to show all shortcuts
 
     // === Application Launchers ===
-    Mod+Return { spawn "ghostty"; }
+    Mod+T { spawn "ghostty"; }
     Mod+Space { spawn "dms" "ipc" "call" "spotlight" "toggle"; }  // DMS Spotlight/Launcher
     Mod+E { spawn "ghostty" "-e" "yazi"; }
     Mod+B { spawn "zen"; }
@@ -110,8 +110,8 @@ binds {
 
     // === Window Management ===
     Mod+Q { close-window; }
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+Return { maximize-column; }
+    Mod+Shift+Return { fullscreen-window; }
     Mod+D { switch-preset-column-width; }
     Mod+Shift+Space { reset-window-height; }
 
@@ -178,7 +178,8 @@ window-rule {
 
 window-rule {
     match app-id="^com.mitchellh.ghostty$"
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.25; }
+    open-maximized true
 }
 
 window-rule {

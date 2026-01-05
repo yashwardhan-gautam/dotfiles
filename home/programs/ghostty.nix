@@ -7,11 +7,15 @@
     font-size = 11
 
     # Window Settings
-    window-decoration = server
+    window-decoration = none
     gtk-titlebar = false
     window-padding-x = 0
     window-padding-y = 0
     confirm-close-surface = false
+    
+    # Reduce flickering during resize
+    resize-overlay = never
+    window-vsync = true
 
     # Theme - Catppuccin Frappe
     background = 303446
