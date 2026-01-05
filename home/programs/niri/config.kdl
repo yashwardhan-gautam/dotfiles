@@ -167,7 +167,7 @@ binds {
 // Window Rules
 // =====================
 window-rule {
-    geometry-corner-radius 8
+    geometry-corner-radius 0
     clip-to-geometry true
 }
 
@@ -179,7 +179,6 @@ window-rule {
 window-rule {
     match app-id="^com.mitchellh.ghostty$"
     default-column-width { proportion 0.5; }
-    geometry-corner-radius 0
 }
 
 window-rule {
