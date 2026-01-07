@@ -60,6 +60,13 @@
     doxygen
     gdb
 
+    # Profiling Tools
+    perf # CPU profiling, cache analysis
+    heaptrack # Heap memory profiler
+    valgrind # Memory debugging (includes cachegrind, callgrind)
+    coz # Causal profiler
+    cargo-flamegraph # Generate flamegraph SVGs for Rust
+
     # Python
     (python312.withPackages (ps:
       with ps; [
@@ -75,6 +82,7 @@
     gopls
     nixd
     pyright
+    rust-analyzer
     terraform-ls
     yaml-language-server
     cmake-language-server
@@ -91,6 +99,10 @@
     hadolint
     shellcheck
     tflint
+    clippy
+    cargo-nextest
+    bacon
+    vscode-extensions.vadimcn.vscode-lldb.adapter # Rust debugger
 
     # CLI Tools
     yazi
@@ -195,12 +207,26 @@
   programs.zen-browser = {
     enable = true;
     profiles."default" = {
-      # Basic configuration without complex theme for now
       spaces = {
         "Default" = {
           id = "00000000-0000-0000-0000-000000000000";
           position = 1000;
         };
+      };
+      # Theme settings - follow system light/dark mode
+      settings = {
+        # Follow system theme (light/dark)
+        "layout.css.prefers-color-scheme.content-override" = 2; # 2 = system
+        "browser.theme.toolbar-theme" = 2; # 2 = system
+        "browser.theme.content-theme" = 2; # 2 = system
+
+        # GTK integration for proper theme detection
+        "widget.content.allow-gtk-dark-theme" = true;
+        "widget.gtk.ignore-theme-variant" = false;
+        "widget.gtk.alt-theme.dark" = true;
+
+        # Use system colors
+        "browser.display.use_system_colors" = true;
       };
     };
   };

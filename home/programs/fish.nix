@@ -20,6 +20,8 @@
       "ns" = "nix-shell --run fish";
       "nfu" = "nix flake update";
       "nfc" = "nix flake check";
+      "b" = "bacon";
+      "cat" = "bat";
     };
     interactiveShellInit = ''
       set -U fish_greeting

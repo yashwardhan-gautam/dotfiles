@@ -31,6 +31,8 @@
 - [x] how to configure the tabs inside kitty, move between them using alt+j/k for better navigation, fix vertical split
 - [x] get rid of hyprland, and update the alias while building from `T16-niri` or `T16-cosmic` to T16 only
 - [ ] check where do i get the notes from ? the obsidian ones saved in mac
-- [ ] make sure universal clipboard is working
-- [ ] rust specific stuff in neovim, and bacon
+- [x] make sure universal clipboard is working
+- [ ] rust specific stuff in neovim `rustaceanvim`
+- [ ] and bacon, and all the performance related to stuff from 
 - [ ] install exeldraw in obsidian for making notes
+- [ ] install vpn

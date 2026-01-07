@@ -49,7 +49,7 @@ return {
         },
       }
       dap.configurations.c = dap.configurations.cpp
-      dap.configurations.rust = dap.configurations.cpp
+      -- Rust debugging handled by rustaceanvim with CodeLLDB
 
       -- Keymaps for DAP
       vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })

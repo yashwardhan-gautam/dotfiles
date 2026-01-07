@@ -215,4 +215,4 @@ dotfiles/
 
 ## License
 
-This configuration is provided as-is for educational and personal use.
+This configuration is provided as-is for educational and personal use. 
