@@ -10,6 +10,12 @@ hotkey-overlay {
 }
 
 // =====================
+// Startup Commands
+// =====================
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
+// =====================
 // Input Configuration
 // =====================
 input {

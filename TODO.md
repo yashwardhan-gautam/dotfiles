@@ -33,3 +33,4 @@
 - [ ] check where do i get the notes from ? the obsidian ones saved in mac
 - [ ] make sure universal clipboard is working
 - [ ] rust specific stuff in neovim, and bacon
+- [ ] install exeldraw in obsidian for making notes
