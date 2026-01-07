@@ -1,26 +1,11 @@
+-- Disable Mason entirely - LSPs are managed by Nix packages
 return {
-  {
-    "williamboman/mason.nvim",
-    -- Disable Mason in favor of Nix packages
-    enabled = false,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "bash-language-server",
-        "black",
-        "goimports",
-        "golangci-lint",
-        "hadolint",
-        "isort",
-        "json-lsp",
-        "lua-language-server",
-        "prettier",
-        "pyright",
-        "shfmt",
-        "stylua",
-        "terraform-ls",
-        "tflint",
-        "yaml-language-server",
-      })
-    end,
-  },
+  -- Disable mason.nvim (renamed from williamboman/mason.nvim)
+  { "mason-org/mason.nvim", enabled = false },
+
+  -- Disable mason-lspconfig.nvim (renamed from williamboman/mason-lspconfig.nvim)
+  { "mason-org/mason-lspconfig.nvim", enabled = false },
+
+  -- Disable mason-nvim-dap if using codelldb from Nix
+  { "jay-babu/mason-nvim-dap.nvim", enabled = false },
 }

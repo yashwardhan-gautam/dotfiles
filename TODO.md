@@ -32,7 +32,7 @@
 - [x] get rid of hyprland, and update the alias while building from `T16-niri` or `T16-cosmic` to T16 only
 - [ ] check where do i get the notes from ? the obsidian ones saved in mac
 - [x] make sure universal clipboard is working
-- [ ] rust specific stuff in neovim `rustaceanvim`
-- [ ] and bacon, and all the performance related to stuff from 
+- [x] rust specific stuff in neovim `rustaceanvim`
+- [x] and bacon, and all the performance related to stuff from 
 - [ ] install exeldraw in obsidian for making notes
-- [ ] install vpn
+- [ ] install vpn, from aws
