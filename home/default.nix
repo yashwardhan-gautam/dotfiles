@@ -20,13 +20,15 @@
       restartIfChanged = true;
     };
 
-    # Core features
-    enableSystemMonitoring = true; # dgop
-    enableClipboard = true;
-    enableVPN = true;
-    enableDynamicTheming = true; # matugen
-    enableAudioWavelength = true; # cava
-    enableCalendarEvents = true; # khal
+    # Core features (essential)
+    enableSystemMonitoring = true; # dgop - system info
+    enableClipboard = true; # clipboard history
+    enableVPN = true; # VPN status indicator
+
+    # Optional features (disabled for faster startup)
+    enableDynamicTheming = false; # matugen - wallpaper-based theming
+    enableAudioWavelength = false; # cava - audio visualizer
+    enableCalendarEvents = false; # khal - calendar integration
   };
 
   # Home Manager basic settings
