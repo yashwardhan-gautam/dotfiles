@@ -143,6 +143,7 @@
     qalculate-gtk
     telegram-desktop
     bitwarden-desktop
+    protonvpn-gui
 
     # Media
     vlc
