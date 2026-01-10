@@ -10,39 +10,71 @@ return {
       vim.g.rustaceanvim = {
         -- LSP configuration
         server = {
-          on_attach = function(client, bufnr)
+          on_attach = function(bufnr)
             -- Keymaps for Rust files (with which-key descriptions)
             local map = function(mode, lhs, rhs, desc)
               vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
             end
 
             -- Rust-specific LSP commands
-            map("n", "<leader>rr", function() vim.cmd.RustLsp("runnables") end, "Runnables")
-            map("n", "<leader>rd", function() vim.cmd.RustLsp("debuggables") end, "Debuggables")
-            map("n", "<leader>re", function() vim.cmd.RustLsp("expandMacro") end, "Expand Macro")
-            map("n", "<leader>rc", function() vim.cmd.RustLsp("openCargo") end, "Open Cargo.toml")
-            map("n", "<leader>rp", function() vim.cmd.RustLsp("parentModule") end, "Parent Module")
-            map("n", "<leader>rj", function() vim.cmd.RustLsp("joinLines") end, "Join Lines")
-            map("n", "<leader>rm", function() vim.cmd.RustLsp("rebuildProcMacros") end, "Rebuild Proc Macros")
+            map("n", "<leader>rr", function()
+              vim.cmd.RustLsp("runnables")
+            end, "Runnables")
+            map("n", "<leader>rd", function()
+              vim.cmd.RustLsp("debuggables")
+            end, "Debuggables")
+            map("n", "<leader>re", function()
+              vim.cmd.RustLsp("expandMacro")
+            end, "Expand Macro")
+            map("n", "<leader>rc", function()
+              vim.cmd.RustLsp("openCargo")
+            end, "Open Cargo.toml")
+            map("n", "<leader>rp", function()
+              vim.cmd.RustLsp("parentModule")
+            end, "Parent Module")
+            map("n", "<leader>rj", function()
+              vim.cmd.RustLsp("joinLines")
+            end, "Join Lines")
+            map("n", "<leader>rm", function()
+              vim.cmd.RustLsp("rebuildProcMacros")
+            end, "Rebuild Proc Macros")
 
             -- Code actions and hover
-            map("n", "<leader>ra", function() vim.cmd.RustLsp("codeAction") end, "Code Action")
-            map("n", "<leader>rh", function() vim.cmd.RustLsp("hover", "actions") end, "Hover Actions")
-            map("n", "<leader>rH", function() vim.cmd.RustLsp("hover", "range") end, "Hover Range")
+            map("n", "<leader>ra", function()
+              vim.cmd.RustLsp("codeAction")
+            end, "Code Action")
+            map("n", "<leader>rh", function()
+              vim.cmd.RustLsp("hover", "actions")
+            end, "Hover Actions")
+            map("n", "<leader>rH", function()
+              vim.cmd.RustLsp("hover", "range")
+            end, "Hover Range")
 
             -- Diagnostics
-            map("n", "<leader>rx", function() vim.cmd.RustLsp("explainError") end, "Explain Error")
-            map("n", "<leader>rD", function() vim.cmd.RustLsp("renderDiagnostic") end, "Render Diagnostic")
+            map("n", "<leader>rx", function()
+              vim.cmd.RustLsp("explainError")
+            end, "Explain Error")
+            map("n", "<leader>rD", function()
+              vim.cmd.RustLsp("renderDiagnostic")
+            end, "Render Diagnostic")
 
             -- Testing
-            map("n", "<leader>rt", function() vim.cmd.RustLsp("testables") end, "Testables")
+            map("n", "<leader>rt", function()
+              vim.cmd.RustLsp("testables")
+            end, "Testables")
 
             -- Crate graph
-            map("n", "<leader>rg", function() vim.cmd.RustLsp("crateGraph") end, "Crate Graph")
+            map("n", "<leader>rg", function()
+              vim.cmd.RustLsp("crateGraph")
+            end, "Crate Graph")
 
             -- Move items
-            map("n", "<leader>rk", function() vim.cmd.RustLsp("moveItem", "up") end, "Move Item Up")
-            map("n", "<leader>rJ", function() vim.cmd.RustLsp("moveItem", "down") end, "Move Item Down")
+            map("n", "<leader>rk", function()
+              vim.cmd.RustLsp("moveItem", "up")
+            end, "Move Item Up")
+            map("n", "<leader>rJ", function()
+              vim.cmd.RustLsp("moveItem", "down")
+            end, "Move Item Down")
           end,
           default_settings = {
             ["rust-analyzer"] = {
@@ -146,4 +178,3 @@ return {
     },
   },
 }
-
