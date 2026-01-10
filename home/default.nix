@@ -146,6 +146,7 @@
     telegram-desktop
     bitwarden-desktop
     protonvpn-gui
+    zapzap
 
     # Media
     vlc
