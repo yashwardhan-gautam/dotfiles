@@ -94,6 +94,9 @@
   # Enable niri compositor (using nixpkgs version)
   programs.niri.enable = true;
 
+  # Enable nix-ld for LSP servers (required by Zed)
+  programs.nix-ld.enable = true;
+
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
@@ -109,6 +112,9 @@
     tuigreet
     # General utilities
     parabolic # YouTube downloader (yt-dlp frontend)
+    # Zed editor dependencies
+    vulkan-tools
+    nix-ld
   ];
 
   nixpkgs.config = {

@@ -22,7 +22,6 @@
 
     # Core features (essential)
     enableSystemMonitoring = true; # dgop - system info
-    enableClipboard = true; # clipboard history
     enableVPN = true; # VPN status indicator
 
     # Optional features (disabled for faster startup)
@@ -139,9 +138,9 @@
     discord
     gnome-boxes
     yt-dlp
-    code-cursor
-    cursor-cli
     opencode
+    claude-code
+    zed-editor
     qalculate-gtk
     telegram-desktop
     bitwarden-desktop
@@ -149,7 +148,7 @@
     zapzap
 
     # Media
-    vlc
+    cosmic-player
     ffmpeg
 
     # Shell & Terminal
@@ -163,6 +162,8 @@
     docker-compose
     fprintd
     xdg-desktop-portal-gtk
+
+    
 
     # Fonts
     nerd-fonts.jetbrains-mono
