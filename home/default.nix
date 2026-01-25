@@ -137,6 +137,7 @@
     qbittorrent
     discord
     gnome-boxes
+    libreoffice-fresh
     yt-dlp
     opencode
     claude-code
