@@ -10,5 +10,6 @@
     ./obs-studio.nix
     ./niri
     ./gtk.nix
+    ./direnv.nix
   ];
 }

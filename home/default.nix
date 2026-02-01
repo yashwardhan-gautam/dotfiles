@@ -52,6 +52,7 @@
     clang-tools
     cmake-lint
     pkg-config
+    openssl
 
     # C/C++ Development
     gtest
@@ -150,6 +151,7 @@
 
     # Media
     cosmic-player
+    vlc
     ffmpeg
 
     # Shell & Terminal
@@ -163,8 +165,6 @@
     docker-compose
     fprintd
     xdg-desktop-portal-gtk
-
-    
 
     # Fonts
     nerd-fonts.jetbrains-mono
