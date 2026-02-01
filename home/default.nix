@@ -53,6 +53,7 @@
     cmake-lint
     pkg-config
     openssl
+    openssl.dev
 
     # C/C++ Development
     gtest

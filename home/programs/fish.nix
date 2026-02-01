@@ -27,6 +27,10 @@
       set -U fish_greeting
       set -x EDITOR "nvim"
       set -x VISUAL "nvim"
+
+      # OpenSSL development headers for Rust crates
+      # Home Manager packages are in home-manager-path, not .nix-profile
+      set -x PKG_CONFIG_PATH "$HOME/.local/state/home-manager/gcroots/current-home/home-path/lib/pkgconfig" $PKG_CONFIG_PATH
     '';
   };
 }
