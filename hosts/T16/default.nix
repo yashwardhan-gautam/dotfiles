@@ -97,6 +97,9 @@
   # Enable nix-ld for LSP servers (required by Zed)
   programs.nix-ld.enable = true;
 
+  # Enable OpenVPN3 with D-Bus services
+  programs.openvpn3.enable = true;
+
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
