@@ -127,6 +127,7 @@
     curl
     fastfetch
     zoxide
+    openvpn3
 
     # Version Control
     git
