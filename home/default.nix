@@ -128,6 +128,7 @@
     fastfetch
     zoxide
     openvpn3
+    pandoc
 
     # Version Control
     git

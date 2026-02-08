@@ -100,6 +100,9 @@
   # Enable OpenVPN3 with D-Bus services
   programs.openvpn3.enable = true;
 
+  # Enable systemd-resolved for OpenVPN3 netcfg D-Bus service
+  services.resolved.enable = true;
+
   users.users.unalome = {
     isNormalUser = true;
     description = "unalome";
