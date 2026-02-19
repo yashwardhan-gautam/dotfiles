@@ -96,6 +96,20 @@
 
   # Enable nix-ld for LSP servers (required by Zed)
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Qt5 runtime for Indigo2
+    qt5.qtbase
+    qt5.qtdeclarative
+    qt5.qtsvg
+    qt5.qtwayland
+    qt5.qtx11extras
+    qt5.qtmultimedia
+    qt5.qtwebengine
+    qt5.qtquickcontrols
+    qt5.qtquickcontrols2
+    qt5.qtgraphicaleffects
+    stdenv.cc.cc.lib
+  ];
 
   # Enable OpenVPN3 with D-Bus services
   programs.openvpn3.enable = true;
@@ -127,6 +141,7 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "libsoup-2.74.3" # Required by some GNOME applications, has known CVEs but needed for compatibility
+      "qtwebengine-5.15.19" # Required by Indigo2 trading GUI for embedded browser component
     ];
   };
 

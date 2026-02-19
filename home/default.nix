@@ -7,11 +7,11 @@
     ../config.nix
     ./programs/default.nix
     inputs.zen-browser.homeModules.twilight
-    inputs.dms.homeModules.dankMaterialShell.default
+    inputs.dms.homeModules.dank-material-shell
   ];
 
   # DankMaterialShell configuration
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
 
     # Auto-start DMS via systemd
@@ -151,6 +151,18 @@
     bitwarden-desktop
     protonvpn-gui
     zapzap
+
+    # Qt5 Runtime for Indigo2 Trading GUI
+    qt5.qtbase
+    qt5.qtwayland
+    qt5.qtsvg
+    qt5.qtdeclarative
+    qt5.qtnetworkauth
+    stdenv.cc.cc.lib
+
+    # X11 libraries for XWayland fallback
+    xorg.libX11
+    xorg.libXrender
 
     # Media
     cosmic-player

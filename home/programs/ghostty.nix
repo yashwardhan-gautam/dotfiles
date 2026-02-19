@@ -6,6 +6,9 @@
     font-family = JetBrainsMono Nerd Font
     font-size = 11
 
+    # Terminal Type - use xterm-256color for better compatibility
+    term = xterm-256color
+
     # Window Settings
     window-decoration = none
     gtk-titlebar = false
